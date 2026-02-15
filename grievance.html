@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grievance Portal - SAARTHI</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="design-system.css">
+
+    <style>
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-lg);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-label {
+            display: block;
+            font-size: var(--text-sm);
+            font-weight: var(--weight-semibold);
+            color: var(--text-dark);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #E5E7EB;
+            border-radius: var(--radius-md);
+            font-size: var(--text-base);
+            font-family: var(--font-secondary);
+            color: var(--text-dark);
+            transition: all var(--transition-base);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .draft-preview {
+            background: var(--bg-cream);
+            border: 2px dashed var(--primary-orange);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .draft-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .draft-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-orange);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .draft-content {
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            font-size: var(--text-sm);
+            line-height: var(--leading-relaxed);
+            color: var(--text-dark);
+        }
+
+        .help-text {
+            font-size: var(--text-xs);
+            color: var(--text-brown);
+            margin-top: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Government Badge -->
+    <div class="govt-badge">
+        <svg class="govt-emblem" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
+        </svg>
+        <span>Government<br>of India</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="nav-header">
+        <div class="container nav-content">
+            <div class="logo"><img src="assets/saarthi-logo-transparent.png" alt="SAARTHI - Civic Tech AI"></div>
+
+            <ul class="nav-tabs">
+                <li><a href="index.html" class="nav-tab">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
+                        </svg>
+                        Home
+                    </a></li>
+                <li><a href="voice-dashboard.html" class="nav-tab">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                            <line x1="12" y1="19" x2="12" y2="23" />
+                            <line x1="8" y1="23" x2="16" y2="23" />
+                        </svg>
+                        Voice
+                    </a></li>
+                <li><a href="scheme-eligibility.html" class="nav-tab">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                        </svg>
+                        Benefits
+                    </a></li>
+                <li><a href="application-tracking.html" class="nav-tab">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        Track
+                    </a></li>
+                <li><a href="grievance.html" class="nav-tab active">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                        Support
+                    </a></li>
+            </ul>
+
+            <div class="flex gap-sm">
+                <button class="btn-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="2" y1="12" x2="22" y2="12" />
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                </button>
+                <button class="btn-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Grievance & Appeal Portal</h1>
+                <p class="section-subtitle">File a complaint or appeal a decision. We'll help you draft it.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--spacing-xl);">
+                <!-- Form Section -->
+                <div class="card">
+                    <h3
+                        style="font-size: var(--text-xl); font-weight: var(--weight-semibold); margin-bottom: var(--spacing-lg); font-family: var(--font-primary); display: flex; align-items: center; gap: 8px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-orange)"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                            <polyline points="10 9 9 9 8 9" />
+                        </svg>
+                        Complaint Details
+                    </h3>
+
+                    <form>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Complaint Type *</label>
+                                <select class="form-select">
+                                    <option>Select type...</option>
+                                    <option>Scheme Application Delay</option>
+                                    <option>Benefit Not Received</option>
+                                    <option>Document Rejection</option>
+                                    <option>Incorrect Information</option>
+                                    <option>Official Misconduct</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Related Scheme</label>
+                                <select class="form-select">
+                                    <option>Select scheme...</option>
+                                    <option>PM-Kisan Yojana</option>
+                                    <option>Ayushman Bharat</option>
+                                    <option>Pension Scheme</option>
+                                    <option>Housing Subsidy</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Application/Reference Number</label>
+                            <input type="text" class="form-input" placeholder="e.g., PMK-2026-45678-UP">
+                            <div class="help-text">If applicable, enter your application number</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Subject *</label>
+                            <input type="text" class="form-input" placeholder="Brief description of your issue">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Detailed Description *</label>
+                            <textarea class="form-textarea"
+                                placeholder="Explain your grievance in detail. Include dates, names, and any relevant information..."></textarea>
+                            <div class="help-text">Be as specific as possible. Our AI will help draft a formal
+                                complaint.</div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Preferred Language</label>
+                                <select class="form-select">
+                                    <option>English</option>
+                                    <option>हिन्दी (Hindi)</option>
+                                    <option>বাংলা (Bengali)</option>
+                                    <option>తెలుగు (Telugu)</option>
+                                    <option>मराठी (Marathi)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Contact Number *</label>
+                                <input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Supporting Documents</label>
+                            <div
+                                style="border: 2px dashed #E5E7EB; border-radius: var(--radius-md); padding: var(--spacing-lg); text-align: center; cursor: pointer;">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-brown)"
+                                    stroke-width="2" style="margin: 0 auto var(--spacing-sm);">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="17 8 12 3 7 8" />
+                                    <line x1="12" y1="3" x2="12" y2="15" />
+                                </svg>
+                                <p style="color: var(--text-brown); font-size: var(--text-sm);">Click to upload or drag
+                                    and drop</p>
+                                <p class="help-text">PDF, JPG, PNG (Max 5MB each)</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- AI Draft Preview -->
+                <div>
+                    <div class="card" style="position: sticky; top: 100px;">
+                        <h3
+                            style="font-size: var(--text-lg); font-weight: var(--weight-semibold); margin-bottom: var(--spacing-md); font-family: var(--font-primary); display: flex; align-items: center; gap: 8px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-orange)"
+                                stroke-width="2">
+                                <rect x="3" y="11" width="18" height="10" rx="2" />
+                                <circle cx="12" cy="5" r="2" />
+                                <path d="M12 7v4" />
+                                <line x1="8" y1="16" x2="8" y2="16" />
+                                <line x1="16" y1="16" x2="16" y2="16" />
+                            </svg>
+                            AI-Generated Draft
+                        </h3>
+                        <p
+                            style="font-size: var(--text-sm); color: var(--text-brown); margin-bottom: var(--spacing-lg);">
+                            Fill in the form and we'll automatically draft a formal complaint for you.
+                        </p>
+
+                        <div class="draft-preview">
+                            <div class="draft-header">
+                                <div class="draft-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"
+                                        stroke-width="2">
+                                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+                                        <polyline points="13 2 13 9 20 9" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div style="font-weight: var(--weight-semibold); color: var(--text-dark);">Formal
+                                        Complaint Draft</div>
+                                    <div style="font-size: var(--text-xs); color: var(--text-brown);">Auto-generated
+                                        from your inputs</div>
+                                </div>
+                            </div>
+
+                            <div class="draft-content">
+                                <p style="margin-bottom: var(--spacing-md);"><strong>To,</strong><br>
+                                    The District Welfare Officer<br>
+                                    Sitapur District, Uttar Pradesh</p>
+
+                                <p style="margin-bottom: var(--spacing-md);"><strong>Subject:</strong> [Your subject
+                                    will appear here]</p>
+
+                                <p style="margin-bottom: var(--spacing-md);">Respected Sir/Madam,</p>
+
+                                <p
+                                    style="margin-bottom: var(--spacing-md); font-style: italic; color: var(--text-brown);">
+                                    [Your detailed complaint will be formatted here in formal language with proper
+                                    structure, dates, and references...]
+                                </p>
+
+                                <p style="margin-bottom: var(--spacing-md);">I request you to kindly look into this
+                                    matter and take necessary action at the earliest.</p>
+
+                                <p>Thanking you,<br>
+                                    [Your Name]<br>
+                                    [Your Contact Details]</p>
+                            </div>
+                        </div>
+
+                        <div
+                            style="margin-top: var(--spacing-lg); padding: var(--spacing-md); background: #FEF3E2; border-radius: var(--radius-sm); border-left: 4px solid var(--primary-orange);">
+                            <p
+                                style="font-size: var(--text-xs); color: var(--text-dark); display: flex; flex-direction: column; gap: 4px;">
+                                <span style="display: flex; align-items: center; gap: 4px; font-weight: bold;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                        stroke="var(--primary-orange)" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                    AI Assistance
+                                </span>
+                                We'll format your complaint professionally, add legal references, and ensure it reaches
+                                the right authority.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Section -->
+            <div style="margin-top: var(--spacing-xl); text-align: center;">
+                <button class="btn-secondary" style="margin-right: var(--spacing-md);">Save as Draft</button>
+                <button class="btn-primary"
+                    style="font-size: var(--text-lg); padding: 14px 40px; display: inline-flex; align-items: center; gap: 10px;">
+                    Submit Complaint
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                </button>
+            </div>
+
+            <div style="margin-top: var(--spacing-3xl);">
+                <h3
+                    style="font-size: var(--text-xl); font-weight: var(--weight-semibold); margin-bottom: var(--spacing-lg); font-family: var(--font-primary); display: flex; align-items: center; gap: 8px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-orange)"
+                        stroke-width="2">
+                        <path d="M12 8v4l3 3" />
+                        <circle cx="12" cy="12" r="10" />
+                    </svg>
+                    Your Previous Complaints
+                </h3>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--spacing-md);">
+                            <div>
+                                <h4
+                                    style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--text-dark); margin-bottom: 4px;">
+                                    Benefit Payment Delay
+                                </h4>
+                                <p style="font-size: var(--text-xs); color: var(--text-brown);">Complaint ID:
+                                    GRV-2026-001234</p>
+                            </div>
+                            <span class="status-badge warning">In Progress</span>
+                        </div>
+                        <p
+                            style="font-size: var(--text-sm); color: var(--text-dark); margin-bottom: var(--spacing-sm);">
+                            PM-Kisan installment not received for 3 months
+                        </p>
+                        <p style="font-size: var(--text-xs); color: var(--text-brown);">Filed: Jan 10, 2026 • Expected
+                            resolution: Jan 25, 2026</p>
+                    </div>
+
+                    <div class="card">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--spacing-md);">
+                            <div>
+                                <h4
+                                    style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--text-dark); margin-bottom: 4px;">
+                                    Document Verification Issue
+                                </h4>
+                                <p style="font-size: var(--text-xs); color: var(--text-brown);">Complaint ID:
+                                    GRV-2025-009876</p>
+                            </div>
+                            <span class="status-badge success">Resolved</span>
+                        </div>
+                        <p
+                            style="font-size: var(--text-sm); color: var(--text-dark); margin-bottom: var(--spacing-sm);">
+                            Aadhaar verification failed despite correct details
+                        </p>
+                        <p style="font-size: var(--text-xs); color: var(--text-brown);">Filed: Dec 5, 2025 • Resolved:
+                            Dec 18, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Platform</h4>
+                    <a href="#" class="footer-link">Voice Dashboard</a>
+                    <a href="#" class="footer-link">Scheme Finder</a>
+                    <a href="#" class="footer-link">Document Scanner</a>
+                    <a href="#" class="footer-link">Application Tracker</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <a href="#" class="footer-link">Help Center</a>
+                    <a href="#" class="footer-link">Grievance Portal</a>
+                    <a href="#" class="footer-link">FAQs</a>
+                    <a href="#" class="footer-link">Contact Us</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <a href="community-impact.html" class="footer-link">Community Impact</a>
+                    <a href="#" class="footer-link">Success Stories</a>
+                    <a href="#" class="footer-link">Documentation</a>
+                    <a href="#" class="footer-link">API Access</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Data Protection</a>
+                    <a href="#" class="footer-link">Accessibility</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 SAARTHI Foundation • Powered by Compassionate AI • Licensed under Civic Tech Protocol</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
+  <!-- Ashoka Chakra Background Circle -->
+  <circle cx="100" cy="100" r="85" fill="#2E3B6F" opacity="0.1"/>
+  
+  <!-- Ashoka Chakra -->
+  <g id="chakra">
+    <!-- Outer circle -->
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#2E3B6F" stroke-width="4"/>
+    
+    <!-- Inner circle -->
+    <circle cx="100" cy="100" r="15" fill="none" stroke="#2E3B6F" stroke-width="3"/>
+    
+    <!-- 24 Spokes -->
+    <g id="spokes">
+      <line x1="100" y1="30" x2="100" y2="45" stroke="#2E3B6F" stroke-width="2.5"/>
+      <line x1="100" y1="155" x2="100" y2="170" stroke="#2E3B6F" stroke-width="2.5"/>
+      <line x1="30" y1="100" x2="45" y2="100" stroke="#2E3B6F" stroke-width="2.5"/>
+      <line x1="155" y1="100" x2="170" y2="100" stroke="#2E3B6F" stroke-width="2.5"/>
+      
+      <line x1="49.3" y1="49.3" x2="60.6" y2="60.6" stroke="#2E3B6F" stroke-width="2.5"/>
+      <line x1="139.4" y1="139.4" x2="150.7" y2="150.7" stroke="#2E3B6F" stroke-width="2.5"/>
+      <line x1="150.7" y1="49.3" x2="139.4" y2="60.6" stroke="#2E3B6F" stroke-width="2.5"/>
+      <line x1="60.6" y1="139.4" x2="49.3" y2="150.7" stroke="#2E3B6F" stroke-width="2.5"/>
+      
+      <line x1="37.5" y1="67.5" x2="48" y2="75" stroke="#2E3B6F" stroke-width="2"/>
+      <line x1="152" y1="125" x2="162.5" y2="132.5" stroke="#2E3B6F" stroke-width="2"/>
+      <line x1="67.5" y1="37.5" x2="75" y2="48" stroke="#2E3B6F" stroke-width="2"/>
+      <line x1="125" y1="152" x2="132.5" y2="162.5" stroke="#2E3B6F" stroke-width="2"/>
+      
+      <line x1="162.5" y1="67.5" x2="152" y2="75" stroke="#2E3B6F" stroke-width="2"/>
+      <line x1="48" y1="125" x2="37.5" y2="132.5" stroke="#2E3B6F" stroke-width="2"/>
+      <line x1="132.5" y1="37.5" x2="125" y2="48" stroke="#2E3B6F" stroke-width="2"/>
+      <line x1="75" y1="152" x2="67.5" y2="162.5" stroke="#2E3B6F" stroke-width="2"/>
+      
+      <line x1="32" y1="82" x2="42" y2="87" stroke="#2E3B6F" stroke-width="1.8"/>
+      <line x1="158" y1="113" x2="168" y2="118" stroke="#2E3B6F" stroke-width="1.8"/>
+      <line x1="82" y1="32" x2="87" y2="42" stroke="#2E3B6F" stroke-width="1.8"/>
+      <line x1="113" y1="158" x2="118" y2="168" stroke="#2E3B6F" stroke-width="1.8"/>
+      
+      <line x1="168" y1="82" x2="158" y2="87" stroke="#2E3B6F" stroke-width="1.8"/>
+      <line x1="42" y1="113" x2="32" y2="118" stroke="#2E3B6F" stroke-width="1.8"/>
+      <line x1="118" y1="32" x2="113" y2="42" stroke="#2E3B6F" stroke-width="1.8"/>
+      <line x1="87" y1="158" x2="82" y2="168" stroke="#2E3B6F" stroke-width="1.8"/>
+    </g>
+  </g>
+  
+  <!-- Tricolor S Letter -->
+  <g id="s-letter">
+    <!-- Orange top part of S -->
+    <path d="M 200 55 Q 220 45, 245 50 Q 265 55, 265 75 Q 265 90, 250 95 L 215 105" 
+          fill="none" stroke="#FF9933" stroke-width="22" stroke-linecap="round"/>
+    
+    <!-- White middle -->
+    <path d="M 215 105 L 235 115" 
+          fill="none" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round"/>
+    
+    <!-- Green bottom part of S -->
+    <path d="M 235 115 L 255 125 Q 270 135, 270 150 Q 270 165, 250 170 Q 230 175, 210 165" 
+          fill="none" stroke="#138808" stroke-width="22" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Sound waves -->
+  <g id="waves" opacity="0.7">
+    <path d="M 285 85 Q 295 90, 285 95" fill="none" stroke="#FF9933" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 295 75 Q 310 85, 295 95" fill="none" stroke="#FF9933" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 305 65 Q 325 85, 305 105" fill="none" stroke="#FF9933" stroke-width="4" stroke-linecap="round"/>
+    
+    <path d="M 285 125 Q 295 130, 285 135" fill="none" stroke="#138808" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 295 115 Q 310 125, 295 135" fill="none" stroke="#138808" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 305 105 Q 325 125, 305 145" fill="none" stroke="#138808" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

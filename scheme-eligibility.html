@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scheme Eligibility Result - SAARTHI</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="design-system.css">
+
+    <style>
+        .result-hero {
+            background: linear-gradient(135deg, #FEF3E2 0%, #FFF 100%);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-2xl);
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .eligibility-badge {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, #F59E0B 100%);
+            border: 8px solid var(--bg-white);
+            box-shadow: var(--shadow-orange-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        .eligibility-percentage {
+            font-size: 48px;
+            font-weight: var(--weight-bold);
+            color: var(--bg-white);
+            line-height: 1;
+            font-family: var(--font-primary);
+        }
+
+        .eligibility-label {
+            font-size: var(--text-xs);
+            color: var(--bg-white);
+            font-weight: var(--weight-semibold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .scheme-name {
+            font-size: var(--text-2xl);
+            font-weight: var(--weight-bold);
+            color: var(--text-dark);
+            margin-bottom: var(--spacing-sm);
+            font-family: var(--font-primary);
+        }
+
+        .benefit-highlight {
+            background: var(--primary-orange);
+            color: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-xl) 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+        }
+
+        .benefit-amount {
+            font-size: 56px;
+            font-weight: var(--weight-bold);
+            line-height: 1;
+            font-family: var(--font-primary);
+        }
+
+        .benefit-period {
+            font-size: var(--text-sm);
+            opacity: 0.9;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .info-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .info-card h3 {
+            font-size: var(--text-lg);
+            font-weight: var(--weight-semibold);
+            color: var(--text-dark);
+            margin-bottom: var(--spacing-md);
+            font-family: var(--font-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid #F3F4F6;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            color: var(--accent-green);
+            font-size: var(--text-lg);
+            flex-shrink: 0;
+        }
+
+        .checklist-text {
+            font-size: var(--text-sm);
+            color: var(--text-dark);
+        }
+
+        .reason-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .reason-item {
+            padding: var(--spacing-sm);
+            background: var(--bg-cream);
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--spacing-sm);
+            font-size: var(--text-sm);
+            color: var(--text-dark);
+        }
+
+        .reason-item::before {
+            content: '✓';
+            color: var(--primary-orange);
+            font-weight: var(--weight-bold);
+            margin-right: var(--spacing-sm);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            margin-top: var(--spacing-xl);
+        }
+
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefit-amount {
+                font-size: 40px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Government Badge -->
+    <div class="govt-badge">
+        <svg class="govt-emblem" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
+        </svg>
+        <span>Government<br>of India</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="nav-header">
+        <div class="container nav-content">
+            <div class="logo"><img src="assets/saarthi-logo-transparent.png" alt="SAARTHI - Civic Tech AI"></div>
+
+            <ul class="nav-tabs">
+                <li><a href="index.html" class="nav-tab">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
+                        </svg>
+                        Home
+                    </a></li>
+                <li><a href="voice-dashboard.html" class="nav-tab">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                            <line x1="12" y1="19" x2="12" y2="23" />
+                            <line x1="8" y1="23" x2="16" y2="23" />
+                        </svg>
+                        Voice
+                    </a></li>
+                <li><a href="scheme-eligibility.html" class="nav-tab active">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                        </svg>
+                        Benefits
+                    </a></li>
+                <li><a href="application-tracking.html" class="nav-tab">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        Track
+                    </a></li>
+                <li><a href="grievance.html" class="nav-tab">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                        Support
+                    </a></li>
+            </ul>
+
+            <div class="flex gap-sm">
+                <button class="btn-icon">🌐</button>
+                <button class="btn-icon">👤</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="section">
+        <div class="container">
+            <!-- Result Hero -->
+            <div class="result-hero">
+                <div class="eligibility-badge">
+                    <div class="eligibility-percentage">95%</div>
+                    <div class="eligibility-label">Eligible</div>
+                </div>
+
+                <h1 class="scheme-name">PM-Kisan Samman Nidhi Yojana</h1>
+                <p style="color: var(--text-brown); font-size: var(--text-base);">
+                    Great news! You qualify for this agricultural income support scheme.
+                </p>
+            </div>
+
+            <!-- Benefit Amount -->
+            <div class="benefit-highlight">
+                <div>
+                    <div class="benefit-amount">₹6,000</div>
+                    <div class="benefit-period">per year</div>
+                </div>
+                <div style="text-align: left;">
+                    <div style="font-size: var(--text-lg); font-weight: var(--weight-semibold);">Annual Benefit</div>
+                    <div class="benefit-period">Paid in 3 installments of ₹2,000 each</div>
+                </div>
+            </div>
+
+            <!-- Info Grid -->
+            <div class="info-grid">
+                <!-- Required Documents -->
+                <div class="info-card">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="display: inline-block; vertical-align: middle;">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                        </svg>
+                        Required Documents
+                    </h3>
+
+                    <div class="checklist-item">
+                        <span class="check-icon">✓</span>
+                        <div class="checklist-text">
+                            <strong>Aadhaar Card</strong><br>
+                            <small style="color: var(--text-brown);">For identity verification</small>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <span class="check-icon">✓</span>
+                        <div class="checklist-text">
+                            <strong>Land Ownership Papers</strong><br>
+                            <small style="color: var(--text-brown);">Khata/Khasra documents</small>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <span class="check-icon">✓</span>
+                        <div class="checklist-text">
+                            <strong>Bank Account Details</strong><br>
+                            <small style="color: var(--text-brown);">For direct benefit transfer</small>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <span class="check-icon">✓</span>
+                        <div class="checklist-text">
+                            <strong>Mobile Number</strong><br>
+                            <small style="color: var(--text-brown);">Linked to Aadhaar</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Eligible -->
+                <div class="info-card">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="display: inline-block; vertical-align: middle;">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>
+                        Why You're Eligible
+                    </h3>
+
+                    <ul class="reason-list">
+                        <li class="reason-item">
+                            You own agricultural land (2.5 acres)
+                        </li>
+                        <li class="reason-item">
+                            Your annual income is below ₹2 lakh
+                        </li>
+                        <li class="reason-item">
+                            You're a small/marginal farmer
+                        </li>
+                        <li class="reason-item">
+                            Your Aadhaar is linked to bank account
+                        </li>
+                        <li class="reason-item">
+                            No family member is a government employee
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="card">
+                <h3
+                    style="font-size: var(--text-lg); font-weight: var(--weight-semibold); margin-bottom: var(--spacing-md); font-family: var(--font-primary); display: flex; align-items: center; gap: 8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="9" y1="15" x2="15" y2="15" />
+                    </svg>
+                    Next Steps
+                </h3>
+                <ol style="padding-left: 20px; color: var(--text-dark); line-height: var(--leading-relaxed);">
+                    <li style="margin-bottom: var(--spacing-sm);">
+                        <strong>Scan your documents</strong> using our Document Scanner
+                    </li>
+                    <li style="margin-bottom: var(--spacing-sm);">
+                        <strong>Review pre-filled application</strong> with your details
+                    </li>
+                    <li style="margin-bottom: var(--spacing-sm);">
+                        <strong>Submit digitally</strong> - no need to visit office
+                    </li>
+                    <li style="margin-bottom: var(--spacing-sm);">
+                        <strong>Track application status</strong> in real-time
+                    </li>
+                    <li>
+                        <strong>Receive benefits</strong> directly in your bank account
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn-secondary">Save for Later</button>
+                <button class="btn-primary" style="font-size: var(--text-lg); padding: 14px 40px;">
+                    Apply Now →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Platform</h4>
+                    <a href="#" class="footer-link">Voice Dashboard</a>
+                    <a href="#" class="footer-link">Scheme Finder</a>
+                    <a href="#" class="footer-link">Document Scanner</a>
+                    <a href="#" class="footer-link">Application Tracker</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <a href="#" class="footer-link">Help Center</a>
+                    <a href="#" class="footer-link">Grievance Portal</a>
+                    <a href="#" class="footer-link">FAQs</a>
+                    <a href="#" class="footer-link">Contact Us</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <a href="#" class="footer-link">Community Impact</a>
+                    <a href="#" class="footer-link">Success Stories</a>
+                    <a href="#" class="footer-link">Documentation</a>
+                    <a href="#" class="footer-link">API Access</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Data Protection</a>
+                    <a href="#" class="footer-link">Accessibility</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 SAARTHI Foundation • Powered by Compassionate AI • Licensed under Civic Tech Protocol</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
