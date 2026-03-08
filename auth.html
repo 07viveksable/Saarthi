@@ -1,0 +1,769 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAARTHI — Sign In</title>
+    <meta name="description"
+        content="Sign in to SAARTHI — India's Emotionally Intelligent Civic AI Infrastructure for welfare access and social benefits.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --saffron: #FF6B1A;
+            --saffron-light: #FF8C4A;
+            --saffron-dim: rgba(255, 107, 26, 0.12);
+            --green: #138808;
+            --navy: #0B1B3A;
+            --navy-mid: rgba(11, 27, 58, 0.06);
+            --cream: #FFF9F2;
+            --gold: #C9930A;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --border: rgba(11, 27, 58, 0.1);
+            --white: #ffffff;
+
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --radius-full: 9999px;
+
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
+            --shadow-saffron: 0 8px 28px rgba(255, 107, 26, 0.32);
+
+            --transition: all 0.22s ease;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            min-height: 100vh;
+            display: flex;
+            color: var(--text-primary);
+            overflow-y: auto;
+        }
+
+        /* ─── AMBIENT BACKGROUND ─── */
+        .bg-ambient {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse 55% 55% at 8% 8%, rgba(255, 107, 26, 0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 45% 45% at 92% 92%, rgba(19, 136, 8, 0.06) 0%, transparent 70%);
+        }
+
+        /* ─── LEFT PANEL ─── */
+        .left-panel {
+            width: 48%;
+            background: var(--navy);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 64px 68px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .left-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 70% at -15% 50%, rgba(255, 107, 26, 0.13) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 60% at 115% 15%, rgba(19, 136, 8, 0.10) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Decorative concentric rings */
+        .panel-rings {
+            position: absolute;
+            top: -220px;
+            right: -320px;
+            width: 640px;
+            height: 640px;
+            pointer-events: none;
+        }
+
+        .panel-rings circle {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.035);
+        }
+
+        /* Tricolor bottom bar */
+        .tricolor {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            display: flex;
+        }
+
+        .tricolor-saffron {
+            flex: 1;
+            background: var(--saffron);
+        }
+
+        .tricolor-white {
+            flex: 1;
+            background: #ffffff;
+        }
+
+        .tricolor-green {
+            flex: 1;
+            background: var(--green);
+        }
+
+        /* Dot badge */
+        .brand-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 107, 26, 0.14);
+            border: 1px solid rgba(255, 107, 26, 0.28);
+            border-radius: var(--radius-full);
+            padding: 5px 14px;
+            margin-bottom: 30px;
+            animation: rise 0.6s ease both;
+        }
+
+        .brand-pill-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--saffron);
+            border-radius: 50%;
+            animation: breathe 2s ease infinite;
+        }
+
+        .brand-pill span {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--saffron-light);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .lp-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .wordmark {
+            font-family: 'Baloo 2', cursive;
+            font-size: 62px;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -1.5px;
+            background: linear-gradient(130deg, #ffffff 0%, var(--saffron-light) 55%, #D4A017 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rise 0.55s 0.05s ease both;
+        }
+
+        .wordmark-sub {
+            font-size: 10.5px;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.35);
+            text-transform: uppercase;
+            margin-top: 6px;
+            animation: rise 0.55s 0.1s ease both;
+        }
+
+        .tagline {
+            font-family: 'Baloo 2', cursive;
+            font-size: 22px;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.45;
+            margin: 26px 0 16px;
+            animation: rise 0.55s 0.15s ease both;
+        }
+
+        .tagline strong {
+            color: var(--saffron-light);
+            font-weight: 700;
+        }
+
+        .descriptor {
+            font-size: 14.5px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.75;
+            max-width: 390px;
+            margin-bottom: 52px;
+            animation: rise 0.55s 0.2s ease both;
+        }
+
+        .stat-row {
+            display: flex;
+            gap: 44px;
+            animation: rise 0.55s 0.25s ease both;
+        }
+
+        .stat-value {
+            font-family: 'Baloo 2', cursive;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--saffron-light);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 10.5px;
+            color: rgba(255, 255, 255, 0.38);
+            letter-spacing: 0.04em;
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        /* ─── RIGHT PANEL ─── */
+        .right-panel {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 44px;
+            position: relative;
+            z-index: 1;
+            overflow-y: auto;
+        }
+
+        .auth-box {
+            width: 100%;
+            max-width: 420px;
+            animation: rise 0.65s 0.15s ease both;
+        }
+
+        .auth-heading {
+            font-family: 'Baloo 2', cursive;
+            font-size: 27px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .auth-sub {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        /* Tabs */
+        .tab-bar {
+            display: flex;
+            background: var(--navy-mid);
+            border-radius: var(--radius-md);
+            padding: 4px;
+            margin-bottom: 28px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 9px 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .tab.active {
+            background: var(--white);
+            color: var(--text-primary);
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Form */
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        .field-label {
+            display: block;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .input-wrap {
+            position: relative;
+            flex: 1;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            color: #9CA3AF;
+            pointer-events: none;
+            flex-shrink: 0;
+        }
+
+        .field-input {
+            width: 100%;
+            padding: 13px 14px 13px 42px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            font-family: 'Inter', sans-serif;
+            font-size: 14.5px;
+            color: var(--text-primary);
+            background: var(--white);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .field-input::placeholder {
+            color: #C4CAD4;
+        }
+
+        .field-input:focus {
+            border-color: var(--saffron);
+            box-shadow: 0 0 0 3.5px rgba(255, 107, 26, 0.12);
+        }
+
+        .otp-send-btn {
+            padding: 0 18px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--navy);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .otp-send-btn:hover {
+            background: var(--saffron);
+            border-color: var(--saffron);
+        }
+
+        /* Divider */
+        .or-divider {
+            position: relative;
+            text-align: center;
+            margin: 22px 0;
+            font-size: 12.5px;
+            color: var(--text-secondary);
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 42%;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .or-divider::before {
+            left: 0;
+        }
+
+        .or-divider::after {
+            right: 0;
+        }
+
+        /* Primary CTA */
+        .cta-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(130deg, var(--saffron) 0%, #FF8B3D 100%);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: 'Baloo 2', cursive;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            margin-top: 6px;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, transparent 55%);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-saffron);
+        }
+
+        .cta-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Language badge */
+        .lang-strip {
+            margin-top: 24px;
+            padding: 13px 16px;
+            background: rgba(19, 136, 8, 0.06);
+            border: 1px solid rgba(19, 136, 8, 0.14);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .lang-strip-icon {
+            color: var(--green);
+            flex-shrink: 0;
+        }
+
+        .lang-strip-body strong {
+            display: block;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .lang-strip-body span {
+            font-size: 11.5px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Footer links */
+        .auth-footer {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 22px;
+        }
+
+        .auth-footer a {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.18s;
+        }
+
+        .auth-footer a:hover {
+            color: var(--saffron);
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes breathe {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(0.75);
+            }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+                overflow-y: auto;
+            }
+
+            .left-panel {
+                width: 100%;
+                padding: 40px 32px 48px;
+                min-height: auto;
+            }
+
+            .right-panel {
+                padding: 40px 24px;
+            }
+
+            .wordmark {
+                font-size: 48px;
+            }
+
+            .stat-row {
+                gap: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-ambient" aria-hidden="true"></div>
+
+    <!-- ─── LEFT PANEL ─── -->
+    <section class="left-panel" aria-label="SAARTHI introduction">
+
+        <!-- SVG decorative rings -->
+        <svg class="panel-rings" viewBox="0 0 640 640" aria-hidden="true">
+            <circle cx="320" cy="320" r="300" />
+            <circle cx="320" cy="320" r="240" stroke="rgba(255,107,26,0.05)" />
+            <circle cx="320" cy="320" r="180" stroke="rgba(255,107,26,0.07)" />
+            <circle cx="320" cy="320" r="120" stroke="rgba(255,107,26,0.09)" />
+        </svg>
+
+        <div class="lp-content">
+            <div class="brand-pill">
+                <span class="brand-pill-dot"></span>
+                <span>Civic AI Infrastructure</span>
+            </div>
+
+            <div class="wordmark">SAARTHI</div>
+            <div class="wordmark-sub">Smart AI-Assisted Resource &amp; Transformation Hub for India</div>
+
+            <p class="tagline">
+                From <strong>Survival</strong> to <strong>Stability</strong> &mdash;<br>
+                Compassionate AI for the Next Billion
+            </p>
+
+            <p class="descriptor">
+                Your personal welfare companion. Know every scheme you are entitled to, receive proactive support before
+                crisis strikes, and build a path to economic independence.
+            </p>
+
+            <div class="stat-row">
+                <div>
+                    <div class="stat-value">423M</div>
+                    <div class="stat-label">Eligible Citizens<br>We Serve</div>
+                </div>
+                <div>
+                    <div class="stat-value">14,000+</div>
+                    <div class="stat-label">Welfare Schemes<br>Indexed</div>
+                </div>
+                <div>
+                    <div class="stat-value">23+</div>
+                    <div class="stat-label">Indian<br>Languages</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tricolor" aria-hidden="true">
+            <div class="tricolor-saffron"></div>
+            <div class="tricolor-white"></div>
+            <div class="tricolor-green"></div>
+        </div>
+    </section>
+
+    <!-- ─── RIGHT PANEL ─── -->
+    <section class="right-panel" aria-label="Authentication">
+        <div class="auth-box">
+            <h1 class="auth-heading">Welcome to SAARTHI</h1>
+            <p class="auth-sub">Sign in or create an account to access your welfare dashboard</p>
+
+            <div class="tab-bar" role="tablist">
+                <button class="tab active" role="tab" aria-selected="true" onclick="switchTab('login', this)">Sign
+                    In</button>
+                <button class="tab" role="tab" aria-selected="false" onclick="switchTab('register', this)">Create
+                    Account</button>
+            </div>
+
+            <!-- ─ SIGN IN ─ -->
+            <div class="form-section active" id="form-login" role="tabpanel">
+
+                <div class="field">
+                    <label class="field-label" for="login-phone">Mobile Number</label>
+                    <div class="input-row">
+                        <div class="input-wrap">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="5" y="2" width="14" height="20" rx="2" />
+                                <line x1="12" y1="18" x2="12.01" y2="18" />
+                            </svg>
+                            <input id="login-phone" type="tel" class="field-input" placeholder="+91 98765 43210"
+                                maxlength="13" autocomplete="tel">
+                        </div>
+                        <button class="otp-send-btn" type="button">Send OTP</button>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label" for="login-otp">One-Time Password</label>
+                    <div class="input-wrap">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3" y="11" width="18" height="11" rx="2" />
+                            <path d="M7 11V7a5 5 0 0110 0v4" />
+                        </svg>
+                        <input id="login-otp" type="text" class="field-input" placeholder="6-digit OTP" maxlength="6"
+                            inputmode="numeric" autocomplete="one-time-code">
+                    </div>
+                </div>
+
+                <div class="or-divider">or sign in with Aadhaar</div>
+
+                <div class="field">
+                    <label class="field-label" for="login-aadhaar">Aadhaar Number</label>
+                    <div class="input-wrap">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="2" y="5" width="20" height="14" rx="2" />
+                            <line x1="2" y1="10" x2="22" y2="10" />
+                        </svg>
+                        <input id="login-aadhaar" type="text" class="field-input" placeholder="XXXX XXXX XXXX"
+                            maxlength="14" inputmode="numeric">
+                    </div>
+                </div>
+
+                <button class="cta-btn" type="button" onclick="window.location.href='dashboard.html'">Sign In Securely
+                    &nbsp;&rarr;</button>
+            </div>
+
+            <!-- ─ REGISTER ─ -->
+            <div class="form-section" id="form-register" role="tabpanel">
+
+                <div class="field">
+                    <label class="field-label" for="reg-name">Full Name</label>
+                    <div class="input-wrap">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                        <input id="reg-name" type="text" class="field-input" placeholder="As on Aadhaar card"
+                            autocomplete="name">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label" for="reg-phone">Mobile Number</label>
+                    <div class="input-row">
+                        <div class="input-wrap">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="5" y="2" width="14" height="20" rx="2" />
+                                <line x1="12" y1="18" x2="12.01" y2="18" />
+                            </svg>
+                            <input id="reg-phone" type="tel" class="field-input" placeholder="+91 98765 43210"
+                                autocomplete="tel">
+                        </div>
+                        <button class="otp-send-btn" type="button">Verify</button>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label" for="reg-state">State / UT</label>
+                    <div class="input-wrap">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        <input id="reg-state" type="text" class="field-input" placeholder="Select your state"
+                            autocomplete="address-level1">
+                    </div>
+                </div>
+
+                <button class="cta-btn" type="button" onclick="window.location.href='language.html'">Create My Account
+                    &nbsp;&rarr;</button>
+            </div>
+
+            <!-- Language strip -->
+            <div class="lang-strip" role="note">
+                <svg class="lang-strip-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                </svg>
+                <div class="lang-strip-body">
+                    <strong>Voice-first in your language</strong>
+                    <span>Hindi &bull; Tamil &bull; Telugu &bull; Bengali &bull; Punjabi &bull; Marathi &bull; +17
+                        more</span>
+                </div>
+            </div>
+
+            <nav class="auth-footer" aria-label="Legal links">
+                <a href="help-support.html">Help</a>
+                <a href="profile-settings.html">Privacy Policy</a>
+                <a href="profile-settings.html">Terms of Use</a>
+                <a href="help-support.html">Accessibility</a>
+            </nav>
+        </div>
+    </section>
+
+    <script>
+        function switchTab(tab, btn) {
+            document.querySelectorAll('.tab').forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+            });
+            document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
+            document.getElementById('form-' + tab).classList.add('active');
+        }
+    </script>
+<script src="saarthi-i18n.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1950 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAARTHI — My Schemes</title>
+  <meta name="description"
+    content="Browse all government welfare schemes matched to your profile — SAARTHI My Schemes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --saffron: #FF6B1A;
+      --saffron-light: #FF8C4A;
+      --saffron-dim: rgba(255, 107, 26, 0.10);
+      --saffron-pale: rgba(255, 107, 26, 0.06);
+      --green: #138808;
+      --green-dim: rgba(19, 136, 8, 0.08);
+      --navy: #0B1B3A;
+      --navy-mid: #1B3060;
+      --cream: #FFF9F2;
+      --gold: #C9930A;
+      --sky: #0EA5E9;
+      --purple: #7C3AED;
+      --red: #DC2626;
+      --t1: #111827;
+      --t2: #6B7280;
+      --t3: #9CA3AF;
+      --border: rgba(11, 27, 58, 0.09);
+      --border-s: rgba(11, 27, 58, 0.15);
+      --white: #ffffff;
+      --bg: #F3F4F8;
+      --r-sm: 8px;
+      --r-md: 14px;
+      --r-lg: 20px;
+      --r-full: 9999px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07);
+      --shadow-md: 0 4px 18px rgba(0, 0, 0, 0.09);
+      --shadow-lg: 0 12px 44px rgba(0, 0, 0, 0.11);
+      --shadow-saffron: 0 8px 28px rgba(255, 107, 26, 0.30);
+      --sidebar-w: 252px;
+      --topbar-h: 62px;
+      --transition: all 0.2s ease;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--t1);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-s);
+      border-radius: 4px;
+    }
+
+    /* SIDENAV */
+    .sidenav {
+      width: var(--sidebar-w);
+      background: var(--navy);
+      min-height: 100vh;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      overflow-y: auto;
+      flex-shrink: 0;
+      box-shadow: 3px 0 32px rgba(11, 27, 58, 0.22);
+    }
+
+    .sidenav::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 107, 26, 0.10) 0%, transparent 70%);
+      top: -100px;
+      left: -80px;
+      pointer-events: none;
+    }
+
+    .sn-brand {
+      padding: 26px 22px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-wordmark {
+      font-family: 'Baloo 2', cursive;
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(130deg, #fff 0%, var(--saffron-light) 60%, #D4A017 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sn-sub {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.22);
+      margin-top: 3px;
+    }
+
+    .sn-section {
+      padding: 20px 22px 7px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-link {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 12px;
+      margin: 2px 10px;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.48);
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-link:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .sn-link.active {
+      background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-light) 100%);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 5px 20px rgba(255, 107, 26, 0.36);
+    }
+
+    .sn-ic {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.07);
+      transition: var(--transition);
+    }
+
+    .sn-ic svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .sn-link.active .sn-ic {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .sn-link:hover:not(.active) .sn-ic {
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .sn-badge {
+      margin-left: auto;
+      background: var(--saffron);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: var(--r-full);
+      padding: 2px 8px;
+      line-height: 1.5;
+    }
+
+    .sn-link:not(.active) .sn-badge {
+      background: rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .sn-spacer {
+      flex: 1;
+    }
+
+    .sn-user {
+      margin: 10px 10px 18px;
+      padding: 12px 14px;
+      border-radius: var(--r-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-user:hover {
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .sn-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--saffron), var(--saffron-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .sn-uname {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .sn-uloc {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.32);
+    }
+
+    .sn-caret {
+      margin-left: auto;
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* MAIN */
+    .main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tricolor {
+      height: 3px;
+      display: flex;
+      flex-shrink: 0;
+    }
+
+    .tricolor div {
+      flex: 1;
+    }
+
+    .tc-s {
+      background: var(--saffron);
+    }
+
+    .tc-w {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tc-g {
+      background: var(--green);
+    }
+
+    /* TOPBAR */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--topbar-h);
+      background: rgba(255, 249, 242, 0.94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 16px rgba(11, 27, 58, 0.04);
+      flex-shrink: 0;
+    }
+
+    .tb-left {}
+
+    .tb-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .tb-sub {
+      font-size: 11.5px;
+      color: var(--t3);
+      margin-top: 1px;
+    }
+
+    .tb-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tb-icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+      color: var(--t2);
+    }
+
+    .tb-icon-btn:hover {
+      border-color: var(--saffron);
+      color: var(--saffron);
+    }
+
+    .tb-icon-btn svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .notif-dot {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--saffron);
+      border: 2px solid var(--cream);
+      animation: breathe 2s ease infinite;
+    }
+
+    .tb-voice-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(130deg, var(--saffron) 0%, #FF8B3D 100%);
+      color: #fff;
+      border-radius: var(--r-full);
+      font-family: 'Baloo 2', cursive;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      box-shadow: 0 4px 16px rgba(255, 107, 26, 0.30);
+    }
+
+    .tb-voice-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-saffron);
+    }
+
+    .tb-voice-btn svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .mic-pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.75);
+      animation: micPop 1.5s infinite;
+    }
+
+    /* PAGE CONTENT */
+    .content {
+      padding: 28px 36px 56px;
+      overflow-y: auto;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--navy);
+      border-radius: 20px;
+      padding: 32px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-lg);
+      animation: rise 0.4s ease both;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 55% 85% at -5% 50%, rgba(255, 107, 26, 0.18) 0%, transparent 55%), radial-gradient(ellipse 35% 55% at 108% 20%, rgba(19, 136, 8, 0.12) 0%, transparent 55%);
+    }
+
+    .hero-rings {
+      position: absolute;
+      right: -120px;
+      top: -120px;
+      width: 400px;
+      height: 400px;
+      pointer-events: none;
+    }
+
+    .hero-rings circle {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.03);
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 107, 26, 0.16);
+      border: 1px solid rgba(255, 107, 26, 0.28);
+      border-radius: var(--r-full);
+      padding: 4px 13px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #FF9060;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 11px;
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--saffron-light);
+      border-radius: 50%;
+      animation: breathe 2s ease infinite;
+    }
+
+    .hero-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.22;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title span {
+      color: var(--saffron-light);
+    }
+
+    .hero-sub {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.48);
+      line-height: 1.65;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-sub strong {
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 500;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hstat {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 16px;
+      padding: 16px 22px;
+      text-align: center;
+      min-width: 105px;
+    }
+
+    .hstat-num {
+      font-family: 'Baloo 2', cursive;
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .hstat-num.o {
+      color: var(--saffron-light);
+    }
+
+    .hstat-num.g {
+      color: #5EC95A;
+    }
+
+    .hstat-num.w {
+      color: #fff;
+    }
+
+    .hstat-lbl {
+      font-size: 10.5px;
+      color: rgba(255, 255, 255, 0.35);
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+
+    /* TOOLBAR */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      animation: rise 0.4s 0.08s ease both;
+    }
+
+    .search-wrap {
+      flex: 1;
+      min-width: 220px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-full);
+      padding: 10px 18px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .search-wrap:focus-within {
+      border-color: var(--saffron);
+      box-shadow: 0 0 0 3px rgba(255, 107, 26, 0.09);
+    }
+
+    .search-wrap svg {
+      flex-shrink: 0;
+      color: var(--t3);
+    }
+
+    .search-wrap input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      color: var(--t1);
+      background: transparent;
+    }
+
+    .search-wrap input::placeholder {
+      color: var(--t3);
+    }
+
+    .sort-sel {
+      padding: 10px 15px;
+      border-radius: var(--r-full);
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--t2);
+      cursor: pointer;
+      outline: none;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s;
+      appearance: none;
+      padding-right: 32px;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m6 9 6 6 6-6' stroke='%239CA3AF' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+    }
+
+    .sort-sel:focus {
+      border-color: var(--saffron);
+    }
+
+    .count-badge {
+      font-size: 12.5px;
+      color: var(--t3);
+      white-space: nowrap;
+    }
+
+    .count-badge strong {
+      color: var(--t1);
+    }
+
+    /* CATEGORY CHIPS */
+    .cat-chips {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+      animation: rise 0.4s 0.12s ease both;
+    }
+
+    .cchip {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 15px;
+      border-radius: var(--r-full);
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--t2);
+      cursor: pointer;
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .cchip:hover {
+      border-color: var(--saffron);
+      color: var(--saffron);
+    }
+
+    .cchip.active {
+      border-color: var(--saffron);
+      background: rgba(255, 107, 26, 0.06);
+      color: var(--saffron);
+    }
+
+    .cchip svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+
+    .cdot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* LAYOUT */
+    .layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 22px;
+      animation: rise 0.4s 0.16s ease both;
+    }
+
+    /* FILTER PANEL */
+    .fp {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      position: sticky;
+      top: 80px;
+      align-self: start;
+    }
+
+    .fp-head {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .fp-hd-l {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .fp-hd-l svg {
+      width: 16px;
+      height: 16px;
+      color: var(--t2);
+    }
+
+    .fp-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--t1);
+    }
+
+    .fp-clear {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--saffron);
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .fp-clear:hover {
+      opacity: 0.7;
+    }
+
+    .fp-sec {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .fp-sec:last-child {
+      border-bottom: none;
+    }
+
+    .fp-sec-title {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--t3);
+      margin-bottom: 11px;
+    }
+
+    .fp-sec-title svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .fp-opts {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .fp-opt {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      cursor: pointer;
+      padding: 7px 8px;
+      border-radius: 9px;
+      transition: background 0.2s;
+      user-select: none;
+    }
+
+    .fp-opt:hover {
+      background: var(--cream);
+    }
+
+    .fp-opt.active {
+      background: rgba(255, 107, 26, 0.05);
+    }
+
+    .fp-cb {
+      width: 17px;
+      height: 17px;
+      border-radius: 4px;
+      border: 2px solid var(--border-s);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .fp-cb svg {
+      width: 10px;
+      height: 10px;
+      color: #fff;
+      display: none;
+    }
+
+    .fp-opt.active .fp-cb {
+      background: var(--saffron);
+      border-color: var(--saffron);
+    }
+
+    .fp-opt.active .fp-cb svg {
+      display: block;
+    }
+
+    .fp-opt-label {
+      font-size: 12.5px;
+      color: var(--t2);
+      flex: 1;
+    }
+
+    .fp-opt.active .fp-opt-label {
+      color: var(--saffron);
+      font-weight: 600;
+    }
+
+    .fp-opt-count {
+      font-size: 10.5px;
+      color: var(--t3);
+      font-weight: 600;
+    }
+
+    .fp-range-wrap {
+      margin-top: 4px;
+    }
+
+    .fp-range-val {
+      font-family: 'Baloo 2', cursive;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--saffron);
+      margin-bottom: 9px;
+    }
+
+    .fp-range {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 5px;
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .fp-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 17px;
+      height: 17px;
+      background: #fff;
+      border: 2.5px solid var(--saffron);
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(255, 107, 26, 0.22);
+      cursor: pointer;
+    }
+
+    .fp-range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10.5px;
+      color: var(--t3);
+      margin-top: 5px;
+    }
+
+    /* CARDS */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 22px 24px 18px 28px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      border-radius: 4px 0 0 4px;
+    }
+
+    .card[data-cat="housing"]::before {
+      background: var(--saffron);
+    }
+
+    .card[data-cat="health"]::before {
+      background: #10B981;
+    }
+
+    .card[data-cat="agri"]::before {
+      background: #16A34A;
+    }
+
+    .card[data-cat="edu"]::before {
+      background: #2563EB;
+    }
+
+    .card[data-cat="finance"]::before {
+      background: #7C3AED;
+    }
+
+    .card[data-cat="energy"]::before {
+      background: #D97706;
+    }
+
+    .card[data-cat="women"]::before {
+      background: #EC4899;
+    }
+
+    .card[data-cat="skill"]::before {
+      background: #0891B2;
+    }
+
+    .card[data-cat="pension"]::before {
+      background: #64748B;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(255, 107, 26, 0.18);
+    }
+
+    .card-deadline {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(220, 38, 38, 0.05);
+      border: 1px solid rgba(220, 38, 38, 0.10);
+      border-radius: 9px;
+      padding: 7px 12px;
+      margin-bottom: 13px;
+    }
+
+    .card-deadline svg {
+      width: 14px;
+      height: 14px;
+      color: #DC2626;
+      flex-shrink: 0;
+    }
+
+    .card-deadline span {
+      font-size: 12px;
+      font-weight: 600;
+      color: #DC2626;
+    }
+
+    .card-deadline .dl-date {
+      font-weight: 400;
+      color: var(--t2);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 13px;
+    }
+
+    .card-ico {
+      width: 50px;
+      height: 50px;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .card-ico svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .ico-o {
+      background: rgba(255, 107, 26, 0.10);
+    }
+
+    .ico-o svg {
+      color: var(--saffron);
+    }
+
+    .ico-g {
+      background: rgba(19, 136, 8, 0.10);
+    }
+
+    .ico-g svg {
+      color: var(--green);
+    }
+
+    .ico-n {
+      background: rgba(11, 27, 58, 0.07);
+    }
+
+    .ico-n svg {
+      color: var(--navy);
+    }
+
+    .ico-b {
+      background: rgba(37, 99, 235, 0.10);
+    }
+
+    .ico-b svg {
+      color: #2563EB;
+    }
+
+    .ico-p {
+      background: rgba(124, 58, 237, 0.10);
+    }
+
+    .ico-p svg {
+      color: #7C3AED;
+    }
+
+    .ico-y {
+      background: rgba(217, 119, 6, 0.10);
+    }
+
+    .ico-y svg {
+      color: #B45309;
+    }
+
+    .ico-pi {
+      background: rgba(236, 72, 153, 0.10);
+    }
+
+    .ico-pi svg {
+      color: #EC4899;
+    }
+
+    .ico-cy {
+      background: rgba(8, 145, 178, 0.10);
+    }
+
+    .ico-cy svg {
+      color: #0891B2;
+    }
+
+    .ico-sl {
+      background: rgba(100, 116, 139, 0.10);
+    }
+
+    .ico-sl svg {
+      color: #475569;
+    }
+
+    .card-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-name {
+      font-family: 'Baloo 2', cursive;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--t1);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .card-min {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--t3);
+      margin-bottom: 7px;
+    }
+
+    .card-min svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .ctag {
+      padding: 3px 9px;
+      border-radius: var(--r-full);
+      font-size: 10.5px;
+      font-weight: 700;
+    }
+
+    .ctag-housing {
+      background: rgba(255, 107, 26, 0.10);
+      color: var(--saffron);
+    }
+
+    .ctag-health {
+      background: rgba(16, 185, 129, 0.10);
+      color: #059669;
+    }
+
+    .ctag-agri {
+      background: rgba(22, 163, 74, 0.10);
+      color: #16A34A;
+    }
+
+    .ctag-edu {
+      background: rgba(37, 99, 235, 0.10);
+      color: #2563EB;
+    }
+
+    .ctag-finance {
+      background: rgba(124, 58, 237, 0.10);
+      color: #7C3AED;
+    }
+
+    .ctag-energy {
+      background: rgba(217, 119, 6, 0.10);
+      color: #B45309;
+    }
+
+    .ctag-women {
+      background: rgba(236, 72, 153, 0.10);
+      color: #EC4899;
+    }
+
+    .ctag-skill {
+      background: rgba(8, 145, 178, 0.10);
+      color: #0891B2;
+    }
+
+    .ctag-pension {
+      background: rgba(100, 116, 139, 0.10);
+      color: #475569;
+    }
+
+    .ctag-match {
+      background: rgba(19, 136, 8, 0.10);
+      color: var(--green);
+    }
+
+    .ctag-new {
+      background: rgba(255, 107, 26, 0.12);
+      color: var(--saffron);
+    }
+
+    .ctag-urgent {
+      background: rgba(220, 38, 38, 0.09);
+      color: #DC2626;
+    }
+
+    .card-right {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .card-amt {
+      font-family: 'Baloo 2', cursive;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .card-period {
+      font-size: 11.5px;
+      color: var(--t3);
+      margin-top: 3px;
+    }
+
+    .card-match {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 7px;
+      padding: 4px 10px;
+      border-radius: var(--r-full);
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(19, 136, 8, 0.09);
+      color: var(--green);
+    }
+
+    .card-match svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--t2);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .card-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .ci {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+      color: var(--t3);
+    }
+
+    .ci svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+    }
+
+    .ci strong {
+      color: var(--t2);
+      font-weight: 600;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 9px;
+      align-items: center;
+    }
+
+    .btn-save {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border-s);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--t3);
+    }
+
+    .btn-save svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .btn-save:hover,
+    .btn-save.on {
+      border-color: var(--saffron);
+      background: rgba(255, 107, 26, 0.06);
+      color: var(--saffron);
+    }
+
+    .btn-detail {
+      padding: 9px 16px;
+      background: var(--white);
+      border: 1.5px solid var(--border-s);
+      color: var(--t2);
+      border-radius: var(--r-full);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-detail:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    .btn-apply {
+      padding: 9px 20px;
+      background: linear-gradient(130deg, var(--saffron) 0%, #FF8B3D 100%);
+      color: #fff;
+      border-radius: var(--r-full);
+      border: none;
+      font-family: 'Baloo 2', cursive;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 14px rgba(255, 107, 26, 0.26);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-apply::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0%, transparent 55%);
+    }
+
+    .btn-apply:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-saffron);
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      display: none;
+    }
+
+    .no-results.show {
+      display: block;
+    }
+
+    .no-results svg {
+      width: 56px;
+      height: 56px;
+      color: var(--t3);
+      margin-bottom: 14px;
+    }
+
+    .no-results h3 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--t1);
+      margin-bottom: 7px;
+    }
+
+    .no-results p {
+      font-size: 13.5px;
+      color: var(--t3);
+    }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 28px;
+    }
+
+    .pgbtn {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--t2);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .pgbtn:hover {
+      border-color: var(--saffron);
+      color: var(--saffron);
+    }
+
+    .pgbtn.active {
+      background: var(--saffron);
+      border-color: var(--saffron);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(255, 107, 26, 0.28);
+    }
+
+    .as-applied-tag {
+      background: rgba(19, 136, 8, 0.09);
+      color: var(--green);
+      padding: 3px 9px;
+      border-radius: var(--r-full);
+      font-size: 10.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .as-applied-tag svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.45;
+        transform: scale(0.72)
+      }
+    }
+
+    @keyframes micPop {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.9)
+      }
+    }
+
+    @media(max-width:1200px) {
+      .layout {
+        grid-template-columns: 210px 1fr
+      }
+
+      .hero-stats {
+        display: none
+      }
+    }
+
+    @media(max-width:900px) {
+      .layout {
+        grid-template-columns: 1fr
+      }
+
+      .fp {
+        position: static
+      }
+
+      .content {
+        padding: 20px 16px 48px
+      }
+
+      .topbar {
+        padding: 0 18px
+      }
+
+      .hero {
+        flex-direction: column;
+        gap: 18px
+      }
+    }
+      /* LANG SEL — same as dashboard */
+    .lang-sel { position: relative; }
+    .lang-btn { display:flex;align-items:center;gap:7px;padding:8px 14px;background:#fff;border:1.5px solid rgba(12,27,56,0.1);border-radius:9999px;cursor:pointer;font-size:12.5px;font-weight:600;color:#6B7280;font-family:inherit;transition:all 0.2s; }
+    .lang-btn:hover { border-color:#F5600A;color:#F5600A; }
+    .lang-btn svg { width:13px;height:13px; }
+    .lang-dropdown { display:none;position:absolute;top:calc(100% + 8px);right:0;background:#fff;border:1px solid rgba(12,27,56,0.1);border-radius:16px;box-shadow:0 12px 40px rgba(12,27,56,0.14);width:155px;overflow:hidden;z-index:999; }
+    .lang-dropdown.show { display:block; }
+    .lang-opt { padding:11px 15px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:13px;border-bottom:1px solid rgba(12,27,56,0.07);transition:background 0.15s; }
+    .lang-opt:last-child { border-bottom:none; }
+    .lang-opt:hover { background:rgba(245,96,10,0.06); }
+    .lang-opt.active { background:rgba(245,96,10,0.06);color:#F5600A;font-weight:600; }
+    .lang-opt span:last-child { font-size:11px;color:#9CA3AF; }</style>
+</head>
+
+<body>
+  <nav class="sidenav">
+    <div class="sn-brand">
+      <div class="sn-wordmark">SAARTHI</div>
+      <div class="sn-sub">Smart Welfare Guide</div>
+    </div>
+    <div class="sn-section">Main Menu</div>
+    <a href="dashboard.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg></div>
+      <span>Dashboard</span>
+    </a>
+    <a href="voice.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+          <path d="M19 10v2a7 7 0 01-14 0v-2" />
+          <line x1="12" y1="19" x2="12" y2="23" />
+          <line x1="8" y1="23" x2="16" y2="23" />
+        </svg></div>
+      <span>Ask SAARTHI</span>
+    </a>
+    <a href="scheme-results.html" class="sn-link active">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+          <rect x="9" y="3" width="6" height="4" rx="1" />
+          <path d="M9 12h6M9 16h4" />
+        </svg></div>
+      <span>My Schemes</span>
+      <span class="sn-badge" id="sideCount">20</span>
+    </a>
+    <a href="application-tracker.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+        </svg></div>
+      <span>Applications</span>
+      <span class="sn-badge">3</span>
+    </a>
+    <div class="sn-section">Resources</div>
+    <a href="document-upload.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
+        </svg></div>
+      <span>Documents</span>
+    </a>
+    <a href="success-stories.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polygon
+            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg></div>
+      <span>Success Stories</span>
+    </a>
+    <a href="help-support.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+          <line x1="12" y1="17" x2="12.01" y2="17" />
+        </svg></div>
+      <span>Help &amp; Support</span>
+    </a>
+    <div class="sn-spacer"></div>
+    <a href="profile-settings.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3" />
+          <path
+            d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
+        </svg></div>
+      <span>Settings</span>
+    </a>
+    <div class="sn-user" onclick="window.location='profile-create.html'">
+      <div class="sn-avatar">R</div>
+      <div>
+        <div class="sn-uname">Ramesh Kumar</div>
+        <div class="sn-uloc">Latur, Maharashtra</div>
+      </div>
+      <div class="sn-caret"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.5">
+          <path d="m9 18 6-6-6-6" />
+        </svg></div>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="tricolor">
+      <div class="tc-s"></div>
+      <div class="tc-w"></div>
+      <div class="tc-g"></div>
+    </div>
+
+    <div class="topbar">
+      <div class="tb-left">
+        <div class="tb-title">My Schemes</div>
+        <div class="tb-sub" id="topbarSub">20 schemes matched &middot; Latur, Maharashtra</div>
+      </div>
+      <div class="tb-right">
+                <div class="lang-sel" id="page-lang-sel">
+          <button class="lang-btn" onclick="togglePageLangMenu()" id="page-lang-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            <span id="page-lang-label">English</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="lang-dropdown" id="page-lang-menu">
+            <div class="lang-opt" onclick="setPageLang('en','English')"><span>English</span><span>English</span></div>
+            <div class="lang-opt" onclick="setPageLang('hi','Hindi')"><span>Hindi</span><span>&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</span></div>
+            <div class="lang-opt" onclick="setPageLang('mr','Marathi')"><span>Marathi</span><span>&#2350;&#2352;&#2366;&#2336;&#2368;</span></div>
+          </div>
+        </div><div class="tb-icon-btn" title="Notifications">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 01-3.46 0" />
+          </svg>
+          <div class="notif-dot"></div>
+        </div>
+        <button class="tb-voice-btn" onclick="window.location='voice.html'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+            <path d="M19 10v2a7 7 0 01-14 0v-2" />
+          </svg>
+          Ask SAARTHI
+        </button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="hero">
+        <svg class="hero-rings" viewBox="0 0 400 400" aria-hidden="true">
+          <circle cx="200" cy="200" r="190" />
+          <circle cx="200" cy="200" r="145" stroke="rgba(255,107,26,0.04)" />
+          <circle cx="200" cy="200" r="100" stroke="rgba(255,107,26,0.06)" />
+        </svg>
+        <div style="position:relative;z-index:2">
+          <div class="hero-pill">
+            <div class="live-dot"></div>Personalised For You
+          </div>
+          <div class="hero-title"><span id="heroCount">20</span> schemes match your profile</div>
+          <div class="hero-sub">Estimated total benefit: <strong>&#8377;14,62,000 / year</strong><br>Based on your
+            location, income, category &amp; family details.</div>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat">
+            <div class="hstat-num o" id="heroTotal">20</div>
+            <div class="hstat-lbl">Total<br>Schemes</div>
+          </div>
+          <div class="hstat">
+            <div class="hstat-num g">&#8377;14.6L</div>
+            <div class="hstat-lbl">Annual<br>Benefit</div>
+          </div>
+          <div class="hstat">
+            <div class="hstat-num w">12</div>
+            <div class="hstat-lbl">Apply<br>Now</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="search-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <input type="text" id="searchInput" placeholder="Search by name, ministry, benefit..."
+            oninput="applyFilters()">
+        </div>
+        <select class="sort-sel" id="sortSel" onchange="applyFilters()">
+          <option value="match">Best Match</option>
+          <option value="amount-desc">Highest Amount</option>
+          <option value="amount-asc">Lowest Amount</option>
+          <option value="name">A to Z</option>
+        </select>
+        <div class="count-badge">Showing <strong id="countDisplay">20</strong> of 20</div>
+      </div>
+
+      <div class="cat-chips">
+        <div class="cchip active" data-cat="all" onclick="selectCat(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4l3 3" />
+          </svg>All Schemes
+        </div>
+        <div class="cchip" data-cat="housing" onclick="selectCat(this)">
+          <div class="cdot" style="background:var(--saffron)"></div>Housing
+        </div>
+        <div class="cchip" data-cat="health" onclick="selectCat(this)">
+          <div class="cdot" style="background:#10B981"></div>Health
+        </div>
+        <div class="cchip" data-cat="agri" onclick="selectCat(this)">
+          <div class="cdot" style="background:#16A34A"></div>Agriculture
+        </div>
+        <div class="cchip" data-cat="edu" onclick="selectCat(this)">
+          <div class="cdot" style="background:#2563EB"></div>Education
+        </div>
+        <div class="cchip" data-cat="finance" onclick="selectCat(this)">
+          <div class="cdot" style="background:#7C3AED"></div>Finance
+        </div>
+        <div class="cchip" data-cat="energy" onclick="selectCat(this)">
+          <div class="cdot" style="background:#D97706"></div>Energy
+        </div>
+        <div class="cchip" data-cat="women" onclick="selectCat(this)">
+          <div class="cdot" style="background:#EC4899"></div>Women
+        </div>
+        <div class="cchip" data-cat="skill" onclick="selectCat(this)">
+          <div class="cdot" style="background:#0891B2"></div>Skill Dev.
+        </div>
+        <div class="cchip" data-cat="pension" onclick="selectCat(this)">
+          <div class="cdot" style="background:#64748B"></div>Pension
+        </div>
+      </div>
+
+      <div class="layout">
+        <div class="fp">
+          <div class="fp-head">
+            <div class="fp-hd-l">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+              </svg>
+              <div class="fp-title">Filters</div>
+            </div>
+            <button class="fp-clear" onclick="clearAllFilters()">Clear all</button>
+          </div>
+          <div class="fp-sec">
+            <div class="fp-sec-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+              </svg>Ministry Level</div>
+            <div class="fp-opts" id="fpMinistry">
+              <div class="fp-opt active" data-filter="ministry" data-val="central" onclick="toggleFP(this)">
+                <div class="fp-cb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></div>
+                <div class="fp-opt-label">Central Govt.</div>
+                <div class="fp-opt-count">14</div>
+              </div>
+              <div class="fp-opt active" data-filter="ministry" data-val="state" onclick="toggleFP(this)">
+                <div class="fp-cb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></div>
+                <div class="fp-opt-label">Maharashtra State</div>
+                <div class="fp-opt-count">4</div>
+              </div>
+              <div class="fp-opt active" data-filter="ministry" data-val="district" onclick="toggleFP(this)">
+                <div class="fp-cb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></div>
+                <div class="fp-opt-label">District Level</div>
+                <div class="fp-opt-count">2</div>
+              </div>
+            </div>
+          </div>
+          <div class="fp-sec">
+            <div class="fp-sec-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+              </svg>Application Status</div>
+            <div class="fp-opts" id="fpStatus">
+              <div class="fp-opt active" data-filter="status" data-val="notapplied" onclick="toggleFP(this)">
+                <div class="fp-cb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></div>
+                <div class="fp-opt-label">Not Applied</div>
+                <div class="fp-opt-count">17</div>
+              </div>
+              <div class="fp-opt active" data-filter="status" data-val="applied" onclick="toggleFP(this)">
+                <div class="fp-cb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></div>
+                <div class="fp-opt-label">Applied</div>
+                <div class="fp-opt-count">3</div>
+              </div>
+            </div>
+          </div>
+          <div class="fp-sec">
+            <div class="fp-sec-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round">
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+              </svg>Max Benefit Amount</div>
+            <div class="fp-range-wrap">
+              <div class="fp-range-val" id="rangeDisplay">Up to &#8377;5,00,000</div>
+              <input class="fp-range" type="range" id="amtRange" min="1000" max="500000" step="5000" value="500000"
+                oninput="updateRange(this)">
+              <div class="fp-range-labels"><span>&#8377;1K</span><span>&#8377;5L+</span></div>
+            </div>
+          </div>
+          <div class="fp-sec">
+            <div class="fp-sec-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>Urgency</div>
+            <div class="fp-opts" id="fpUrgency">
+              <div class="fp-opt active" data-filter="urgency" data-val="urgent" onclick="toggleFP(this)">
+                <div class="fp-cb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></div>
+                <div class="fp-opt-label">Deadline Soon</div>
+                <div class="fp-opt-count">4</div>
+              </div>
+              <div class="fp-opt active" data-filter="urgency" data-val="normal" onclick="toggleFP(this)">
+                <div class="fp-cb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></div>
+                <div class="fp-opt-label">Open / Ongoing</div>
+                <div class="fp-opt-count">16</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="cards" id="cardsContainer"></div>
+          <div class="no-results" id="noResults">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+            <h3>No schemes found</h3>
+            <p>Try adjusting your filters or search term.</p>
+          </div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    /* SVG icon lookup by icoClass */
+    const SVGS = {
+      'ico-o': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+      'ico-g': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 8v4l3 3"/></svg>`,
+      'ico-n': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+      'ico-b': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>`,
+      'ico-p': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>`,
+      'ico-y': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+      'ico-pi': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+      'ico-cy': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>`,
+      'ico-sl': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`
+    };
+
+    const SCHEMES = [
+      { id: 1, cat: 'housing', name: 'PM Awas Yojana (Gramin)', ministry: 'Ministry of Rural Development', ministryLevel: 'central', icoClass: 'ico-o', amount: 120000, period: 'One-time grant', match: 98, status: 'notapplied', urgent: true, deadline: 'March 15, 2026 (16 days left)', desc: 'Financial assistance for construction of pucca houses for rural beneficiaries who are houseless or living in dilapidated housing. Covers full construction cost including toilet, LPG connection and electricity.', eligibility: 'BPL / EWS families', docs: 'Aadhaar · BPL Card · Land Certificate', tags: ['ctag-housing', 'ctag-match', 'ctag-urgent'], tagLabels: ['Housing', '98% Match', 'Urgent'] },
+      { id: 2, cat: 'health', name: 'Ayushman Bharat PM-JAY', ministry: 'Ministry of Health & Family Welfare', ministryLevel: 'central', icoClass: 'ico-cy', amount: 500000, period: 'Per family / year', match: 95, status: 'applied', urgent: false, desc: "World's largest health insurance scheme providing coverage of ₹5 lakh per family per year for secondary and tertiary care hospitalisation across 1,500+ empanelled hospitals in Maharashtra.", eligibility: 'Rural poor families', docs: 'Aadhaar · Ration Card', tags: ['ctag-health', 'ctag-match'], tagLabels: ['Health', '95% Match'] },
+      { id: 3, cat: 'agri', name: 'PM-KISAN Samman Nidhi', ministry: 'Ministry of Agriculture & Farmers Welfare', ministryLevel: 'central', icoClass: 'ico-g', amount: 6000, period: 'Per year (3 instalments)', match: 92, status: 'applied', urgent: false, desc: 'Income support of ₹6,000 per year in three equal instalments of ₹2,000 each, directly transferred to the bank accounts of farmer families owning cultivable land.', eligibility: 'Small & marginal farmers', docs: 'Land Records · Aadhaar · Bank Passbook', tags: ['ctag-agri', 'ctag-match'], tagLabels: ['Agriculture', '92% Match'] },
+      { id: 4, cat: 'edu', name: 'NSP Scholarship (SC/ST/OBC)', ministry: 'Ministry of Social Justice & Empowerment', ministryLevel: 'central', icoClass: 'ico-b', amount: 35000, period: 'Per academic year', match: 88, status: 'notapplied', urgent: false, desc: 'Scholarships for students from SC/ST/OBC categories pursuing higher education. Covers tuition fees, maintenance allowance and study materials from Class 9 through post-graduation.', eligibility: 'SC / ST / OBC students', docs: 'Caste Certificate · Marksheet · Income Certificate', tags: ['ctag-edu', 'ctag-match'], tagLabels: ['Education', '88% Match'] },
+      { id: 5, cat: 'finance', name: 'PM SVANidhi — Street Vendor Loan', ministry: 'Ministry of Housing & Urban Affairs', ministryLevel: 'central', icoClass: 'ico-p', amount: 50000, period: 'Working capital loan', match: 85, status: 'notapplied', urgent: false, desc: 'Affordable working capital loan to help street vendors resume livelihoods. Starts at ₹10,000 and scales to ₹50,000 with timely repayment. 7% interest subsidy credited to bank account.', eligibility: 'Urban street vendors', docs: 'Vendor Certificate · Aadhaar', tags: ['ctag-finance', 'ctag-new'], tagLabels: ['Finance', 'New Match'] },
+      { id: 6, cat: 'energy', name: 'PM Ujjwala Yojana 2.0', ministry: 'Ministry of Petroleum & Natural Gas', ministryLevel: 'central', icoClass: 'ico-y', amount: 1600, period: 'Free LPG connection', match: 90, status: 'notapplied', urgent: false, desc: 'Free LPG connection with deposit waiver and first refill free for women from BPL households. Aims to replace unclean cooking fuel with clean LPG, improving health outcomes for rural women.', eligibility: 'BPL women (18+)', docs: 'BPL Card · Aadhaar · Bank Passbook', tags: ['ctag-energy', 'ctag-match'], tagLabels: ['Energy', '90% Match'] },
+      { id: 7, cat: 'agri', name: 'PM Fasal Bima Yojana (Crop Insurance)', ministry: 'Ministry of Agriculture & Farmers Welfare', ministryLevel: 'central', icoClass: 'ico-g', amount: 200000, period: 'Crop insurance cover', match: 87, status: 'notapplied', urgent: true, deadline: 'April 1, 2026 (next instalment)', desc: 'Comprehensive crop insurance against natural calamities, pests and diseases. Premium as low as 1.5% for rabi crops. Settlement via satellite imagery and crop cutting experiments.', eligibility: 'All farmers with cultivable land', docs: '7/12 Extract · Bank Passbook · Aadhaar', tags: ['ctag-agri', 'ctag-match'], tagLabels: ['Agriculture', '87% Match'] },
+      { id: 8, cat: 'women', name: 'Pradhan Mantri Matru Vandana Yojana', ministry: 'Ministry of Women & Child Development', ministryLevel: 'central', icoClass: 'ico-pi', amount: 6500, period: 'One-time maternity benefit', match: 82, status: 'notapplied', urgent: false, desc: 'Direct cash benefit of ₹6,500 to pregnant and lactating mothers for first live birth. Promotes institutional delivery and encourages early registration of pregnancy and post-natal care.', eligibility: 'Pregnant & lactating women (first child)', docs: 'Aadhaar · Bank Passbook · Pregnancy Certificate', tags: ['ctag-women', 'ctag-match'], tagLabels: ['Women', '82% Match'] },
+      { id: 9, cat: 'skill', name: 'Pradhan Mantri Kaushal Vikas Yojana', ministry: 'Ministry of Skill Development & Entrepreneurship', ministryLevel: 'central', icoClass: 'ico-cy', amount: 8000, period: 'Training stipend + certification', match: 80, status: 'notapplied', urgent: false, desc: 'Free short-term skill training across 300+ courses in construction, IT, retail, healthcare and agriculture. Includes ₹8,000 cash reward on successful certification.', eligibility: 'Youth aged 15–45, school dropout or unemployed', docs: 'Aadhaar · Education Certificate · Bank Passbook', tags: ['ctag-skill', 'ctag-new'], tagLabels: ['Skill Dev.', 'New Match'] },
+      { id: 10, cat: 'pension', name: 'PM Shram Yogi Maan-dhan (PM-SYM)', ministry: 'Ministry of Labour & Employment', ministryLevel: 'central', icoClass: 'ico-sl', amount: 36000, period: '₹3,000/month after age 60', match: 78, status: 'notapplied', urgent: false, desc: 'Voluntary pension scheme for unorganised sector workers. Subscriber contributes ₹55–200/month (govt. matches equally). Guaranteed pension of ₹3,000/month from age 60.', eligibility: 'Unorganised workers, income ≤ ₹15,000/month, age 18–40', docs: 'Aadhaar · Bank Passbook · Mobile Number', tags: ['ctag-pension', 'ctag-match'], tagLabels: ['Pension', '78% Match'] },
+      { id: 11, cat: 'health', name: 'Janani Suraksha Yojana', ministry: 'Ministry of Health & Family Welfare', ministryLevel: 'central', icoClass: 'ico-pi', amount: 1400, period: 'Cash assistance per delivery', match: 84, status: 'notapplied', urgent: false, desc: 'Cash incentive to promote institutional delivery among poor pregnant women. Rural mothers receive ₹1,400 for delivery in a govt. health facility. ASHA worker gets ₹600 cash incentive.', eligibility: 'BPL pregnant women in rural / urban areas', docs: 'Aadhaar · BPL Card · Pregnancy Card', tags: ['ctag-health', 'ctag-match'], tagLabels: ['Health', '84% Match'] },
+      { id: 12, cat: 'finance', name: 'PM Mudra Yojana — Shishu Loan', ministry: 'Ministry of Finance', ministryLevel: 'central', icoClass: 'ico-p', amount: 50000, period: 'Collateral-free business loan', match: 76, status: 'notapplied', urgent: false, desc: 'Collateral-free microfinance loan for small entrepreneurs. Shishu: up to ₹50,000 | Kishore: ₹50,001–5L | Tarun: ₹5–10L. Disbursed via banks, MFIs and NBFCs.', eligibility: 'Non-farm micro-enterprises, self-employed', docs: 'Aadhaar · PAN · Business Proof · Bank Statement', tags: ['ctag-finance', 'ctag-match'], tagLabels: ['Finance', '76% Match'] },
+      { id: 13, cat: 'agri', name: 'Kisan Credit Card (KCC)', ministry: 'Ministry of Agriculture & Farmers Welfare', ministryLevel: 'central', icoClass: 'ico-g', amount: 300000, period: 'Credit limit up to ₹3 Lakh', match: 83, status: 'applied', urgent: false, desc: 'Flexible credit facility for farmers to meet agricultural production, post-harvest and consumption requirements. Interest subvention of 2% + 3% prompt repayment incentive.', eligibility: 'Farmers, fishermen, animal husbandry workers', docs: 'Land Records · Aadhaar · Passport Photo', tags: ['ctag-agri', 'ctag-match'], tagLabels: ['Agriculture', '83% Match'] },
+      { id: 14, cat: 'housing', name: 'Maharashtra Gharkul Awas Yojana', ministry: 'Housing Department, Maharashtra Govt.', ministryLevel: 'state', icoClass: 'ico-o', amount: 150000, period: 'Construction grant', match: 79, status: 'notapplied', urgent: true, deadline: 'May 30, 2026', desc: 'State housing scheme for homeless SC/ST/NT/OBC families in Maharashtra. Grant of ₹1.5 lakh for construction of a permanent residential unit with basic amenities including water and sanitation.', eligibility: 'SC/ST/OBC families in Maharashtra, no pucca house', docs: 'Caste Certificate · Income Certificate · Land Proof · Aadhaar', tags: ['ctag-housing', 'ctag-new'], tagLabels: ['Housing', 'State Scheme'] },
+      { id: 15, cat: 'edu', name: 'Dr. Panjabrao Deshmukh Vasatigruha Yojana', ministry: 'Social Justice Dept., Maharashtra Govt.', ministryLevel: 'state', icoClass: 'ico-b', amount: 20000, period: 'Per year hostel scholarship', match: 74, status: 'notapplied', urgent: false, desc: 'Hostel scholarship for SC/OBC/NT students of Maharashtra studying in Class 11 onwards. Covers hostel fees, mess charges, stationery and travel allowance for rural first-generation learners.', eligibility: 'SC/OBC/NT students, Maharashtra domicile, income < ₹2.5L', docs: 'Domicile Certificate · Caste Certificate · College ID · Bank Passbook', tags: ['ctag-edu', 'ctag-match'], tagLabels: ['Education', '74% Match'] },
+      { id: 16, cat: 'women', name: 'Nari Shakti Puraskar Scheme', ministry: 'Ministry of Women & Child Development', ministryLevel: 'central', icoClass: 'ico-pi', amount: 100000, period: 'Cash award + certificate', match: 70, status: 'notapplied', urgent: false, desc: 'Recognition and cash award of ₹1 lakh for women demonstrating exemplary courage, service to society, or extraordinary achievement in their field. Nominations accepted annually.', eligibility: 'Women with outstanding contribution in any field', docs: 'Nomination Form · Achievement Proof · Aadhaar', tags: ['ctag-women', 'ctag-match'], tagLabels: ['Women', '70% Match'] },
+      { id: 17, cat: 'skill', name: 'Deen Dayal Upadhyaya Grameen Kaushalya Yojana', ministry: 'Ministry of Rural Development', ministryLevel: 'central', icoClass: 'ico-cy', amount: 15000, period: 'Post-placement stipend', match: 77, status: 'notapplied', urgent: false, desc: 'Free placement-linked skill training for rural youth aged 15–35. Guarantees post-training job placement with minimum ₹6,000/month salary. ₹15,000 post-placement support for 2 months.', eligibility: 'Rural youth aged 15–35, SECC-listed families preferred', docs: 'Aadhaar · 8th Pass Certificate · Bank Passbook', tags: ['ctag-skill', 'ctag-match'], tagLabels: ['Skill Dev.', '77% Match'] },
+      { id: 18, cat: 'pension', name: 'Pradhan Mantri Jeevan Jyoti Bima Yojana', ministry: 'Ministry of Finance', ministryLevel: 'central', icoClass: 'ico-sl', amount: 200000, period: 'Death insurance cover', match: 86, status: 'notapplied', urgent: false, desc: 'Life insurance scheme offering ₹2 lakh death cover for just ₹436/year premium. Auto-debit from savings account. No medical exam required. Available for bank account holders aged 18–50.', eligibility: 'Bank account holders, age 18–50', docs: 'Aadhaar · Bank Account · Nominee Details', tags: ['ctag-pension', 'ctag-match'], tagLabels: ['Insurance', '86% Match'] },
+      { id: 19, cat: 'energy', name: 'PM Surya Ghar Muft Bijli Yojana', ministry: 'Ministry of New & Renewable Energy', ministryLevel: 'central', icoClass: 'ico-y', amount: 78000, period: 'Rooftop solar subsidy', match: 72, status: 'notapplied', urgent: false, desc: 'Up to 300 units of free electricity per month via rooftop solar installation. Subsidy of ₹78,000 for 2kW system. Earn by selling surplus power back to the grid.', eligibility: 'Residential consumers with owned house & electricity connection', docs: 'Electricity Bill · Aadhaar · Property Documents', tags: ['ctag-energy', 'ctag-new'], tagLabels: ['Solar Energy', 'New Scheme'] },
+      { id: 20, cat: 'finance', name: 'Stand Up India Scheme', ministry: 'Ministry of Finance (SIDBI)', ministryLevel: 'central', icoClass: 'ico-p', amount: 1000000, period: 'Bank loan ₹10L–₹1Cr', match: 68, status: 'notapplied', urgent: false, desc: 'Bank loans between ₹10 lakh and ₹1 crore for SC/ST and women entrepreneurs for setting up greenfield enterprises in manufacturing, services or trading. At least one Dalit/tribal and one woman borrower per branch.', eligibility: 'SC/ST or women entrepreneurs, first-time borrowers', docs: 'Business Plan · PAN · Aadhaar · Caste Certificate', tags: ['ctag-finance', 'ctag-match'], tagLabels: ['Entrepreneurship', '68% Match'] }
+    ];
+
+    let activeCat = 'all', activeMinistry = ['central', 'state', 'district'], activeStatus = ['notapplied', 'applied'], activeUrgency = ['urgent', 'normal'], maxAmount = 500000;
+    const PER_PAGE = 6; let cur = 1;
+
+    function getFiltered() { const q = document.getElementById('searchInput').value.toLowerCase().trim(); return SCHEMES.filter(s => { if (activeCat !== 'all' && s.cat !== activeCat) return false; if (!activeMinistry.includes(s.ministryLevel)) return false; if (!activeStatus.includes(s.status)) return false; if (!activeUrgency.includes(s.urgent ? 'urgent' : 'normal')) return false; if (s.amount > maxAmount) return false; if (q && !s.name.toLowerCase().includes(q) && !s.ministry.toLowerCase().includes(q) && !s.desc.toLowerCase().includes(q)) return false; return true; }); }
+    function getSorted(a) { const v = document.getElementById('sortSel').value; return [...a].sort((x, y) => { if (v === 'amount-desc') return y.amount - x.amount; if (v === 'amount-asc') return x.amount - y.amount; if (v === 'name') return x.name.localeCompare(y.name); return y.match - x.match; }); }
+    function fmtAmt(n) { if (n >= 100000) return '\u20b9' + (n / 100000).toFixed(n % 100000 === 0 ? 0 : 1) + ' Lakh'; if (n >= 1000) return '\u20b9' + (n / 1000).toFixed(0) + ',000'; return '\u20b9' + n; }
+
+    function buildCard(s, i) {
+      const dl = s.urgent && s.deadline
+        ? `<div class="card-deadline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Deadline: <span class="dl-date">${s.deadline}</span></span></div>`
+        : '';
+      const applied = s.status === 'applied'
+        ? `<span class="as-applied-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Applied</span>`
+        : '';
+      const tags = s.tags.map((t, j) => `<span class="ctag ${t}">${s.tagLabels[j]}</span>`).join('');
+      return `<div class="card" data-cat="${s.cat}" style="animation:rise 0.4s ${i * 0.06}s ease both;opacity:0">
+    ${dl}
+    <div class="card-top">
+      <div class="card-ico ${s.icoClass}">${SVGS[s.icoClass] || ''}</div>
+      <div class="card-meta">
+        <div class="card-name">${s.name}</div>
+        <div class="card-min"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>${s.ministry}</div>
+        <div class="card-tags">${tags}${applied}</div>
+      </div>
+      <div class="card-right">
+        <div class="card-amt">${fmtAmt(s.amount)}</div>
+        <div class="card-period">${s.period}</div>
+        <div class="card-match"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>${s.match}% Eligible</div>
+      </div>
+    </div>
+    <div class="card-desc">${s.desc}</div>
+    <div class="card-bottom">
+      <div class="card-info">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>${s.eligibility}</div>
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><strong>${s.docs}</strong></div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-save" onclick="event.stopPropagation();this.classList.toggle('on')" title="Save for later"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
+        <button class="btn-detail" onclick="window.location='scheme-details.html'">View Details</button>
+        <button class="btn-apply" onclick="window.location='scheme-details.html'">${s.status === 'applied' ? 'Track Status &rarr;' : 'Apply Now &rarr;'}</button>
+      </div>
+    </div>
+  </div>`;
+    }
+
+    function renderCards() {
+      const filt = getSorted(getFiltered()), total = filt.length;
+      const page = filt.slice((cur - 1) * PER_PAGE, cur * PER_PAGE);
+      document.getElementById('countDisplay').textContent = total;
+      document.getElementById('heroCount').textContent = total;
+      document.getElementById('heroTotal').textContent = total;
+      document.getElementById('sideCount').textContent = total;
+      document.getElementById('topbarSub').textContent = total + ' schemes matched \u00b7 Latur, Maharashtra';
+      const c = document.getElementById('cardsContainer'), nr = document.getElementById('noResults');
+      if (!page.length) { c.innerHTML = ''; nr.classList.add('show'); }
+      else { nr.classList.remove('show'); c.innerHTML = page.map((s, i) => buildCard(s, i)).join(''); }
+      renderPag(total);
+    }
+    function renderPag(total) { const pages = Math.ceil(total / PER_PAGE), pg = document.getElementById('pagination'); if (pages <= 1) { pg.innerHTML = ''; return; } let h = `<button class="pgbtn" onclick="goPage(${cur - 1})">&lsaquo;</button>`; for (let p = 1; p <= pages; p++)h += `<button class="pgbtn ${p === cur ? 'active' : ''}" onclick="goPage(${p})">${p}</button>`; h += `<button class="pgbtn" onclick="goPage(${cur + 1})">&rsaquo;</button>`; pg.innerHTML = h; }
+    function goPage(p) { const max = Math.ceil(getFiltered().length / PER_PAGE); if (p < 1 || p > max) return; cur = p; renderCards(); document.querySelector('.content').scrollTo({ top: 0, behavior: 'smooth' }); }
+    function applyFilters() { cur = 1; renderCards(); }
+    function selectCat(el) { document.querySelectorAll('.cchip').forEach(c => c.classList.remove('active')); el.classList.add('active'); activeCat = el.dataset.cat; applyFilters(); }
+    function toggleFP(el) { el.classList.toggle('active'); const f = el.dataset.filter, v = el.dataset.val; if (f === 'ministry') activeMinistry = getVals('#fpMinistry .fp-opt'); else if (f === 'status') activeStatus = getVals('#fpStatus .fp-opt'); else if (f === 'urgency') activeUrgency = getVals('#fpUrgency .fp-opt'); applyFilters(); }
+    function getVals(sel) { return [...document.querySelectorAll(sel)].filter(o => o.classList.contains('active')).map(o => o.dataset.val); }
+    function updateRange(inp) { maxAmount = parseInt(inp.value); const pct = ((maxAmount - 1000) / (500000 - 1000)) * 100; inp.style.background = `linear-gradient(to right,var(--saffron) 0%,var(--saffron) ${pct}%,rgba(11,27,58,0.1) ${pct}%)`; document.getElementById('rangeDisplay').textContent = maxAmount >= 100000 ? 'Up to \u20b9' + (maxAmount / 100000).toFixed(1).replace('.0', '') + 'L' : 'Up to \u20b9' + (maxAmount / 1000).toFixed(0) + 'K'; applyFilters(); }
+    function clearAllFilters() { document.getElementById('searchInput').value = ''; activeCat = 'all'; activeMinistry = ['central', 'state', 'district']; activeStatus = ['notapplied', 'applied']; activeUrgency = ['urgent', 'normal']; maxAmount = 500000; document.querySelectorAll('.cchip').forEach((c, i) => c.classList.toggle('active', i === 0)); document.querySelectorAll('.fp-opt').forEach(o => o.classList.add('active')); const r = document.getElementById('amtRange'); r.value = 500000; r.style.background = 'linear-gradient(to right,var(--saffron) 0%,var(--saffron) 100%,rgba(11,27,58,0.1) 100%)'; document.getElementById('rangeDisplay').textContent = 'Up to \u20b9 5,00,000'; applyFilters(); }
+    renderCards();
+  </script>
+<script src="saarthi-i18n.js"></script>
+</body>
+
+</html>
+
+

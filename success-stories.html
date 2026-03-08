@@ -1,0 +1,1768 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAARTHI — Success Stories</title>
+  <meta name="description"
+    content="Real people, real impact. Read success stories from SAARTHI beneficiaries across India.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --saffron: #FF6B1A;
+      --saffron-light: #FF8C4A;
+      --saffron-dim: rgba(255, 107, 26, 0.10);
+      --green: #138808;
+      --green-dim: rgba(19, 136, 8, 0.08);
+      --navy: #0B1B3A;
+      --navy-mid: #1B3060;
+      --cream: #FFF9F2;
+      --gold: #C9930A;
+      --t1: #111827;
+      --t2: #6B7280;
+      --t3: #9CA3AF;
+      --border: rgba(11, 27, 58, 0.09);
+      --border-s: rgba(11, 27, 58, 0.15);
+      --white: #ffffff;
+      --bg: #F3F4F8;
+      --r-md: 14px;
+      --r-lg: 20px;
+      --r-full: 9999px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07);
+      --shadow-md: 0 4px 18px rgba(0, 0, 0, 0.09);
+      --shadow-lg: 0 12px 44px rgba(0, 0, 0, 0.11);
+      --shadow-saffron: 0 8px 28px rgba(255, 107, 26, 0.30);
+      --sidebar-w: 252px;
+      --topbar-h: 62px;
+      --transition: all 0.2s ease;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--t1);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-s);
+      border-radius: 4px;
+    }
+
+    .sidenav {
+      width: var(--sidebar-w);
+      background: var(--navy);
+      min-height: 100vh;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      overflow-y: auto;
+      flex-shrink: 0;
+      box-shadow: 3px 0 32px rgba(11, 27, 58, 0.22);
+    }
+
+    .sidenav::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 107, 26, 0.10) 0%, transparent 70%);
+      top: -100px;
+      left: -80px;
+      pointer-events: none;
+    }
+
+    .sn-brand {
+      padding: 26px 22px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-wordmark {
+      font-family: 'Baloo 2', cursive;
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(130deg, #fff 0%, var(--saffron-light) 60%, #D4A017 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sn-sub {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.22);
+      margin-top: 3px;
+    }
+
+    .sn-section {
+      padding: 20px 22px 7px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-link {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 12px;
+      margin: 2px 10px;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.48);
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-link:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .sn-link.active {
+      background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-light) 100%);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 5px 20px rgba(255, 107, 26, 0.36);
+    }
+
+    .sn-ic {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.07);
+      transition: var(--transition);
+    }
+
+    .sn-ic svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .sn-link.active .sn-ic {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .sn-link:hover:not(.active) .sn-ic {
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .sn-badge {
+      margin-left: auto;
+      background: var(--saffron);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: var(--r-full);
+      padding: 2px 8px;
+      line-height: 1.5;
+    }
+
+    .sn-link:not(.active) .sn-badge {
+      background: rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .sn-spacer {
+      flex: 1;
+    }
+
+    .sn-user {
+      margin: 10px 10px 18px;
+      padding: 12px 14px;
+      border-radius: var(--r-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-user:hover {
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .sn-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--saffron), var(--saffron-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .sn-uname {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .sn-uloc {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.32);
+    }
+
+    .sn-caret {
+      margin-left: auto;
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tricolor {
+      height: 3px;
+      display: flex;
+      flex-shrink: 0;
+    }
+
+    .tricolor div {
+      flex: 1;
+    }
+
+    .tc-s {
+      background: var(--saffron);
+    }
+
+    .tc-w {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tc-g {
+      background: var(--green);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--topbar-h);
+      background: rgba(255, 249, 242, 0.94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 16px rgba(11, 27, 58, 0.04);
+      flex-shrink: 0;
+    }
+
+    .tb-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .tb-sub {
+      font-size: 11.5px;
+      color: var(--t3);
+      margin-top: 1px;
+    }
+
+    .tb-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tb-icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+      color: var(--t2);
+    }
+
+    .tb-icon-btn:hover {
+      border-color: var(--saffron);
+      color: var(--saffron);
+    }
+
+    .tb-icon-btn svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .notif-dot {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--saffron);
+      border: 2px solid var(--cream);
+      animation: breathe 2s ease infinite;
+    }
+
+    .tb-voice-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(130deg, var(--saffron) 0%, #FF8B3D 100%);
+      color: #fff;
+      border-radius: var(--r-full);
+      font-family: 'Baloo 2', cursive;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      box-shadow: 0 4px 16px rgba(255, 107, 26, 0.28);
+    }
+
+    .tb-voice-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-saffron);
+    }
+
+    .tb-voice-btn svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .content {
+      padding: 28px 36px 56px;
+      overflow-y: auto;
+    }
+
+    .hero {
+      background: var(--navy);
+      border-radius: var(--r-lg);
+      padding: 32px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-lg);
+      animation: rise 0.4s ease both;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 55% 85% at -5% 50%, rgba(255, 107, 26, 0.18) 0%, transparent 55%), radial-gradient(ellipse 35% 55% at 108% 20%, rgba(19, 136, 8, 0.12) 0%, transparent 55%);
+    }
+
+    .hero-rings {
+      position: absolute;
+      right: -110px;
+      top: -110px;
+      width: 400px;
+      height: 400px;
+      pointer-events: none;
+    }
+
+    .hero-rings circle {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.03);
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 107, 26, 0.16);
+      border: 1px solid rgba(255, 107, 26, 0.28);
+      border-radius: var(--r-full);
+      padding: 4px 13px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #FF9060;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 11px;
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--saffron-light);
+      border-radius: 50%;
+      animation: breathe 2s ease infinite;
+    }
+
+    .hero-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.22;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title span {
+      color: var(--saffron-light);
+    }
+
+    .hero-sub {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.48);
+      line-height: 1.65;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-sub strong {
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 500;
+    }
+
+    .hero-kpis {
+      display: flex;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hkpi {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 16px;
+      padding: 14px 18px;
+      text-align: center;
+      min-width: 90px;
+      cursor: default;
+      transition: background 0.2s;
+    }
+
+    .hkpi:hover {
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .hkpi-num {
+      font-family: 'Baloo 2', cursive;
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .hkpi-num.g {
+      color: #5EC95A;
+    }
+
+    .hkpi-num.o {
+      color: var(--saffron-light);
+    }
+
+    .hkpi-num.y {
+      color: #FCD34D;
+    }
+
+    .hkpi-num.w {
+      color: #fff;
+    }
+
+    .hkpi-lbl {
+      font-size: 10.5px;
+      color: rgba(255, 255, 255, 0.35);
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+
+    .filter-tabs {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+      animation: rise 0.4s 0.06s ease both;
+    }
+
+    .ftab {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border-radius: var(--r-full);
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--t2);
+      cursor: pointer;
+      transition: var(--transition);
+      user-select: none;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ftab:hover {
+      border-color: var(--saffron);
+      color: var(--saffron);
+    }
+
+    .ftab.active {
+      border-color: var(--saffron);
+      background: rgba(255, 107, 26, 0.06);
+      color: var(--saffron);
+    }
+
+    .ftab svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 318px;
+      gap: 22px;
+      animation: rise 0.4s 0.1s ease both;
+    }
+
+    .stories-col {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .featured-card {
+      background: var(--white);
+      border: 1.5px solid var(--saffron);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(255, 107, 26, 0.12);
+    }
+
+    .fc-banner {
+      background: linear-gradient(130deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .fc-banner-ico {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(255, 107, 26, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fc-banner-ico svg {
+      width: 14px;
+      height: 14px;
+      color: var(--saffron-light);
+    }
+
+    .fc-banner-lbl {
+      font-family: 'Baloo 2', cursive;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--saffron-light);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .fc-body {
+      padding: 22px;
+    }
+
+    .story-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+
+    .story-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      border-color: rgba(255, 107, 26, 0.2);
+    }
+
+    .sc-head {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 14px;
+    }
+
+    .sc-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .av-o {
+      background: linear-gradient(135deg, var(--saffron), var(--saffron-light));
+    }
+
+    .av-g {
+      background: linear-gradient(135deg, var(--green), #3DBD38);
+    }
+
+    .av-b {
+      background: linear-gradient(135deg, #2563EB, #60A5FA);
+    }
+
+    .av-p {
+      background: linear-gradient(135deg, #7C3AED, #A78BFA);
+    }
+
+    .av-y {
+      background: linear-gradient(135deg, #D97706, #F59E0B);
+    }
+
+    .av-r {
+      background: linear-gradient(135deg, #DC2626, #F87171);
+    }
+
+    .sc-info {
+      flex: 1;
+    }
+
+    .sc-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--t1);
+      margin-bottom: 2px;
+    }
+
+    .sc-loc {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11.5px;
+      color: var(--t3);
+    }
+
+    .sc-loc svg {
+      width: 11px;
+      height: 11px;
+      flex-shrink: 0;
+    }
+
+    .sc-scheme-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 11px;
+      border-radius: var(--r-full);
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(19, 136, 8, 0.08);
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .sc-scheme-badge svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    .sc-text {
+      font-size: 13.5px;
+      color: var(--t2);
+      line-height: 1.68;
+      margin-bottom: 14px;
+    }
+
+    .sc-text em {
+      font-style: italic;
+      color: var(--t1);
+      font-weight: 500;
+    }
+
+    .sc-benefit {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      background: var(--bg);
+      border-radius: 11px;
+      margin-bottom: 12px;
+    }
+
+    .sc-benefit-ico {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(19, 136, 8, 0.08);
+      flex-shrink: 0;
+    }
+
+    .sc-benefit-ico svg {
+      width: 15px;
+      height: 15px;
+      color: var(--green);
+    }
+
+    .sc-benefit-lbl {
+      font-size: 11.5px;
+      color: var(--t3);
+      margin-bottom: 2px;
+    }
+
+    .sc-benefit-val {
+      font-family: 'Baloo 2', cursive;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .sc-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sc-date {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: var(--t3);
+    }
+
+    .sc-date svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    .sc-like {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--t3);
+      cursor: pointer;
+      transition: color 0.2s;
+      padding: 5px 10px;
+      border-radius: var(--r-full);
+      border: 1px solid var(--border);
+    }
+
+    .sc-like:hover {
+      color: var(--saffron);
+      border-color: var(--saffron);
+    }
+
+    .sc-like svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .rcard {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .rcard-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .rcard-ico {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .rcard-ico svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .rh-o {
+      background: rgba(255, 107, 26, 0.10);
+    }
+
+    .rh-o svg {
+      color: var(--saffron);
+    }
+
+    .rh-g {
+      background: rgba(19, 136, 8, 0.10);
+    }
+
+    .rh-g svg {
+      color: var(--green);
+    }
+
+    .rh-b {
+      background: rgba(37, 99, 235, 0.10);
+    }
+
+    .rh-b svg {
+      color: #2563EB;
+    }
+
+    .rh-y {
+      background: rgba(217, 119, 6, 0.10);
+    }
+
+    .rh-y svg {
+      color: #B45309;
+    }
+
+    .rcard-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--t1);
+    }
+
+    .rcard-sub {
+      font-size: 11px;
+      color: var(--t3);
+      margin-top: 1px;
+    }
+
+    .rcard-body {
+      padding: 16px 20px;
+    }
+
+    .impact-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .impact-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 11px;
+      border-radius: 10px;
+      background: var(--bg);
+    }
+
+    .ir-lbl {
+      font-size: 12.5px;
+      color: var(--t2);
+    }
+
+    .ir-val {
+      font-family: 'Baloo 2', cursive;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .cat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .cat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: background 0.2s;
+    }
+
+    .cat-item:hover {
+      background: rgba(255, 107, 26, 0.05);
+    }
+
+    .cat-bar-outer {
+      flex: 1;
+      height: 6px;
+      background: rgba(11, 27, 58, 0.07);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .cat-bar-inner {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--saffron), var(--saffron-light));
+    }
+
+    .cat-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--t2);
+      min-width: 80px;
+    }
+
+    .cat-count {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--t3);
+      min-width: 28px;
+      text-align: right;
+    }
+
+    .submit-cta {
+      background: linear-gradient(130deg, var(--navy) 0%, var(--navy-mid) 100%);
+      border-radius: var(--r-lg);
+      padding: 22px 20px;
+      text-align: center;
+    }
+
+    .submit-ico {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 107, 26, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+    }
+
+    .submit-ico svg {
+      width: 22px;
+      height: 22px;
+      color: var(--saffron-light);
+    }
+
+    .submit-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .submit-sub {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.48);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 22px;
+      background: linear-gradient(130deg, var(--saffron) 0%, var(--saffron-light) 100%);
+      color: #fff;
+      border-radius: var(--r-full);
+      border: none;
+      font-family: 'Baloo 2', cursive;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 14px rgba(255, 107, 26, 0.28);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-saffron);
+    }
+
+    .submit-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 13px;
+      padding: 13px 18px;
+      font-size: 13.5px;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.35s;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast svg {
+      width: 18px;
+      height: 18px;
+      color: var(--saffron-light);
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.45;
+        transform: scale(0.72)
+      }
+    }
+
+    @media(max-width:1200px) {
+      .grid {
+        grid-template-columns: 1fr
+      }
+
+      .hero-kpis {
+        display: none
+      }
+    }
+
+    @media(max-width:900px) {
+      .content {
+        padding: 20px 16px 48px
+      }
+
+      .topbar {
+        padding: 0 18px
+      }
+
+      .hero {
+        flex-direction: column;
+        gap: 18px
+      }
+    }
+
+    /* LANG SEL — same as dashboard */
+    .lang-sel {
+      position: relative;
+    }
+
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      background: #fff;
+      border: 1.5px solid rgba(12, 27, 56, 0.1);
+      border-radius: 9999px;
+      cursor: pointer;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #6B7280;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .lang-btn:hover {
+      border-color: #F5600A;
+      color: #F5600A;
+    }
+
+    .lang-btn svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #fff;
+      border: 1px solid rgba(12, 27, 56, 0.1);
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(12, 27, 56, 0.14);
+      width: 155px;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    .lang-dropdown.show {
+      display: block;
+    }
+
+    .lang-opt {
+      padding: 11px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(12, 27, 56, 0.07);
+      transition: background 0.15s;
+    }
+
+    .lang-opt:last-child {
+      border-bottom: none;
+    }
+
+    .lang-opt:hover {
+      background: rgba(245, 96, 10, 0.06);
+    }
+
+    .lang-opt.active {
+      background: rgba(245, 96, 10, 0.06);
+      color: #F5600A;
+      font-weight: 600;
+    }
+
+    .lang-opt span:last-child {
+      font-size: 11px;
+      color: #9CA3AF;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="sidenav">
+    <div class="sn-brand">
+      <div class="sn-wordmark">SAARTHI</div>
+      <div class="sn-sub">Smart Welfare Guide</div>
+    </div>
+    <div class="sn-section">Main Menu</div>
+    <a href="dashboard.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg></div><span>Dashboard</span>
+    </a>
+    <a href="voice.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+          <path d="M19 10v2a7 7 0 01-14 0v-2" />
+        </svg></div><span>Ask SAARTHI</span>
+    </a>
+    <a href="scheme-results.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+          <rect x="9" y="3" width="6" height="4" rx="1" />
+          <path d="M9 12h6M9 16h4" />
+        </svg></div><span>My Schemes</span><span class="sn-badge">34</span>
+    </a>
+    <a href="application-tracker.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+        </svg></div><span>Applications</span><span class="sn-badge">6</span>
+    </a>
+    <div class="sn-section">Resources</div>
+    <a href="document-upload.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
+        </svg></div><span>Documents</span>
+    </a>
+    <a href="success-stories.html" class="sn-link active">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polygon
+            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg></div><span>Success Stories</span>
+    </a>
+    <a href="help-support.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+          <line x1="12" y1="17" x2="12.01" y2="17" />
+        </svg></div><span>Help &amp; Support</span>
+    </a>
+    <div class="sn-spacer"></div>
+    <a href="profile-settings.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3" />
+          <path
+            d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
+        </svg></div><span>Settings</span>
+    </a>
+    <div class="sn-user" onclick="window.location='profile-create.html'">
+      <div class="sn-avatar">R</div>
+      <div>
+        <div class="sn-uname">Ramesh Kumar</div>
+        <div class="sn-uloc">Latur, Maharashtra</div>
+      </div>
+      <div class="sn-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round">
+          <path d="m9 18 6-6-6-6" />
+        </svg></div>
+    </div>
+  </nav>
+  <div class="main">
+    <div class="tricolor">
+      <div class="tc-s"></div>
+      <div class="tc-w"></div>
+      <div class="tc-g"></div>
+    </div>
+    <div class="topbar">
+      <div>
+        <div class="tb-title">Success Stories</div>
+        <div class="tb-sub">Real people, real impact &middot; 2,400+ beneficiaries</div>
+      </div>
+      <div class="tb-right">
+        <div class="lang-sel" id="page-lang-sel">
+          <button class="lang-btn" onclick="togglePageLangMenu()" id="page-lang-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+            </svg>
+            <span id="page-lang-label">English</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+          <div class="lang-dropdown" id="page-lang-menu">
+            <div class="lang-opt" onclick="setPageLang('en','English')"><span>English</span><span>English</span></div>
+            <div class="lang-opt" onclick="setPageLang('hi','Hindi')">
+              <span>Hindi</span><span>&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</span></div>
+            <div class="lang-opt" onclick="setPageLang('mr','Marathi')">
+              <span>Marathi</span><span>&#2350;&#2352;&#2366;&#2336;&#2368;</span></div>
+          </div>
+        </div>
+        <div class="tb-icon-btn" title="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 01-3.46 0" />
+          </svg>
+          <div class="notif-dot"></div>
+        </div>
+        <button class="tb-voice-btn" onclick="window.location='voice.html'"><svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+            <path d="M19 10v2a7 7 0 01-14 0v-2" />
+          </svg> Ask SAARTHI</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="hero">
+        <svg class="hero-rings" viewBox="0 0 400 400" aria-hidden="true">
+          <circle cx="200" cy="200" r="190" />
+          <circle cx="200" cy="200" r="145" stroke="rgba(255,107,26,0.04)" />
+          <circle cx="200" cy="200" r="100" stroke="rgba(255,107,26,0.06)" />
+        </svg>
+        <div style="position:relative;z-index:2">
+          <div class="hero-pill">
+            <div class="live-dot"></div>Community Impact
+          </div>
+          <div class="hero-title">Real People, <span>Real Impact</span></div>
+          <div class="hero-sub">Stories of lives transformed through government welfare schemes.<br><strong>Verified by
+              SAARTHI</strong> &middot; From across 28 states</div>
+        </div>
+        <div class="hero-kpis">
+          <div class="hkpi">
+            <div class="hkpi-num g">2.4K+</div>
+            <div class="hkpi-lbl">Stories Shared</div>
+          </div>
+          <div class="hkpi">
+            <div class="hkpi-num o">18L+</div>
+            <div class="hkpi-lbl">Beneficiaries</div>
+          </div>
+          <div class="hkpi">
+            <div class="hkpi-num y">28</div>
+            <div class="hkpi-lbl">States</div>
+          </div>
+          <div class="hkpi">
+            <div class="hkpi-num w">140+</div>
+            <div class="hkpi-lbl">Schemes</div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-tabs">
+        <div class="ftab active" onclick="setFilter(this,'all')"><svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <rect x="3" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="3" width="7" height="7" rx="1" />
+            <rect x="3" y="14" width="7" height="7" rx="1" />
+            <rect x="14" y="14" width="7" height="7" rx="1" />
+          </svg><span data-i18n="ss_filter_all">All Stories</span></div>
+        <div class="ftab" onclick="setFilter(this,'health')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg>Health</div>
+        <div class="ftab" onclick="setFilter(this,'housing')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+          </svg>Housing</div>
+        <div class="ftab" onclick="setFilter(this,'agri')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22V12M12 12C12 7 7 3 2 3c0 5 4 9 10 9zM12 12c0-5 5-9 10-9 0 5-4 9-10 9" />
+          </svg>Agriculture</div>
+        <div class="ftab" onclick="setFilter(this,'edu')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+          </svg>Education</div>
+        <div class="ftab" onclick="setFilter(this,'women')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+          </svg><span data-i18n="ss_filter_women">Women</span></div>
+      </div>
+      <div class="grid">
+        <div class="stories-col">
+          <!-- Featured Story -->
+          <div class="featured-card" data-cat="health">
+            <div class="fc-banner">
+              <div class="fc-banner-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg></div>
+              <div class="fc-banner-lbl">Featured Story of the Week</div>
+            </div>
+            <div class="fc-body">
+              <div class="sc-head">
+                <div class="sc-avatar av-o">R</div>
+                <div class="sc-info">
+                  <div class="sc-name">Ramani Devi</div>
+                  <div class="sc-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>Varanasi, Uttar Pradesh</div>
+                </div>
+              </div>
+              <div class="sc-scheme-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>Ayushman Bharat PM-JAY</div>
+              <div class="sc-text"><em>"My husband needed an urgent bypass surgery. The hospital bills were over ₹4.8
+                  lakh — money we simply did not have. Our daughter told us about SAARTHI and we used it to apply for
+                  Ayushman Bharat. Within 3 days our card was approved. The surgery happened at a private hospital and
+                  we paid nothing. Today my husband is healthy and working in our field."</em></div>
+              <div class="sc-benefit">
+                <div class="sc-benefit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.9" stroke-linecap="round">
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                  </svg></div>
+                <div>
+                  <div class="sc-benefit-lbl">Benefit Received</div>
+                  <div class="sc-benefit-val">&#8377;4,82,000 Surgery Covered</div>
+                </div>
+              </div>
+              <div class="sc-foot">
+                <div class="sc-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                    <path d="M16 2v4M8 2v4M3 10h18" />
+                  </svg>February 2026</div>
+                <div class="sc-like" onclick="likeStory(this)"><svg viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                  </svg><span>2.1K Inspired</span></div>
+              </div>
+            </div>
+          </div>
+          <!-- Story 2 -->
+          <div class="story-card" data-cat="agri">
+            <div class="sc-head">
+              <div class="sc-avatar av-g">S</div>
+              <div class="sc-info">
+                <div class="sc-name">Suresh Patil</div>
+                <div class="sc-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>Latur, Maharashtra</div>
+              </div>
+            </div>
+            <div class="sc-scheme-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22V12M12 12C12 7 7 3 2 3c0 5 4 9 10 9zM12 12c0-5 5-9 10-9 0 5-4 9-10 9" />
+              </svg>PM-KISAN Samman Nidhi</div>
+            <div class="sc-text">"I had no money to buy seeds before the kharif season. My neighbour showed me SAARTHI
+              and helped me apply for PM-KISAN. The &#8377;2,000 instalment came directly to my account within 2 weeks.
+              I bought seeds, hired a labourer, and my harvest this year was the best in a decade."</div>
+            <div class="sc-benefit">
+              <div class="sc-benefit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round">
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                </svg></div>
+              <div>
+                <div class="sc-benefit-lbl">Annual Benefit</div>
+                <div class="sc-benefit-val">&#8377;6,000 / Year</div>
+              </div>
+            </div>
+            <div class="sc-foot">
+              <div class="sc-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <path d="M16 2v4M8 2v4M3 10h18" />
+                </svg>January 2026</div>
+              <div class="sc-like" onclick="likeStory(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                </svg><span>1.4K Inspired</span></div>
+            </div>
+          </div>
+          <!-- Story 3 -->
+          <div class="story-card" data-cat="women">
+            <div class="sc-head">
+              <div class="sc-avatar av-p">M</div>
+              <div class="sc-info">
+                <div class="sc-name">Meera Bai</div>
+                <div class="sc-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>Jaipur, Rajasthan</div>
+              </div>
+            </div>
+            <div class="sc-scheme-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              </svg>PM Ujjwala Yojana 2.0</div>
+            <div class="sc-text">"Every morning I used to walk 2 kilometres to collect firewood before cooking for my
+              family. My eyes always hurt from the smoke. After SAARTHI helped me get my free LPG connection, I cook in
+              20 minutes instead of 2 hours. My children go to school on time now because I am not tired every morning."
+            </div>
+            <div class="sc-benefit">
+              <div class="sc-benefit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round">
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                </svg></div>
+              <div>
+                <div class="sc-benefit-lbl">Benefit Received</div>
+                <div class="sc-benefit-val">Free LPG Connection + Subsidy</div>
+              </div>
+            </div>
+            <div class="sc-foot">
+              <div class="sc-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <path d="M16 2v4M8 2v4M3 10h18" />
+                </svg>December 2025</div>
+              <div class="sc-like" onclick="likeStory(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                </svg><span>987 Inspired</span></div>
+            </div>
+          </div>
+          <!-- Story 4 -->
+          <div class="story-card" data-cat="edu">
+            <div class="sc-head">
+              <div class="sc-avatar av-b">A</div>
+              <div class="sc-info">
+                <div class="sc-name">Aakash Kumar</div>
+                <div class="sc-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>Patna, Bihar</div>
+              </div>
+            </div>
+            <div class="sc-scheme-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+              </svg>NSP Scholarship (SC/ST)</div>
+            <div class="sc-text">"My father is a farm labourer earning &#8377;300 a day. Paying engineering college fees
+              was impossible. I heard about NSP Scholarship through SAARTHI's recommendation. I applied, submitted all
+              documents through SAARTHI's Document Vault, and received my first scholarship in 3 weeks. I am now in my
+              second year. My parents cry with joy whenever I call."</div>
+            <div class="sc-benefit">
+              <div class="sc-benefit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round">
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                </svg></div>
+              <div>
+                <div class="sc-benefit-lbl">Annual Scholarship</div>
+                <div class="sc-benefit-val">&#8377;35,000 / Year</div>
+              </div>
+            </div>
+            <div class="sc-foot">
+              <div class="sc-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <path d="M16 2v4M8 2v4M3 10h18" />
+                </svg>November 2025</div>
+              <div class="sc-like" onclick="likeStory(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                </svg><span>3.2K Inspired</span></div>
+            </div>
+          </div>
+          <!-- Story 5 -->
+          <div class="story-card" data-cat="housing">
+            <div class="sc-head">
+              <div class="sc-avatar av-y">S</div>
+              <div class="sc-info">
+                <div class="sc-name">Savita Thorat</div>
+                <div class="sc-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>Solapur, Maharashtra</div>
+              </div>
+            </div>
+            <div class="sc-scheme-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>PM Awas Yojana (Gramin)</div>
+            <div class="sc-text">"We lived in a mud hut for 22 years. Every monsoon we were afraid the roof would
+              collapse. SAARTHI found us eligible for PMAY-G and guided us through every step. The &#8377;1,20,000 grant
+              came in instalments as prescribed. Today we have a proper 2-room pucca house with electricity and clean
+              cooking gas. My children study under proper lighting for the first time."</div>
+            <div class="sc-benefit">
+              <div class="sc-benefit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round">
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                </svg></div>
+              <div>
+                <div class="sc-benefit-lbl">Housing Grant Received</div>
+                <div class="sc-benefit-val">&#8377;1,20,000</div>
+              </div>
+            </div>
+            <div class="sc-foot">
+              <div class="sc-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <path d="M16 2v4M8 2v4M3 10h18" />
+                </svg>October 2025</div>
+              <div class="sc-like" onclick="likeStory(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                </svg><span>1.8K Inspired</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="right-panel">
+          <div class="rcard">
+            <div class="rcard-head">
+              <div class="rcard-ico rh-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10" />
+                  <line x1="12" y1="20" x2="12" y2="4" />
+                  <line x1="6" y1="20" x2="6" y2="14" />
+                </svg></div>
+              <div>
+                <div class="rcard-title">National Impact</div>
+                <div class="rcard-sub">SAARTHI-assisted outcomes</div>
+              </div>
+            </div>
+            <div class="rcard-body">
+              <div class="impact-rows">
+                <div class="impact-row"><span class="ir-lbl">Total Benefit Amount</span><span class="ir-val">&#8377;847
+                    Cr</span></div>
+                <div class="impact-row"><span class="ir-lbl">Families Helped</span><span class="ir-val">18.4 Lakh</span>
+                </div>
+                <div class="impact-row"><span class="ir-lbl">Avg. Processing Time</span><span class="ir-val">6.2
+                    Days</span></div>
+                <div class="impact-row"><span class="ir-lbl">First-Time Applicants</span><span class="ir-val">73%</span>
+                </div>
+                <div class="impact-row"><span class="ir-lbl">Application Success Rate</span><span
+                    class="ir-val">91%</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="rcard">
+            <div class="rcard-head">
+              <div class="rcard-ico rh-o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7" rx="1" />
+                  <rect x="14" y="3" width="7" height="7" rx="1" />
+                  <rect x="3" y="14" width="7" height="7" rx="1" />
+                  <rect x="14" y="14" width="7" height="7" rx="1" />
+                </svg></div>
+              <div>
+                <div class="rcard-title">Stories by Category</div>
+                <div class="rcard-sub">Distribution across schemes</div>
+              </div>
+            </div>
+            <div class="rcard-body">
+              <div class="cat-list">
+                <div class="cat-item" onclick="setFilter(document.querySelector('[onclick*=health]'),'health')"><span
+                    class="cat-name">Health</span>
+                  <div class="cat-bar-outer">
+                    <div class="cat-bar-inner" style="width:78%"></div>
+                  </div><span class="cat-count">612</span>
+                </div>
+                <div class="cat-item" onclick="setFilter(document.querySelector('[onclick*=agri]'),'agri')"><span
+                    class="cat-name">Agriculture</span>
+                  <div class="cat-bar-outer">
+                    <div class="cat-bar-inner" style="width:65%"></div>
+                  </div><span class="cat-count">510</span>
+                </div>
+                <div class="cat-item" onclick="setFilter(document.querySelector('[onclick*=housing]'),'housing')"><span
+                    class="cat-name">Housing</span>
+                  <div class="cat-bar-outer">
+                    <div class="cat-bar-inner" style="width:52%"></div>
+                  </div><span class="cat-count">408</span>
+                </div>
+                <div class="cat-item" onclick="setFilter(document.querySelector('[onclick*=edu]'),'edu')"><span
+                    class="cat-name">Education</span>
+                  <div class="cat-bar-outer">
+                    <div class="cat-bar-inner" style="width:44%"></div>
+                  </div><span class="cat-count">345</span>
+                </div>
+                <div class="cat-item" onclick="setFilter(document.querySelector('[onclick*=women]'),'women')"><span
+                    class="cat-name" data-i18n="ss_filter_women">Women</span>
+                  <div class="cat-bar-outer">
+                    <div class="cat-bar-inner" style="width:38%"></div>
+                  </div><span class="cat-count">298</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="submit-cta">
+            <div class="submit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+              </svg></div>
+            <div class="submit-title">Share Your Story</div>
+            <div class="submit-sub">Inspire thousands of others. Tell us how a government scheme changed your life.
+            </div>
+            <button class="submit-btn" onclick="showToast('Story submission form opening...')"><svg viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+              </svg>Submit My Story</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+      stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12" />
+    </svg><span id="toastMsg">Done</span></div>
+  <script>
+    function setFilter(el, cat) { document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active')); el.classList.add('active'); document.querySelectorAll('[data-cat]').forEach(c => { c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none'; }); }
+    function likeStory(el) { el.style.color = 'var(--saffron)'; el.style.borderColor = 'var(--saffron)'; showToast('Marked as Inspired!'); }
+    function showToast(msg) { const t = document.getElementById('toast'); document.getElementById('toastMsg').textContent = msg; t.classList.add('show'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('show'), 3000); }
+  </script>
+  <script src="saarthi-i18n.js"></script>
+</body>
+
+</html>

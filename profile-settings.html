@@ -1,0 +1,1834 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAARTHI — Settings</title>
+  <meta name="description"
+    content="Manage your SAARTHI profile, language preferences, notifications and account settings.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --saffron: #FF6B1A;
+      --saffron-light: #FF8C4A;
+      --saffron-dim: rgba(255, 107, 26, 0.10);
+      --green: #138808;
+      --green-dim: rgba(19, 136, 8, 0.08);
+      --navy: #0B1B3A;
+      --navy-mid: #1B3060;
+      --cream: #FFF9F2;
+      --t1: #111827;
+      --t2: #6B7280;
+      --t3: #9CA3AF;
+      --border: rgba(11, 27, 58, 0.09);
+      --border-s: rgba(11, 27, 58, 0.15);
+      --white: #ffffff;
+      --bg: #F3F4F8;
+      --r-md: 14px;
+      --r-lg: 20px;
+      --r-full: 9999px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07);
+      --shadow-md: 0 4px 18px rgba(0, 0, 0, 0.09);
+      --shadow-lg: 0 12px 44px rgba(0, 0, 0, 0.11);
+      --shadow-saffron: 0 8px 28px rgba(255, 107, 26, 0.30);
+      --sidebar-w: 252px;
+      --topbar-h: 62px;
+      --transition: all 0.2s ease;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--t1);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-s);
+      border-radius: 4px;
+    }
+
+    .sidenav {
+      width: var(--sidebar-w);
+      background: var(--navy);
+      min-height: 100vh;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      overflow-y: auto;
+      flex-shrink: 0;
+      box-shadow: 3px 0 32px rgba(11, 27, 58, 0.22);
+    }
+
+    .sidenav::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 107, 26, 0.10) 0%, transparent 70%);
+      top: -100px;
+      left: -80px;
+      pointer-events: none;
+    }
+
+    .sn-brand {
+      padding: 26px 22px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-wordmark {
+      font-family: 'Baloo 2', cursive;
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(130deg, #fff 0%, var(--saffron-light) 60%, #D4A017 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sn-sub {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.22);
+      margin-top: 3px;
+    }
+
+    .sn-section {
+      padding: 20px 22px 7px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-link {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 12px;
+      margin: 2px 10px;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.48);
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-link:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .sn-link.active {
+      background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-light) 100%);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 5px 20px rgba(255, 107, 26, 0.36);
+    }
+
+    .sn-ic {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.07);
+      transition: var(--transition);
+    }
+
+    .sn-ic svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .sn-link.active .sn-ic {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .sn-link:hover:not(.active) .sn-ic {
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .sn-badge {
+      margin-left: auto;
+      background: var(--saffron);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: var(--r-full);
+      padding: 2px 8px;
+      line-height: 1.5;
+    }
+
+    .sn-link:not(.active) .sn-badge {
+      background: rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .sn-spacer {
+      flex: 1;
+    }
+
+    .sn-user {
+      margin: 10px 10px 18px;
+      padding: 12px 14px;
+      border-radius: var(--r-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-user:hover {
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .sn-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--saffron), var(--saffron-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .sn-uname {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .sn-uloc {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.32);
+    }
+
+    .sn-caret {
+      margin-left: auto;
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tricolor {
+      height: 3px;
+      display: flex;
+      flex-shrink: 0;
+    }
+
+    .tricolor div {
+      flex: 1;
+    }
+
+    .tc-s {
+      background: var(--saffron);
+    }
+
+    .tc-w {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tc-g {
+      background: var(--green);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--topbar-h);
+      background: rgba(255, 249, 242, 0.94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 16px rgba(11, 27, 58, 0.04);
+      flex-shrink: 0;
+    }
+
+    .tb-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .tb-sub {
+      font-size: 11.5px;
+      color: var(--t3);
+      margin-top: 1px;
+    }
+
+    .tb-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tb-icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+      color: var(--t2);
+    }
+
+    .tb-icon-btn:hover {
+      border-color: var(--saffron);
+      color: var(--saffron);
+    }
+
+    .tb-icon-btn svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .notif-dot {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--saffron);
+      border: 2px solid var(--cream);
+      animation: breathe 2s ease infinite;
+    }
+
+    .tb-voice-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(130deg, var(--saffron) 0%, #FF8B3D 100%);
+      color: #fff;
+      border-radius: var(--r-full);
+      font-family: 'Baloo 2', cursive;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      box-shadow: 0 4px 16px rgba(255, 107, 26, 0.28);
+    }
+
+    .tb-voice-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-saffron);
+    }
+
+    .tb-voice-btn svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .content {
+      padding: 28px 36px 56px;
+      overflow-y: auto;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 22px;
+      animation: rise 0.4s ease both;
+    }
+
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .scard {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .scard-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sh-ico {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sh-ico svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .sh-o {
+      background: rgba(255, 107, 26, 0.10);
+    }
+
+    .sh-o svg {
+      color: var(--saffron);
+    }
+
+    .sh-b {
+      background: rgba(37, 99, 235, 0.10);
+    }
+
+    .sh-b svg {
+      color: #2563EB;
+    }
+
+    .sh-g {
+      background: rgba(19, 136, 8, 0.10);
+    }
+
+    .sh-g svg {
+      color: var(--green);
+    }
+
+    .sh-y {
+      background: rgba(217, 119, 6, 0.10);
+    }
+
+    .sh-y svg {
+      color: #B45309;
+    }
+
+    .sh-p {
+      background: rgba(124, 58, 237, 0.10);
+    }
+
+    .sh-p svg {
+      color: #7C3AED;
+    }
+
+    .sh-r {
+      background: rgba(220, 38, 38, 0.08);
+    }
+
+    .sh-r svg {
+      color: #DC2626;
+    }
+
+    .scard-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--t1);
+    }
+
+    .scard-sub {
+      font-size: 11.5px;
+      color: var(--t3);
+      margin-top: 2px;
+    }
+
+    .scard-body {
+      padding: 22px 24px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field.full {
+      grid-column: 1/-1;
+    }
+
+    .field label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--t2);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      color: var(--t1);
+      background: var(--bg);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--saffron);
+      background: var(--white);
+    }
+
+    .field select {
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    .field textarea {
+      resize: none;
+      height: 82px;
+      line-height: 1.6;
+    }
+
+    .field .hint {
+      font-size: 11px;
+      color: var(--t3);
+    }
+
+    .form-actions {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-top: 18px;
+    }
+
+    .save-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 24px;
+      background: linear-gradient(130deg, var(--saffron) 0%, var(--saffron-light) 100%);
+      color: #fff;
+      border-radius: var(--r-full);
+      border: none;
+      font-family: 'Baloo 2', cursive;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 14px rgba(255, 107, 26, 0.28);
+    }
+
+    .save-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-saffron);
+    }
+
+    .save-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .cancel-btn {
+      padding: 11px 20px;
+      border: 1.5px solid var(--border-s);
+      border-radius: var(--r-full);
+      background: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--t2);
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .cancel-btn:hover {
+      border-color: var(--navy);
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toggle-row:last-child {
+      border-bottom: none;
+    }
+
+    .toggle-info {
+      flex: 1;
+    }
+
+    .tr-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--t1);
+    }
+
+    .tr-sub {
+      font-size: 11.5px;
+      color: var(--t3);
+      margin-top: 2px;
+    }
+
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: absolute;
+    }
+
+    .toggle-track {
+      position: absolute;
+      inset: 0;
+      background: #E5E7EB;
+      border-radius: 12px;
+      transition: background 0.25s;
+    }
+
+    .toggle input:checked+.toggle-track {
+      background: var(--green);
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      left: 3px;
+      top: 3px;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.25s;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+    }
+
+    .toggle input:checked~.toggle-thumb {
+      transform: translateX(20px);
+    }
+
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
+    .lang-opt {
+      padding: 11px 14px;
+      border-radius: 11px;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--t2);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .lang-opt:hover {
+      border-color: var(--saffron);
+      color: var(--saffron);
+    }
+
+    .lang-opt.active {
+      border-color: var(--saffron);
+      background: rgba(255, 107, 26, 0.08);
+      color: var(--saffron);
+    }
+
+    .sec-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .sec-item:last-child {
+      border-bottom: none;
+    }
+
+    .sec-item:hover {
+      opacity: 0.75;
+    }
+
+    .sec-ico {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sec-ico svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .si-b {
+      background: rgba(37, 99, 235, 0.10);
+    }
+
+    .si-b svg {
+      color: #2563EB;
+    }
+
+    .si-g {
+      background: rgba(19, 136, 8, 0.10);
+    }
+
+    .si-g svg {
+      color: var(--green);
+    }
+
+    .si-y {
+      background: rgba(217, 119, 6, 0.10);
+    }
+
+    .si-y svg {
+      color: #B45309;
+    }
+
+    .sec-lbl {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--t1);
+    }
+
+    .sec-sub {
+      font-size: 11.5px;
+      color: var(--t3);
+      margin-top: 1px;
+    }
+
+    .sec-arrow {
+      margin-left: auto;
+      color: var(--t3);
+    }
+
+    .sec-arrow svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .danger-zone {
+      border: 1.5px solid rgba(220, 38, 38, 0.18);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .dz-head {
+      background: rgba(220, 38, 38, 0.05);
+      padding: 16px 22px;
+      border-bottom: 1.5px solid rgba(220, 38, 38, 0.12);
+    }
+
+    .dz-head-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 15px;
+      font-weight: 700;
+      color: #DC2626;
+    }
+
+    .dz-head-sub {
+      font-size: 12px;
+      color: rgba(220, 38, 38, 0.6);
+      margin-top: 2px;
+    }
+
+    .dz-body {
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .dz-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: var(--r-full);
+      font-family: 'Baloo 2', cursive;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1.5px solid;
+    }
+
+    .dz-btn.logout {
+      color: var(--navy);
+      border-color: var(--border-s);
+      background: var(--white);
+    }
+
+    .dz-btn.logout:hover {
+      border-color: var(--navy);
+    }
+
+    .dz-btn.delete {
+      color: #DC2626;
+      border-color: rgba(220, 38, 38, 0.3);
+      background: rgba(220, 38, 38, 0.05);
+    }
+
+    .dz-btn.delete:hover {
+      background: rgba(220, 38, 38, 0.10);
+      border-color: rgba(220, 38, 38, 0.5);
+    }
+
+    .dz-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .rcard {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .rcard-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .rcard-ico {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .rcard-ico svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .rh-o {
+      background: rgba(255, 107, 26, 0.10);
+    }
+
+    .rh-o svg {
+      color: var(--saffron);
+    }
+
+    .rh-g {
+      background: rgba(19, 136, 8, 0.10);
+    }
+
+    .rh-g svg {
+      color: var(--green);
+    }
+
+    .rh-y {
+      background: rgba(217, 119, 6, 0.10);
+    }
+
+    .rh-y svg {
+      color: #B45309;
+    }
+
+    .rcard-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--t1);
+    }
+
+    .rcard-sub {
+      font-size: 11px;
+      color: var(--t3);
+      margin-top: 1px;
+    }
+
+    .rcard-body {
+      padding: 16px 20px;
+    }
+
+    .profile-summary {
+      text-align: center;
+      padding: 22px 20px;
+    }
+
+    .ps-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--saffron), var(--saffron-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 auto 12px;
+    }
+
+    .ps-name {
+      font-family: 'Baloo 2', cursive;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--t1);
+    }
+
+    .ps-desc {
+      font-size: 12px;
+      color: var(--t3);
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+
+    .ps-score {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(19, 136, 8, 0.08);
+      border: 1px solid rgba(19, 136, 8, 0.15);
+      border-radius: var(--r-full);
+      padding: 5px 14px;
+      margin-top: 12px;
+    }
+
+    .ps-score-ico {
+      width: 14px;
+      height: 14px;
+      color: var(--green);
+    }
+
+    .ps-score-lbl {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .act-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 11px;
+      border-radius: 10px;
+      background: var(--bg);
+    }
+
+    .act-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .act-text {
+      font-size: 12px;
+      color: var(--t2);
+      line-height: 1.5;
+    }
+
+    .act-time {
+      font-size: 10.5px;
+      color: var(--t3);
+      margin-top: 2px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 13px;
+      padding: 13px 18px;
+      font-size: 13.5px;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.35s;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast svg {
+      width: 18px;
+      height: 18px;
+      color: var(--saffron-light);
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.45;
+        transform: scale(0.72)
+      }
+    }
+
+    @media(max-width:1200px) {
+      .page-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:900px) {
+      .content {
+        padding: 20px 16px 48px
+      }
+
+      .topbar {
+        padding: 0 18px
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* LANG SEL — same as dashboard */
+    .lang-sel {
+      position: relative;
+    }
+
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      background: #fff;
+      border: 1.5px solid rgba(12, 27, 56, 0.1);
+      border-radius: 9999px;
+      cursor: pointer;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #6B7280;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .lang-btn:hover {
+      border-color: #F5600A;
+      color: #F5600A;
+    }
+
+    .lang-btn svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #fff;
+      border: 1px solid rgba(12, 27, 56, 0.1);
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(12, 27, 56, 0.14);
+      width: 155px;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    .lang-dropdown.show {
+      display: block;
+    }
+
+    .lang-opt {
+      padding: 11px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(12, 27, 56, 0.07);
+      transition: background 0.15s;
+    }
+
+    .lang-opt:last-child {
+      border-bottom: none;
+    }
+
+    .lang-opt:hover {
+      background: rgba(245, 96, 10, 0.06);
+    }
+
+    .lang-opt.active {
+      background: rgba(245, 96, 10, 0.06);
+      color: #F5600A;
+      font-weight: 600;
+    }
+
+    .lang-opt span:last-child {
+      font-size: 11px;
+      color: #9CA3AF;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="sidenav">
+    <div class="sn-brand">
+      <div class="sn-wordmark">SAARTHI</div>
+      <div class="sn-sub">Smart Welfare Guide</div>
+    </div>
+    <div class="sn-section">Main Menu</div>
+    <a href="dashboard.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg></div><span>Dashboard</span>
+    </a>
+    <a href="voice.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+          <path d="M19 10v2a7 7 0 01-14 0v-2" />
+        </svg></div><span>Ask SAARTHI</span>
+    </a>
+    <a href="scheme-results.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+          <rect x="9" y="3" width="6" height="4" rx="1" />
+          <path d="M9 12h6M9 16h4" />
+        </svg></div><span>My Schemes</span><span class="sn-badge">34</span>
+    </a>
+    <a href="application-tracker.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+        </svg></div><span>Applications</span><span class="sn-badge">6</span>
+    </a>
+    <div class="sn-section">Resources</div>
+    <a href="document-upload.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
+        </svg></div><span>Documents</span>
+    </a>
+    <a href="success-stories.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polygon
+            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg></div><span>Success Stories</span>
+    </a>
+    <a href="help-support.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+          <line x1="12" y1="17" x2="12.01" y2="17" />
+        </svg></div><span>Help &amp; Support</span>
+    </a>
+    <div class="sn-spacer"></div>
+    <a href="profile-settings.html" class="sn-link active">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3" />
+          <path
+            d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
+        </svg></div><span>Settings</span>
+    </a>
+    <div class="sn-user" onclick="window.location='profile-create.html'">
+      <div class="sn-avatar">R</div>
+      <div>
+        <div class="sn-uname">Ramesh Kumar</div>
+        <div class="sn-uloc">Latur, Maharashtra</div>
+      </div>
+      <div class="sn-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round">
+          <path d="m9 18 6-6-6-6" />
+        </svg></div>
+    </div>
+  </nav>
+  <div class="main">
+    <div class="tricolor">
+      <div class="tc-s"></div>
+      <div class="tc-w"></div>
+      <div class="tc-g"></div>
+    </div>
+    <div class="topbar">
+      <div>
+        <div class="tb-title">Settings</div>
+        <div class="tb-sub">Manage your profile, language &amp; notification preferences</div>
+      </div>
+      <div class="tb-right">
+        <div class="lang-sel" id="page-lang-sel">
+          <button class="lang-btn" onclick="togglePageLangMenu()" id="page-lang-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+            </svg>
+            <span id="page-lang-label">English</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+          <div class="lang-dropdown" id="page-lang-menu">
+            <div class="lang-opt" onclick="setPageLang('en','English')"><span>English</span><span>English</span></div>
+            <div class="lang-opt" onclick="setPageLang('hi','Hindi')">
+              <span>Hindi</span><span>&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</span></div>
+            <div class="lang-opt" onclick="setPageLang('mr','Marathi')">
+              <span>Marathi</span><span>&#2350;&#2352;&#2366;&#2336;&#2368;</span></div>
+          </div>
+        </div>
+        <div class="tb-icon-btn" title="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 01-3.46 0" />
+          </svg>
+          <div class="notif-dot"></div>
+        </div>
+        <button class="tb-voice-btn" onclick="window.location='voice.html'"><svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+            <path d="M19 10v2a7 7 0 01-14 0v-2" />
+          </svg> Ask SAARTHI</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="page-grid">
+        <div class="left-col">
+          <!-- Personal Info -->
+          <div class="scard">
+            <div class="scard-head">
+              <div class="sh-ico sh-o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg></div>
+              <div>
+                <div class="scard-title" data-i18n="ps_personal">Personal Information</div>
+                <div class="scard-sub">Your identity details used for scheme matching and applications</div>
+              </div>
+            </div>
+            <div class="scard-body">
+              <div class="form-grid">
+                <div class="field"><label>Full Name</label><input type="text" value="Ramesh Kumar"></div>
+                <div class="field"><label>Date of Birth</label><input type="date" value="1985-04-15"></div>
+                <div class="field"><label>Gender</label><select>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                  </select></div>
+                <div class="field"><label>Mobile Number</label><input type="tel" value="+91 98765 43210"></div>
+                <div class="field full"><label>Aadhaar Number</label><input type="text" value="XXXX-XXXX-8432" disabled>
+                  <div class="hint">Aadhaar is masked for security. Contact support to update.</div>
+                </div>
+                <div class="field"><label>State</label><select>
+                    <option>Maharashtra</option>
+                    <option>Uttar Pradesh</option>
+                    <option>Karnataka</option>
+                    <option>Tamil Nadu</option>
+                  </select></div>
+                <div class="field"><label>District</label><input type="text" value="Latur"></div>
+                <div class="field"><label>Taluka / Block</label><input type="text" value="Latur City"></div>
+                <div class="field"><label>Village / Ward</label><input type="text" value="Sector 12, Latur"></div>
+                <div class="field"><label>PIN Code</label><input type="text" value="413512"></div>
+                <div class="field full"><label>Annual Household Income (Rs.)</label><select>
+                    <option>Below 1 Lakh</option>
+                    <option selected>1&ndash;2.5 Lakh</option>
+                    <option>2.5&ndash;5 Lakh</option>
+                    <option>5&ndash;10 Lakh</option>
+                    <option>Above 10 Lakh</option>
+                  </select></div>
+                <div class="field"><label>Caste Category</label><select>
+                    <option>General</option>
+                    <option selected>OBC</option>
+                    <option>SC</option>
+                    <option>ST</option>
+                  </select></div>
+                <div class="field"><label>Occupation</label><select>
+                    <option selected>Farmer</option>
+                    <option>Agricultural Labourer</option>
+                    <option>Self-Employed</option>
+                    <option>Salaried</option>
+                    <option>Student</option>
+                  </select></div>
+              </div>
+              <div class="form-actions">
+                <button class="save-btn" onclick="saveSection('Personal Information')"><svg viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg><span data-i18n="ps_save">Save Changes</span></button>
+                <button class="cancel-btn">Cancel</button>
+              </div>
+            </div>
+          </div>
+          <!-- Language -->
+          <div class="scard">
+            <div class="scard-head">
+              <div class="sh-ico sh-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                </svg></div>
+              <div>
+                <div class="scard-title" data-i18n="ps_language">Language &amp; Accessibility</div>
+                <div class="scard-sub">Choose your preferred language for the interface &amp; voice assistant</div>
+              </div>
+            </div>
+            <div class="scard-body">
+              <div style="margin-bottom:14px;font-size:12.5px;font-weight:600;color:var(--t2);">Interface &amp; Voice
+                Language</div>
+              <div class="lang-grid">
+                <div class="lang-opt" onclick="setLang(this)">English</div>
+                <div class="lang-opt active" onclick="setLang(this)">&#2346;&#2381;&#2352;&#2366;&#2357;&#2371;&#2340;
+                  Hindi</div>
+                <div class="lang-opt" onclick="setLang(this)">&#2350;&#2352;&#2366;&#2336;&#2368; Marathi</div>
+                <div class="lang-opt" onclick="setLang(this)">&#2724;&#2670;&#2734;&#2752; Tamil</div>
+                <div class="lang-opt" onclick="setLang(this)">&#3108;&#3142;&#3122;&#3137;&#3095;&#3137; Telugu</div>
+                <div class="lang-opt" onclick="setLang(this)">&#3221;&#3240;&#3277;&#3240;&#3233;&#3221; Kannada</div>
+                <div class="lang-opt" onclick="setLang(this)">&#2476;&#2494;&#2434;&#2482;&#2494; Bengali</div>
+                <div class="lang-opt" onclick="setLang(this)">&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752; Gujarati
+                </div>
+              </div>
+              <div style="margin-top:18px;margin-bottom:10px;font-size:12.5px;font-weight:600;color:var(--t2);">Text
+                Size</div>
+              <div style="display:flex;gap:10px;">
+                <div class="lang-opt" style="font-size:11px" onclick="setTextSize(this,'sm')">Small</div>
+                <div class="lang-opt active" style="font-size:13px" onclick="setTextSize(this,'md')">Medium</div>
+                <div class="lang-opt" style="font-size:15px" onclick="setTextSize(this,'lg')">Large</div>
+              </div>
+              <div class="form-actions"><button class="save-btn" onclick="saveSection('Language')"><svg
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>Save Language</button></div>
+            </div>
+          </div>
+          <!-- Notifications -->
+          <div class="scard">
+            <div class="scard-head">
+              <div class="sh-ico sh-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 01-3.46 0" />
+                </svg></div>
+              <div>
+                <div class="scard-title" data-i18n="ps_notif">Notifications</div>
+                <div class="scard-sub">Choose how and when SAARTHI contacts you</div>
+              </div>
+            </div>
+            <div class="scard-body">
+              <div class="toggle-row">
+                <div class="toggle-info">
+                  <div class="tr-title">Application Status Updates</div>
+                  <div class="tr-sub">Get notified when your application moves to a new stage</div>
+                </div><label class="toggle"><input type="checkbox" checked onchange="notifChanged()">
+                  <div class="toggle-track"></div>
+                  <div class="toggle-thumb"></div>
+                </label>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-info">
+                  <div class="tr-title">New Scheme Recommendations</div>
+                  <div class="tr-sub">Alerts when new government schemes match your profile</div>
+                </div><label class="toggle"><input type="checkbox" checked onchange="notifChanged()">
+                  <div class="toggle-track"></div>
+                  <div class="toggle-thumb"></div>
+                </label>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-info">
+                  <div class="tr-title">Document Expiry Reminders</div>
+                  <div class="tr-sub">Remind me 30 days before any document expires</div>
+                </div><label class="toggle"><input type="checkbox" checked onchange="notifChanged()">
+                  <div class="toggle-track"></div>
+                  <div class="toggle-thumb"></div>
+                </label>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-info">
+                  <div class="tr-title">Deadline Reminders</div>
+                  <div class="tr-sub">Last date reminders for scheme applications</div>
+                </div><label class="toggle"><input type="checkbox" checked onchange="notifChanged()">
+                  <div class="toggle-track"></div>
+                  <div class="toggle-thumb"></div>
+                </label>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-info">
+                  <div class="tr-title">SMS Notifications</div>
+                  <div class="tr-sub">Receive updates via SMS on +91 98765 43210</div>
+                </div><label class="toggle"><input type="checkbox" checked onchange="notifChanged()">
+                  <div class="toggle-track"></div>
+                  <div class="toggle-thumb"></div>
+                </label>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-info">
+                  <div class="tr-title">WhatsApp Updates</div>
+                  <div class="tr-sub">Get scheme updates via WhatsApp</div>
+                </div><label class="toggle"><input type="checkbox" onchange="notifChanged()">
+                  <div class="toggle-track"></div>
+                  <div class="toggle-thumb"></div>
+                </label>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-info">
+                  <div class="tr-title">SAARTHI Weekly Digest</div>
+                  <div class="tr-sub">Weekly summary of new schemes, deadlines, and your activity</div>
+                </div><label class="toggle"><input type="checkbox" onchange="notifChanged()">
+                  <div class="toggle-track"></div>
+                  <div class="toggle-thumb"></div>
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- Security -->
+          <div class="scard">
+            <div class="scard-head">
+              <div class="sh-ico sh-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" />
+                  <path d="M7 11V7a5 5 0 0110 0v4" />
+                </svg></div>
+              <div>
+                <div class="scard-title" data-i18n="ps_security">Privacy &amp; Security</div>
+                <div class="scard-sub">Control access to your account and documents</div>
+              </div>
+            </div>
+            <div class="scard-body">
+              <div class="sec-item" onclick="showToast('Opening PIN change...')">
+                <div class="sec-ico si-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0110 0v4" />
+                  </svg></div>
+                <div>
+                  <div class="sec-lbl">Change Access PIN</div>
+                  <div class="sec-sub">4-digit PIN for quick access</div>
+                </div>
+                <div class="sec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg></div>
+              </div>
+              <div class="sec-item" onclick="showToast('Biometric settings opening...')">
+                <div class="sec-ico si-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+                    <path d="M19 10v2a7 7 0 01-14 0v-2" />
+                  </svg></div>
+                <div>
+                  <div class="sec-lbl">Biometric Login</div>
+                  <div class="sec-sub">Use fingerprint or face ID to log in</div>
+                </div>
+                <div class="sec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg></div>
+              </div>
+              <div class="sec-item" onclick="showToast('Active sessions page opening...')">
+                <div class="sec-ico si-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" />
+                    <path d="M8 21h8M12 17v4" />
+                  </svg></div>
+                <div>
+                  <div class="sec-lbl">Active Sessions</div>
+                  <div class="sec-sub">1 device logged in &mdash; tap to manage</div>
+                </div>
+                <div class="sec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg></div>
+              </div>
+              <div class="sec-item" onclick="showToast('Download data request submitted!')">
+                <div class="sec-ico si-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg></div>
+                <div>
+                  <div class="sec-lbl">Download My Data</div>
+                  <div class="sec-sub">Get a copy of all your SAARTHI data</div>
+                </div>
+                <div class="sec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg></div>
+              </div>
+            </div>
+          </div>
+          <!-- About -->
+          <div class="scard">
+            <div class="scard-head">
+              <div class="sh-ico sh-p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg></div>
+              <div>
+                <div class="scard-title" data-i18n="ps_about">About &amp; Legal</div>
+                <div class="scard-sub">App version, terms of use and privacy policy</div>
+              </div>
+            </div>
+            <div class="scard-body">
+              <div class="sec-item" onclick="showToast('SAARTHI v2.4.1 — up to date')">
+                <div class="sec-ico si-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                  </svg></div>
+                <div>
+                  <div class="sec-lbl">App Version</div>
+                  <div class="sec-sub">v2.4.1 &mdash; Up to date</div>
+                </div>
+                <div class="sec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg></div>
+              </div>
+              <div class="sec-item" onclick="showToast('Opening Terms of Use...')">
+                <div class="sec-ico si-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                  </svg></div>
+                <div>
+                  <div class="sec-lbl">Terms of Use</div>
+                  <div class="sec-sub">SAARTHI User Agreement</div>
+                </div>
+                <div class="sec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg></div>
+              </div>
+              <div class="sec-item" onclick="showToast('Opening Privacy Policy...')">
+                <div class="sec-ico si-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg></div>
+                <div>
+                  <div class="sec-lbl">Privacy Policy</div>
+                  <div class="sec-sub">How we protect your data</div>
+                </div>
+                <div class="sec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg></div>
+              </div>
+              <div class="sec-item" onclick="showToast('Opening Accessibility Statement...')">
+                <div class="sec-ico si-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="3" />
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                  </svg></div>
+                <div>
+                  <div class="sec-lbl">Accessibility Statement</div>
+                  <div class="sec-sub">WCAG 2.1 AA compliant</div>
+                </div>
+                <div class="sec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg></div>
+              </div>
+            </div>
+          </div>
+          <!-- Danger Zone -->
+          <div class="danger-zone">
+            <div class="dz-head">
+              <div class="dz-head-title">Account Actions</div>
+              <div class="dz-head-sub">These actions are permanent and cannot be undone</div>
+            </div>
+            <div class="dz-body">
+              <button class="dz-btn logout" onclick="showToast('Logging out... Redirecting to login.')"><svg
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+                  <polyline points="16 17 21 12 16 7" />
+                  <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>Log Out</button>
+              <button class="dz-btn delete"
+                onclick="showToast('Data deletion request submitted. We will contact you within 7 days.')"><svg
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6" />
+                  <path d="M19 6l-1 14H6L5 6" />
+                  <path d="M10 11v6M14 11v6" />
+                  <path d="M9 6V4h6v2" />
+                </svg>Request Account &amp; Data Deletion</button>
+            </div>
+          </div>
+        </div>
+        <div class="right-panel">
+          <div class="profile-summary">
+            <div class="ps-avatar">R</div>
+            <div class="ps-name">Ramesh Kumar</div>
+            <div class="ps-desc">Farmer &middot; Latur, Maharashtra<br>OBC &middot; Income: 1&ndash;2.5 Lakh/yr</div>
+            <div class="ps-score"><svg class="ps-score-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg><span class="ps-score-lbl">Profile 82% Complete</span></div>
+          </div>
+          <div class="rcard">
+            <div class="rcard-head">
+              <div class="rcard-ico rh-o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg></div>
+              <div>
+                <div class="rcard-title">Complete Your Profile</div>
+                <div class="rcard-sub">Unlock more scheme matches</div>
+              </div>
+            </div>
+            <div class="rcard-body">
+              <div class="activity-list">
+                <div class="act-item">
+                  <div class="act-dot" style="background:var(--green)"></div>
+                  <div>
+                    <div class="act-text">Aadhaar verification done</div>
+                    <div class="act-time">Identity confirmed</div>
+                  </div>
+                </div>
+                <div class="act-item">
+                  <div class="act-dot" style="background:var(--green)"></div>
+                  <div>
+                    <div class="act-text">Bank account linked</div>
+                    <div class="act-time">DBT payments enabled</div>
+                  </div>
+                </div>
+                <div class="act-item">
+                  <div class="act-dot" style="background:var(--saffron)"></div>
+                  <div>
+                    <div class="act-text">Add family members</div>
+                    <div class="act-time">Unlocks 8 more schemes</div>
+                  </div>
+                </div>
+                <div class="act-item">
+                  <div class="act-dot" style="background:var(--saffron)"></div>
+                  <div>
+                    <div class="act-text">Upload land records</div>
+                    <div class="act-time">Required for PM-KISAN</div>
+                  </div>
+                </div>
+                <div class="act-item">
+                  <div class="act-dot" style="background:#E5E7EB)"></div>
+                  <div>
+                    <div class="act-text">Add disability certificate</div>
+                    <div class="act-time">Optional &mdash; if applicable</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rcard">
+            <div class="rcard-head">
+              <div class="rcard-ico rh-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <path d="M16 2v4M8 2v4M3 10h18" />
+                </svg></div>
+              <div>
+                <div class="rcard-title">Recent Activity</div>
+                <div class="rcard-sub">Your last 5 actions</div>
+              </div>
+            </div>
+            <div class="rcard-body">
+              <div class="activity-list">
+                <div class="act-item">
+                  <div class="act-dot" style="background:var(--green)"></div>
+                  <div>
+                    <div class="act-text">Document uploaded: Income Certificate</div>
+                    <div class="act-time">2 hours ago</div>
+                  </div>
+                </div>
+                <div class="act-item">
+                  <div class="act-dot" style="background:var(--saffron)"></div>
+                  <div>
+                    <div class="act-text">NSP Scholarship application submitted</div>
+                    <div class="act-time">Yesterday, 4:32 PM</div>
+                  </div>
+                </div>
+                <div class="act-item">
+                  <div class="act-dot" style="background:var(--green)"></div>
+                  <div>
+                    <div class="act-text">Aadhaar Card verified</div>
+                    <div class="act-time">Feb 22, 2026</div>
+                  </div>
+                </div>
+                <div class="act-item">
+                  <div class="act-dot" style="background:var(--saffron)"></div>
+                  <div>
+                    <div class="act-text">Profile language changed to Hindi</div>
+                    <div class="act-time">Feb 20, 2026</div>
+                  </div>
+                </div>
+                <div class="act-item">
+                  <div class="act-dot" style="background:var(--green)"></div>
+                  <div>
+                    <div class="act-text">PM-KISAN registration completed</div>
+                    <div class="act-time">Feb 15, 2026</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+      stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12" />
+    </svg><span id="toastMsg">Done</span></div>
+  <script>
+    function saveSection(s) { showToast(s + ' saved successfully!'); }
+    function notifChanged() { showToast('Notification preferences updated.'); }
+    function setLang(el) {
+      el.closest('.lang-grid') ? (el.closest('.lang-grid').querySelectorAll('.lang-opt').forEach(x => x.classList.remove('active')), el.classList.add('active')) : null;
+      var map = { 'English': 'en', 'Hindi': 'hi', 'Marathi': 'mr', 'प्रावृत Hindi': 'hi', 'मराठी Marathi': 'mr' };
+      var txt = el.textContent.trim();
+      var code = Object.keys(map).find(k => txt.includes(k.split(' ')[0])) || 'en';
+      if (txt.includes('Hindi') || txt.includes('हिन्दी')) code = 'hi';
+      else if (txt.includes('Marathi') || txt.includes('मराठी')) code = 'mr';
+      else code = 'en';
+      if (window.SaarthiI18n) window.SaarthiI18n.setLang(code);
+      showToast('Language updated to ' + el.textContent.trim());
+    }
+    function setTextSize(el, s) { el.parentElement.querySelectorAll('.lang-opt').forEach(x => x.classList.remove('active')); el.classList.add('active'); showToast('Text size set to ' + s); }
+    function showToast(msg) { const t = document.getElementById('toast'); document.getElementById('toastMsg').textContent = msg; t.classList.add('show'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('show'), 3000); }
+  </script>
+  <script src="saarthi-i18n.js"></script>
+</body>
+
+</html>

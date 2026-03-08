@@ -1,0 +1,2835 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAARTHI — Document Vault</title>
+  <meta name="description"
+    content="Securely upload and manage your documents for government scheme applications — SAARTHI Document Vault.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --saffron: #FF6B1A;
+      --saffron-light: #FF8C4A;
+      --saffron-dim: rgba(255, 107, 26, 0.10);
+      --green: #138808;
+      --green-dim: rgba(19, 136, 8, 0.08);
+      --navy: #0B1B3A;
+      --navy-mid: #1B3060;
+      --cream: #FFF9F2;
+      --gold: #C9930A;
+      --t1: #111827;
+      --t2: #6B7280;
+      --t3: #9CA3AF;
+      --border: rgba(11, 27, 58, 0.09);
+      --border-s: rgba(11, 27, 58, 0.15);
+      --white: #ffffff;
+      --bg: #F3F4F8;
+      --r-md: 14px;
+      --r-lg: 20px;
+      --r-full: 9999px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07);
+      --shadow-md: 0 4px 18px rgba(0, 0, 0, 0.09);
+      --shadow-lg: 0 12px 44px rgba(0, 0, 0, 0.11);
+      --shadow-saffron: 0 8px 28px rgba(255, 107, 26, 0.30);
+      --sidebar-w: 252px;
+      --topbar-h: 62px;
+      --transition: all 0.2s ease;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--t1);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-s);
+      border-radius: 4px;
+    }
+
+    /* SIDENAV */
+    .sidenav {
+      width: var(--sidebar-w);
+      background: var(--navy);
+      min-height: 100vh;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      overflow-y: auto;
+      flex-shrink: 0;
+      box-shadow: 3px 0 32px rgba(11, 27, 58, 0.22);
+    }
+
+    .sidenav::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 107, 26, 0.10) 0%, transparent 70%);
+      top: -100px;
+      left: -80px;
+      pointer-events: none;
+    }
+
+    .sn-brand {
+      padding: 26px 22px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-wordmark {
+      font-family: 'Baloo 2', cursive;
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(130deg, #fff 0%, var(--saffron-light) 60%, #D4A017 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sn-sub {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.22);
+      margin-top: 3px;
+    }
+
+    .sn-section {
+      padding: 20px 22px 7px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-link {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 12px;
+      margin: 2px 10px;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.48);
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-link:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .sn-link.active {
+      background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-light) 100%);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 5px 20px rgba(255, 107, 26, 0.36);
+    }
+
+    .sn-ic {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.07);
+      transition: var(--transition);
+    }
+
+    .sn-ic svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .sn-link.active .sn-ic {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .sn-link:hover:not(.active) .sn-ic {
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .sn-badge {
+      margin-left: auto;
+      background: var(--saffron);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: var(--r-full);
+      padding: 2px 8px;
+      line-height: 1.5;
+    }
+
+    .sn-link:not(.active) .sn-badge {
+      background: rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .sn-spacer {
+      flex: 1;
+    }
+
+    .sn-user {
+      margin: 10px 10px 18px;
+      padding: 12px 14px;
+      border-radius: var(--r-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-user:hover {
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .sn-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--saffron), var(--saffron-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .sn-uname {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .sn-uloc {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.32);
+    }
+
+    .sn-caret {
+      margin-left: auto;
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* MAIN */
+    .main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tricolor {
+      height: 3px;
+      display: flex;
+      flex-shrink: 0;
+    }
+
+    .tricolor div {
+      flex: 1;
+    }
+
+    .tc-s {
+      background: var(--saffron);
+    }
+
+    .tc-w {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tc-g {
+      background: var(--green);
+    }
+
+    /* TOPBAR */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--topbar-h);
+      background: rgba(255, 249, 242, 0.94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 16px rgba(11, 27, 58, 0.04);
+      flex-shrink: 0;
+    }
+
+    .tb-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .tb-sub {
+      font-size: 11.5px;
+      color: var(--t3);
+      margin-top: 1px;
+    }
+
+    .tb-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tb-icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+      color: var(--t2);
+    }
+
+    .tb-icon-btn:hover {
+      border-color: var(--saffron);
+      color: var(--saffron);
+    }
+
+    .tb-icon-btn svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .notif-dot {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--saffron);
+      border: 2px solid var(--cream);
+      animation: breathe 2s ease infinite;
+    }
+
+    .tb-voice-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(130deg, var(--saffron) 0%, #FF8B3D 100%);
+      color: #fff;
+      border-radius: var(--r-full);
+      font-family: 'Baloo 2', cursive;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      box-shadow: 0 4px 16px rgba(255, 107, 26, 0.28);
+    }
+
+    .tb-voice-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-saffron);
+    }
+
+    .tb-voice-btn svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    /* CONTENT */
+    .content {
+      padding: 28px 36px 56px;
+      overflow-y: auto;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--navy);
+      border-radius: var(--r-lg);
+      padding: 32px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-lg);
+      animation: rise 0.4s ease both;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 55% 85% at -5% 50%, rgba(255, 107, 26, 0.18) 0%, transparent 55%), radial-gradient(ellipse 35% 55% at 108% 20%, rgba(19, 136, 8, 0.12) 0%, transparent 55%);
+    }
+
+    .hero-rings {
+      position: absolute;
+      right: -110px;
+      top: -110px;
+      width: 400px;
+      height: 400px;
+      pointer-events: none;
+    }
+
+    .hero-rings circle {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.03);
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 107, 26, 0.16);
+      border: 1px solid rgba(255, 107, 26, 0.28);
+      border-radius: var(--r-full);
+      padding: 4px 13px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #FF9060;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 11px;
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--saffron-light);
+      border-radius: 50%;
+      animation: breathe 2s ease infinite;
+    }
+
+    .hero-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.22;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title span {
+      color: var(--saffron-light);
+    }
+
+    .hero-sub {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.48);
+      line-height: 1.65;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-sub strong {
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 500;
+    }
+
+    .hero-kpis {
+      display: flex;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hkpi {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 16px;
+      padding: 14px 18px;
+      text-align: center;
+      min-width: 90px;
+      transition: background 0.2s;
+      cursor: default;
+    }
+
+    .hkpi:hover {
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .hkpi-num {
+      font-family: 'Baloo 2', cursive;
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .hkpi-num.g {
+      color: #5EC95A;
+    }
+
+    .hkpi-num.y {
+      color: #FCD34D;
+    }
+
+    .hkpi-num.r {
+      color: #FCA5A5;
+    }
+
+    .hkpi-num.w {
+      color: #fff;
+    }
+
+    .hkpi-lbl {
+      font-size: 10.5px;
+      color: rgba(255, 255, 255, 0.35);
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+
+    /* VAULT PROGRESS */
+    .vault-progress {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 22px 26px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow-sm);
+      animation: rise 0.4s 0.06s ease both;
+    }
+
+    .vp-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 13px;
+    }
+
+    .vp-icon-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .vp-icon-title svg {
+      width: 18px;
+      height: 18px;
+      color: var(--saffron);
+    }
+
+    .vp-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--t1);
+    }
+
+    .vp-pct {
+      font-family: 'Baloo 2', cursive;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--saffron);
+    }
+
+    .vp-bar-outer {
+      height: 9px;
+      background: rgba(11, 27, 58, 0.07);
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 11px;
+    }
+
+    .vp-bar-inner {
+      height: 100%;
+      border-radius: 5px;
+      background: linear-gradient(90deg, var(--saffron), var(--saffron-light));
+      width: 0;
+      transition: width 1s ease;
+    }
+
+    .vp-docs {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .vp-doc {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+    }
+
+    .vp-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .vp-dot.done {
+      background: var(--green);
+    }
+
+    .vp-dot.pend {
+      background: var(--saffron);
+    }
+
+    .vp-dot.miss {
+      background: #E5E7EB;
+    }
+
+    .vp-doc span {
+      color: var(--t2);
+    }
+
+    .vp-doc.done span {
+      color: var(--green);
+    }
+
+    .vp-doc.pend span {
+      color: var(--saffron);
+    }
+
+    .vp-doc.miss span {
+      color: var(--t3);
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 318px;
+      gap: 22px;
+      animation: rise 0.4s 0.12s ease both;
+    }
+
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* SECTION CARDS */
+    .scard {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .scard-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sh-ico {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sh-ico svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .sh-o {
+      background: rgba(255, 107, 26, 0.10);
+    }
+
+    .sh-o svg {
+      color: var(--saffron);
+    }
+
+    .sh-g {
+      background: rgba(19, 136, 8, 0.10);
+    }
+
+    .sh-g svg {
+      color: var(--green);
+    }
+
+    .sh-b {
+      background: rgba(37, 99, 235, 0.10);
+    }
+
+    .sh-b svg {
+      color: #2563EB;
+    }
+
+    .sh-n {
+      background: rgba(11, 27, 58, 0.07);
+    }
+
+    .sh-n svg {
+      color: var(--navy);
+    }
+
+    .sh-p {
+      background: rgba(124, 58, 237, 0.10);
+    }
+
+    .sh-p svg {
+      color: #7C3AED;
+    }
+
+    .sh-y {
+      background: rgba(217, 119, 6, 0.10);
+    }
+
+    .sh-y svg {
+      color: #B45309;
+    }
+
+    .scard-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--t1);
+    }
+
+    .scard-sub {
+      font-size: 11.5px;
+      color: var(--t3);
+      margin-top: 2px;
+    }
+
+    .scard-body {
+      padding: 22px 24px;
+    }
+
+    /* UPLOAD ZONE */
+    .upload-zone {
+      border: 2px dashed var(--border-s);
+      border-radius: 16px;
+      padding: 38px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .upload-zone:hover,
+    .upload-zone.drag {
+      border-color: var(--saffron);
+      background: rgba(255, 107, 26, 0.04);
+    }
+
+    .upload-zone.drag {
+      transform: scale(1.01);
+    }
+
+    .uz-ico {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 14px;
+      transition: transform 0.3s;
+    }
+
+    .uz-ico svg {
+      width: 52px;
+      height: 52px;
+      color: var(--t3);
+    }
+
+    .upload-zone:hover .uz-ico svg {
+      transform: translateY(-4px) scale(1.05);
+      color: var(--saffron);
+    }
+
+    .uz-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--t1);
+      margin-bottom: 6px;
+    }
+
+    .uz-sub {
+      font-size: 13px;
+      color: var(--t3);
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .uz-types {
+      display: flex;
+      gap: 7px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .uz-type {
+      padding: 4px 11px;
+      border-radius: var(--r-full);
+      background: rgba(11, 27, 58, 0.06);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--t2);
+      letter-spacing: 0.05em;
+    }
+
+    .uz-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 26px;
+      background: linear-gradient(130deg, var(--saffron) 0%, var(--saffron-light) 100%);
+      color: #fff;
+      border-radius: var(--r-full);
+      border: none;
+      font-family: 'Baloo 2', cursive;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 4px 14px rgba(255, 107, 26, 0.28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .uz-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 55%);
+    }
+
+    .uz-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-saffron);
+    }
+
+    .uz-btn svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    .uz-note {
+      font-size: 11px;
+      color: var(--t3);
+      margin-top: 12px;
+    }
+
+    .uz-note strong {
+      color: var(--t2);
+    }
+
+    input[type=file] {
+      display: none;
+    }
+
+    /* UPLOAD PROGRESS */
+    .uploading-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .upload-item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 13px 15px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .ui-ico {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ui-ico svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .ui-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ui-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--t1);
+      margin-bottom: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ui-bar-outer {
+      height: 5px;
+      background: rgba(11, 27, 58, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .ui-bar-inner {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--saffron), var(--saffron-light));
+      transition: width 0.4s ease;
+    }
+
+    .ui-pct {
+      font-size: 11px;
+      color: var(--t3);
+      margin-top: 3px;
+    }
+
+    .ui-status {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      color: var(--t3);
+    }
+
+    .ui-status svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* DOC GRID */
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 12px;
+    }
+
+    .doc-card {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 17px 15px;
+      cursor: pointer;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doc-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .doc-card.verified::before {
+      background: var(--green);
+    }
+
+    .doc-card.pending::before {
+      background: var(--saffron);
+    }
+
+    .doc-card.rejected::before {
+      background: #DC2626;
+    }
+
+    .doc-card:hover {
+      border-color: var(--saffron);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .dc-ico {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 11px;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .dc-ico svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .doc-card.verified .dc-ico {
+      background: rgba(19, 136, 8, 0.08);
+    }
+
+    .doc-card.verified .dc-ico svg {
+      color: var(--green);
+    }
+
+    .doc-card.pending .dc-ico {
+      background: rgba(255, 107, 26, 0.10);
+    }
+
+    .doc-card.pending .dc-ico svg {
+      color: var(--saffron);
+    }
+
+    .dc-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--t1);
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+
+    .dc-size {
+      font-size: 11px;
+      color: var(--t3);
+      margin-bottom: 9px;
+    }
+
+    .dc-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: var(--r-full);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .dc-status svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    .dc-status.verified {
+      background: rgba(19, 136, 8, 0.08);
+      color: var(--green);
+    }
+
+    .dc-status.pending {
+      background: rgba(255, 107, 26, 0.10);
+      color: var(--saffron);
+    }
+
+    .dc-status.rejected {
+      background: rgba(220, 38, 38, 0.08);
+      color: #DC2626;
+    }
+
+    .dc-date {
+      font-size: 11px;
+      color: var(--t3);
+      margin-top: 5px;
+    }
+
+    .dc-actions {
+      position: absolute;
+      top: 11px;
+      right: 11px;
+      display: flex;
+      gap: 5px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .doc-card:hover .dc-actions {
+      opacity: 1;
+    }
+
+    .dc-action-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--white);
+      transition: all 0.2s;
+      color: var(--t2);
+    }
+
+    .dc-action-btn svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .dc-action-btn:hover {
+      background: var(--saffron);
+      border-color: var(--saffron);
+      color: #fff;
+    }
+
+    /* REQUIRED DOCS LIST */
+    .req-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .req-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 15px;
+      border-radius: 13px;
+      background: var(--bg);
+      border: 1.5px solid transparent;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .req-item:hover {
+      border-color: var(--saffron);
+      background: rgba(255, 107, 26, 0.04);
+    }
+
+    .req-item.done {
+      background: rgba(19, 136, 8, 0.06);
+      border-color: rgba(19, 136, 8, 0.13);
+    }
+
+    .ri-ico {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ri-ico svg {
+      width: 17px;
+      height: 17px;
+      color: var(--t2);
+    }
+
+    .req-item.done .ri-ico svg {
+      color: var(--green);
+    }
+
+    .ri-info {
+      flex: 1;
+    }
+
+    .ri-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--t1);
+    }
+
+    .req-item.done .ri-name {
+      color: var(--green);
+    }
+
+    .ri-desc {
+      font-size: 11.5px;
+      color: var(--t3);
+      margin-top: 1px;
+    }
+
+    .ri-tag {
+      flex-shrink: 0;
+    }
+
+    .ri-badge {
+      padding: 4px 11px;
+      border-radius: var(--r-full);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .rb-done {
+      background: rgba(19, 136, 8, 0.08);
+      color: var(--green);
+    }
+
+    .rb-req {
+      background: rgba(220, 38, 38, 0.08);
+      color: #DC2626;
+    }
+
+    .rb-opt {
+      background: rgba(11, 27, 58, 0.06);
+      color: var(--t3);
+    }
+
+    .rb-pend {
+      background: rgba(255, 107, 26, 0.10);
+      color: var(--saffron);
+    }
+
+    /* OCR BANNER */
+    .ocr-banner {
+      display: none;
+      align-items: center;
+      gap: 13px;
+      background: rgba(19, 136, 8, 0.06);
+      border: 1.5px solid rgba(19, 136, 8, 0.18);
+      border-radius: 13px;
+      padding: 15px 18px;
+      margin-bottom: 16px;
+    }
+
+    .ocr-banner.show {
+      display: flex;
+    }
+
+    .ocr-banner-ico {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(19, 136, 8, 0.10);
+      flex-shrink: 0;
+    }
+
+    .ocr-banner-ico svg {
+      width: 20px;
+      height: 20px;
+      color: var(--green);
+    }
+
+    .ocr-banner-text strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 2px;
+    }
+
+    .ocr-banner-text span {
+      font-size: 12.5px;
+      color: var(--t2);
+    }
+
+    .ocr-banner-btn {
+      margin-left: auto;
+      padding: 8px 16px;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: var(--r-full);
+      font-family: 'Baloo 2', cursive;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .ocr-banner-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    /* RIGHT PANEL */
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .rcard {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .rcard-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .rcard-ico {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .rcard-ico svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .rh-o {
+      background: rgba(255, 107, 26, 0.10);
+    }
+
+    .rh-o svg {
+      color: var(--saffron);
+    }
+
+    .rh-g {
+      background: rgba(19, 136, 8, 0.10);
+    }
+
+    .rh-g svg {
+      color: var(--green);
+    }
+
+    .rh-b {
+      background: rgba(37, 99, 235, 0.10);
+    }
+
+    .rh-b svg {
+      color: #2563EB;
+    }
+
+    .rh-y {
+      background: rgba(217, 119, 6, 0.10);
+    }
+
+    .rh-y svg {
+      color: #B45309;
+    }
+
+    .rcard-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--t1);
+    }
+
+    .rcard-sub {
+      font-size: 11px;
+      color: var(--t3);
+      margin-top: 1px;
+    }
+
+    .rcard-body {
+      padding: 16px 20px;
+    }
+
+    /* SCHEME DOCS */
+    .scheme-docs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .sd-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 13px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sd-item:hover {
+      border-color: var(--saffron);
+      background: rgba(255, 107, 26, 0.04);
+    }
+
+    .sd-ico {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sd-ico svg {
+      width: 15px;
+      height: 15px;
+      color: var(--t2);
+    }
+
+    .sd-info {
+      flex: 1;
+    }
+
+    .sd-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--t1);
+    }
+
+    .sd-missing {
+      font-size: 11px;
+      color: #DC2626;
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    .sd-arrow {
+      color: var(--t3);
+    }
+
+    .sd-arrow svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* QUICK UPLOADS */
+    .quick-uploads {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .qu-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 13px;
+      border-radius: 12px;
+      background: var(--bg);
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .qu-item:hover {
+      border-color: var(--saffron);
+      background: rgba(255, 107, 26, 0.04);
+    }
+
+    .qu-ico {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .qu-ico svg {
+      width: 14px;
+      height: 14px;
+      color: var(--t2);
+    }
+
+    .qu-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--t1);
+    }
+
+    .qu-sub {
+      font-size: 11px;
+      color: var(--t3);
+      margin-top: 1px;
+    }
+
+    .qu-arrow {
+      margin-left: auto;
+      color: var(--t3);
+    }
+
+    .qu-arrow svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    /* SECURITY */
+    .sec-features {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .secf {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 11px;
+      border-radius: 11px;
+      background: var(--bg);
+    }
+
+    .secf-ico {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .secf-ico svg {
+      width: 14px;
+      height: 14px;
+      color: var(--t2);
+    }
+
+    .secf-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--t1);
+      margin-bottom: 2px;
+    }
+
+    .secf-sub {
+      font-size: 11px;
+      color: var(--t3);
+      line-height: 1.5;
+    }
+
+    /* TIPS */
+    .tip-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      padding: 9px 11px;
+      border-radius: 11px;
+      background: var(--bg);
+    }
+
+    .tip-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(255, 107, 26, 0.12);
+      color: var(--saffron);
+      font-size: 11px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .tip p {
+      font-size: 12.5px;
+      color: var(--t2);
+      line-height: 1.55;
+    }
+
+    .tip strong {
+      color: var(--t1);
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 13px;
+      padding: 13px 18px;
+      font-size: 13.5px;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.35s;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-ico svg {
+      width: 18px;
+      height: 18px;
+      color: var(--saffron-light);
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 27, 58, 0.5);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 370px;
+      width: 90%;
+      transform: scale(0.92);
+      transition: transform 0.3s;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-overlay.show .modal {
+      transform: scale(1);
+    }
+
+    .modal-ico {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(220, 38, 38, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+    }
+
+    .modal-ico svg {
+      width: 24px;
+      height: 24px;
+      color: #DC2626;
+    }
+
+    .modal-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--t1);
+      text-align: center;
+      margin-bottom: 7px;
+    }
+
+    .modal-sub {
+      font-size: 13.5px;
+      color: var(--t2);
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .modal-btns {
+      display: flex;
+      gap: 11px;
+    }
+
+    .modal-cancel {
+      flex: 1;
+      padding: 11px;
+      border: 1.5px solid var(--border-s);
+      border-radius: var(--r-full);
+      background: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--t2);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .modal-cancel:hover {
+      border-color: var(--navy);
+    }
+
+    .modal-confirm {
+      flex: 1;
+      padding: 11px;
+      background: linear-gradient(135deg, #DC2626, #EF4444);
+      color: #fff;
+      border: none;
+      border-radius: var(--r-full);
+      font-family: 'Baloo 2', cursive;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.28);
+    }
+
+    .modal-confirm:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(220, 38, 38, 0.38);
+    }
+
+    /* PLACEHOLDER CARD */
+    .doc-add-card {
+      border: 2px dashed var(--border-s);
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 152px;
+      gap: 9px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--t3);
+    }
+
+    .doc-add-card:hover {
+      border-color: var(--saffron);
+      color: var(--saffron);
+    }
+
+    .doc-add-card svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .doc-add-card span {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.45;
+        transform: scale(0.72)
+      }
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.5);
+        opacity: 0
+      }
+
+      60% {
+        transform: scale(1.1)
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1
+      }
+    }
+
+    @media(max-width:1200px) {
+      .grid {
+        grid-template-columns: 1fr
+      }
+
+      .hero-kpis {
+        display: none
+      }
+    }
+
+    @media(max-width:900px) {
+      .content {
+        padding: 20px 16px 48px
+      }
+
+      .topbar {
+        padding: 0 18px
+      }
+
+      .hero {
+        flex-direction: column;
+        gap: 18px
+      }
+    }
+
+    /* LANG SEL — same as dashboard */
+    .lang-sel {
+      position: relative;
+    }
+
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      background: #fff;
+      border: 1.5px solid rgba(12, 27, 56, 0.1);
+      border-radius: 9999px;
+      cursor: pointer;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #6B7280;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .lang-btn:hover {
+      border-color: #F5600A;
+      color: #F5600A;
+    }
+
+    .lang-btn svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #fff;
+      border: 1px solid rgba(12, 27, 56, 0.1);
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(12, 27, 56, 0.14);
+      width: 155px;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    .lang-dropdown.show {
+      display: block;
+    }
+
+    .lang-opt {
+      padding: 11px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(12, 27, 56, 0.07);
+      transition: background 0.15s;
+    }
+
+    .lang-opt:last-child {
+      border-bottom: none;
+    }
+
+    .lang-opt:hover {
+      background: rgba(245, 96, 10, 0.06);
+    }
+
+    .lang-opt.active {
+      background: rgba(245, 96, 10, 0.06);
+      color: #F5600A;
+      font-weight: 600;
+    }
+
+    .lang-opt span:last-child {
+      font-size: 11px;
+      color: #9CA3AF;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="sidenav">
+    <div class="sn-brand">
+      <div class="sn-wordmark">SAARTHI</div>
+      <div class="sn-sub">Smart Welfare Guide</div>
+    </div>
+    <div class="sn-section">Main Menu</div>
+    <a href="dashboard.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg></div><span>Dashboard</span>
+    </a>
+    <a href="voice.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+          <path d="M19 10v2a7 7 0 01-14 0v-2" />
+        </svg></div><span>Ask SAARTHI</span>
+    </a>
+    <a href="scheme-results.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+          <rect x="9" y="3" width="6" height="4" rx="1" />
+          <path d="M9 12h6M9 16h4" />
+        </svg></div><span>My Schemes</span><span class="sn-badge">34</span>
+    </a>
+    <a href="application-tracker.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+        </svg></div><span>Applications</span><span class="sn-badge">6</span>
+    </a>
+    <div class="sn-section">Resources</div>
+    <a href="document-upload.html" class="sn-link active">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
+        </svg></div><span>Documents</span>
+    </a>
+    <a href="success-stories.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polygon
+            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg></div><span>Success Stories</span>
+    </a>
+    <a href="help-support.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+          <line x1="12" y1="17" x2="12.01" y2="17" />
+        </svg></div><span>Help &amp; Support</span>
+    </a>
+    <div class="sn-spacer"></div>
+    <a href="profile-settings.html" class="sn-link">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3" />
+          <path
+            d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
+        </svg></div><span>Settings</span>
+    </a>
+    <div class="sn-user" onclick="window.location='profile-create.html'">
+      <div class="sn-avatar">R</div>
+      <div>
+        <div class="sn-uname">Ramesh Kumar</div>
+        <div class="sn-uloc">Latur, Maharashtra</div>
+      </div>
+      <div class="sn-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round">
+          <path d="m9 18 6-6-6-6" />
+        </svg></div>
+    </div>
+  </nav>
+  <div class="main">
+    <div class="tricolor">
+      <div class="tc-s"></div>
+      <div class="tc-w"></div>
+      <div class="tc-g"></div>
+    </div>
+    <div class="topbar">
+      <div>
+        <div class="tb-title">Document Vault</div>
+        <div class="tb-sub">5 documents uploaded &middot; 3 verified &middot; 2 pending review</div>
+      </div>
+      <div class="tb-right">
+        <div class="lang-sel" id="page-lang-sel">
+          <button class="lang-btn" onclick="togglePageLangMenu()" id="page-lang-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+            </svg>
+            <span id="page-lang-label">English</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+          <div class="lang-dropdown" id="page-lang-menu">
+            <div class="lang-opt" onclick="setPageLang('en','English')"><span>English</span><span>English</span></div>
+            <div class="lang-opt" onclick="setPageLang('hi','Hindi')">
+              <span>Hindi</span><span>&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</span></div>
+            <div class="lang-opt" onclick="setPageLang('mr','Marathi')">
+              <span>Marathi</span><span>&#2350;&#2352;&#2366;&#2336;&#2368;</span></div>
+          </div>
+        </div>
+        <div class="tb-icon-btn" title="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 01-3.46 0" />
+          </svg>
+          <div class="notif-dot"></div>
+        </div>
+        <button class="tb-voice-btn" onclick="window.location='voice.html'"><svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+            <path d="M19 10v2a7 7 0 01-14 0v-2" />
+          </svg> Ask SAARTHI</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="hero">
+        <svg class="hero-rings" viewBox="0 0 400 400" aria-hidden="true">
+          <circle cx="200" cy="200" r="190" />
+          <circle cx="200" cy="200" r="145" stroke="rgba(255,107,26,0.04)" />
+          <circle cx="200" cy="200" r="100" stroke="rgba(255,107,26,0.06)" />
+        </svg>
+        <div style="position:relative;z-index:2">
+          <div class="hero-pill">
+            <div class="live-dot"></div>Secure Document Vault
+          </div>
+          <div class="hero-title">Your <span>Document</span> Hub</div>
+          <div class="hero-sub">Upload once, use everywhere. Documents are <strong>AES-256 encrypted</strong> and
+            auto-linked to all active scheme applications.</div>
+        </div>
+        <div class="hero-kpis">
+          <div class="hkpi">
+            <div class="hkpi-num g">3</div>
+            <div class="hkpi-lbl" data-i18n="du_verified">Verified</div>
+          </div>
+          <div class="hkpi">
+            <div class="hkpi-num y">2</div>
+            <div class="hkpi-lbl">Under Review</div>
+          </div>
+          <div class="hkpi">
+            <div class="hkpi-num r">4</div>
+            <div class="hkpi-lbl">Missing</div>
+          </div>
+          <div class="hkpi">
+            <div class="hkpi-num w">6</div>
+            <div class="hkpi-lbl">Schemes Linked</div>
+          </div>
+        </div>
+      </div>
+      <div class="vault-progress">
+        <div class="vp-top">
+          <div class="vp-icon-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10" />
+              <line x1="12" y1="20" x2="12" y2="4" />
+              <line x1="6" y1="20" x2="6" y2="14" />
+            </svg>
+            <div class="vp-title">Document Vault Completeness</div>
+          </div>
+          <div class="vp-pct">50%</div>
+        </div>
+        <div class="vp-bar-outer">
+          <div class="vp-bar-inner" id="vaultBar"></div>
+        </div>
+        <div class="vp-docs">
+          <div class="vp-doc done">
+            <div class="vp-dot done"></div><span data-i18n="du_aadhaar">Aadhaar Card</span>
+          </div>
+          <div class="vp-doc done">
+            <div class="vp-dot done"></div><span data-i18n="du_bank">Bank Passbook</span>
+          </div>
+          <div class="vp-doc done">
+            <div class="vp-dot done"></div><span>Ration Card</span>
+          </div>
+          <div class="vp-doc pend">
+            <div class="vp-dot pend"></div><span>Caste Certificate (Review)</span>
+          </div>
+          <div class="vp-doc pend">
+            <div class="vp-dot pend"></div><span>Income Certificate (Review)</span>
+          </div>
+          <div class="vp-doc miss">
+            <div class="vp-dot miss"></div><span>Land Records (7/12)</span>
+          </div>
+          <div class="vp-doc miss">
+            <div class="vp-dot miss"></div><span>Voter ID</span>
+          </div>
+          <div class="vp-doc miss">
+            <div class="vp-dot miss"></div><span data-i18n="du_pan">PAN Card</span>
+          </div>
+          <div class="vp-doc miss">
+            <div class="vp-dot miss"></div><span>MNREGA Job Card</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="left-col">
+          <div class="scard">
+            <div class="scard-head">
+              <div class="sh-ico sh-o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                  <polyline points="17 8 12 3 7 8" />
+                  <line x1="12" y1="3" x2="12" y2="15" />
+                </svg></div>
+              <div>
+                <div class="scard-title">Upload New Document</div>
+                <div class="scard-sub">Drag &amp; drop or click to browse &mdash; max 10MB per file</div>
+              </div>
+            </div>
+            <div class="scard-body">
+              <div class="ocr-banner" id="ocrBanner">
+                <div class="ocr-banner-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="16" height="16" rx="2" />
+                    <rect x="9" y="9" width="6" height="6" />
+                    <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3" />
+                  </svg></div>
+                <div class="ocr-banner-text"><strong>AI Auto-fill Ready!</strong><span>SAARTHI detected your Aadhaar
+                    card. 8 profile fields can be auto-filled.</span></div>
+                <button class="ocr-banner-btn" onclick="showToast('Profile fields auto-filled from Aadhaar!')">Auto-fill
+                  Profile</button>
+              </div>
+              <div class="upload-zone" id="uploadZone" ondragover="handleDragOver(event)"
+                ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)"
+                onclick="document.getElementById('fileInput').click()">
+                <input type="file" id="fileInput" multiple accept="image/*,.pdf"
+                  onchange="handleFileSelect(this.files)">
+                <div class="uz-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
+                    <line x1="12" y1="11" x2="12" y2="17" />
+                    <polyline points="9 14 12 11 15 14" />
+                  </svg></div>
+                <div class="uz-title">Drop your documents here</div>
+                <div class="uz-sub">Supports Aadhaar, PAN, Ration Card, Caste Certificate,<br>Income Certificate, Land
+                  Records &amp; more</div>
+                <div class="uz-types"><span class="uz-type">JPG</span><span class="uz-type">PNG</span><span
+                    class="uz-type">PDF</span><span class="uz-type">HEIC</span></div>
+                <button class="uz-btn"
+                  onclick="event.stopPropagation();document.getElementById('fileInput').click()"><svg
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                    <polyline points="17 8 12 3 7 8" />
+                    <line x1="12" y1="3" x2="12" y2="15" />
+                  </svg>Browse Files</button>
+                <div class="uz-note">Maximum <strong>10MB</strong> per file &middot; <strong>AES-256</strong> encrypted
+                  storage</div>
+              </div>
+              <div class="uploading-list" id="uploadingList"></div>
+            </div>
+          </div>
+          <div class="scard">
+            <div class="scard-head">
+              <div class="sh-ico sh-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg></div>
+              <div>
+                <div class="scard-title">My Documents</div>
+                <div class="scard-sub">5 uploaded &middot; tap any document to preview or manage</div>
+              </div>
+            </div>
+            <div class="scard-body">
+              <div class="doc-grid" id="docGrid">
+                <div class="doc-card verified">
+                  <div class="dc-actions">
+                    <div class="dc-action-btn" title="Preview" onclick="showToast('Opening Aadhaar Card preview...')">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                    </div>
+                    <div class="dc-action-btn" title="Delete" onclick="confirmDelete('Aadhaar Card')"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6" />
+                        <path d="M19 6l-1 14H6L5 6" />
+                        <path d="M10 11v6M14 11v6" />
+                        <path d="M9 6V4h6v2" />
+                      </svg></div>
+                  </div>
+                  <div class="dc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="5" width="20" height="14" rx="2" />
+                      <line x1="2" y1="10" x2="22" y2="10" />
+                    </svg></div>
+                  <div class="dc-name" data-i18n="du_aadhaar">Aadhaar Card</div>
+                  <div class="dc-size">aadhaar_scan.jpg &middot; 2.1 MB</div>
+                  <div class="dc-status verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg><span data-i18n="du_verified">Verified</span></div>
+                  <div class="dc-date">Uploaded Jan 15, 2026</div>
+                </div>
+                <div class="doc-card verified">
+                  <div class="dc-actions">
+                    <div class="dc-action-btn" title="Preview" onclick="showToast('Opening Bank Passbook preview...')">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                    </div>
+                    <div class="dc-action-btn" title="Delete" onclick="confirmDelete('Bank Passbook')"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6" />
+                        <path d="M19 6l-1 14H6L5 6" />
+                        <path d="M10 11v6M14 11v6" />
+                        <path d="M9 6V4h6v2" />
+                      </svg></div>
+                  </div>
+                  <div class="dc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                    </svg></div>
+                  <div class="dc-name" data-i18n="du_bank">Bank Passbook</div>
+                  <div class="dc-size">passbook_first_page.pdf &middot; 1.4 MB</div>
+                  <div class="dc-status verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg><span data-i18n="du_verified">Verified</span></div>
+                  <div class="dc-date">Uploaded Jan 15, 2026</div>
+                </div>
+                <div class="doc-card verified">
+                  <div class="dc-actions">
+                    <div class="dc-action-btn" title="Preview" onclick="showToast('Opening Ration Card preview...')">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                    </div>
+                    <div class="dc-action-btn" title="Delete" onclick="confirmDelete('Ration Card')"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6" />
+                        <path d="M19 6l-1 14H6L5 6" />
+                        <path d="M10 11v6M14 11v6" />
+                        <path d="M9 6V4h6v2" />
+                      </svg></div>
+                  </div>
+                  <div class="dc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+                      <rect x="9" y="3" width="6" height="4" rx="1" />
+                    </svg></div>
+                  <div class="dc-name">Ration Card</div>
+                  <div class="dc-size">ration_card.jpg &middot; 3.2 MB</div>
+                  <div class="dc-status verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg><span data-i18n="du_verified">Verified</span></div>
+                  <div class="dc-date">Uploaded Jan 20, 2026</div>
+                </div>
+                <div class="doc-card pending">
+                  <div class="dc-actions">
+                    <div class="dc-action-btn" title="Preview"
+                      onclick="showToast('Opening Caste Certificate preview...')"><svg viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg></div>
+                    <div class="dc-action-btn" title="Delete" onclick="confirmDelete('Caste Certificate')"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6" />
+                        <path d="M19 6l-1 14H6L5 6" />
+                        <path d="M10 11v6M14 11v6" />
+                        <path d="M9 6V4h6v2" />
+                      </svg></div>
+                  </div>
+                  <div class="dc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                    </svg></div>
+                  <div class="dc-name" data-i18n="du_caste">Caste Certificate</div>
+                  <div class="dc-size">caste_cert_latur.pdf &middot; 890 KB</div>
+                  <div class="dc-status pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="1.9" stroke-linecap="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg>Under Review</div>
+                  <div class="dc-date">Uploaded Feb 22, 2026</div>
+                </div>
+                <div class="doc-card pending">
+                  <div class="dc-actions">
+                    <div class="dc-action-btn" title="Preview"
+                      onclick="showToast('Opening Income Certificate preview...')"><svg viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg></div>
+                    <div class="dc-action-btn" title="Delete" onclick="confirmDelete('Income Certificate')"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6" />
+                        <path d="M19 6l-1 14H6L5 6" />
+                        <path d="M10 11v6M14 11v6" />
+                        <path d="M9 6V4h6v2" />
+                      </svg></div>
+                  </div>
+                  <div class="dc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round">
+                      <line x1="12" y1="1" x2="12" y2="23" />
+                      <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                    </svg></div>
+                  <div class="dc-name" data-i18n="du_income">Income Certificate</div>
+                  <div class="dc-size">income_cert_2025.pdf &middot; 1.1 MB</div>
+                  <div class="dc-status pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="1.9" stroke-linecap="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg>Under Review</div>
+                  <div class="dc-date">Uploaded Feb 22, 2026</div>
+                </div>
+                <div class="doc-add-card" onclick="document.getElementById('fileInput').click()"><svg
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg><span>Add Document</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="scard">
+            <div class="scard-head">
+              <div class="sh-ico sh-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+                  <rect x="9" y="3" width="6" height="4" rx="1" />
+                  <path d="M9 12h6M9 16h4" />
+                </svg></div>
+              <div>
+                <div class="scard-title">Required Document Checklist</div>
+                <div class="scard-sub">Documents needed for your active scheme applications</div>
+              </div>
+            </div>
+            <div class="scard-body">
+              <div class="req-list">
+                <div class="req-item done">
+                  <div class="ri-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="5" width="20" height="14" rx="2" />
+                      <line x1="2" y1="10" x2="22" y2="10" />
+                    </svg></div>
+                  <div class="ri-info">
+                    <div class="ri-name" data-i18n="du_aadhaar">Aadhaar Card</div>
+                    <div class="ri-desc">Required for 6 schemes &middot; Identity verification</div>
+                  </div>
+                  <div class="ri-tag"><span class="ri-badge rb-done">Uploaded</span></div>
+                </div>
+                <div class="req-item done">
+                  <div class="ri-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                    </svg></div>
+                  <div class="ri-info">
+                    <div class="ri-name">Bank Passbook / Account Proof</div>
+                    <div class="ri-desc">Required for 5 schemes &middot; Direct benefit transfer</div>
+                  </div>
+                  <div class="ri-tag"><span class="ri-badge rb-done">Uploaded</span></div>
+                </div>
+                <div class="req-item done">
+                  <div class="ri-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+                      <rect x="9" y="3" width="6" height="4" rx="1" />
+                    </svg></div>
+                  <div class="ri-info">
+                    <div class="ri-name">Ration Card (BPL/NPHH)</div>
+                    <div class="ri-desc">Required for 4 schemes &middot; Household categorization</div>
+                  </div>
+                  <div class="ri-tag"><span class="ri-badge rb-done">Uploaded</span></div>
+                </div>
+                <div class="req-item" onclick="showToast('Caste Certificate is under review...')">
+                  <div class="ri-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                    </svg></div>
+                  <div class="ri-info">
+                    <div class="ri-name" data-i18n="du_caste">Caste Certificate</div>
+                    <div class="ri-desc">Required for NSP Scholarship, PMAY &middot; SC/ST/OBC proof</div>
+                  </div>
+                  <div class="ri-tag"><span class="ri-badge rb-pend">Under Review</span></div>
+                </div>
+                <div class="req-item" onclick="showToast('Income Certificate is under review...')">
+                  <div class="ri-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round">
+                      <line x1="12" y1="1" x2="12" y2="23" />
+                      <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                    </svg></div>
+                  <div class="ri-info">
+                    <div class="ri-name" data-i18n="du_income">Income Certificate</div>
+                    <div class="ri-desc">Required for 3 schemes &middot; Household income proof</div>
+                  </div>
+                  <div class="ri-tag"><span class="ri-badge rb-pend">Under Review</span></div>
+                </div>
+                <div class="req-item" onclick="document.getElementById('fileInput').click()">
+                  <div class="ri-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+                      <line x1="8" y1="2" x2="8" y2="18" />
+                      <line x1="16" y1="6" x2="16" y2="22" />
+                    </svg></div>
+                  <div class="ri-info">
+                    <div class="ri-name">Land Records (7/12 Extract)</div>
+                    <div class="ri-desc">Required for PM-KISAN, Fasal Bima &middot; Land ownership proof</div>
+                  </div>
+                  <div class="ri-tag"><span class="ri-badge rb-req">Missing</span></div>
+                </div>
+                <div class="req-item" onclick="document.getElementById('fileInput').click()">
+                  <div class="ri-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="5" width="20" height="14" rx="2" />
+                      <line x1="2" y1="10" x2="22" y2="10" />
+                    </svg></div>
+                  <div class="ri-info">
+                    <div class="ri-name">Voter ID / Election Card</div>
+                    <div class="ri-desc">Required for 2 schemes &middot; Address verification</div>
+                  </div>
+                  <div class="ri-tag"><span class="ri-badge rb-req">Missing</span></div>
+                </div>
+                <div class="req-item" onclick="document.getElementById('fileInput').click()">
+                  <div class="ri-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="5" width="20" height="14" rx="2" />
+                      <line x1="2" y1="10" x2="22" y2="10" />
+                    </svg></div>
+                  <div class="ri-info">
+                    <div class="ri-name" data-i18n="du_pan">PAN Card</div>
+                    <div class="ri-desc">Required for Mudra Loan, Stand Up India &middot; Tax identity</div>
+                  </div>
+                  <div class="ri-tag"><span class="ri-badge rb-req">Missing</span></div>
+                </div>
+                <div class="req-item">
+                  <div class="ri-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
+                      <circle cx="12" cy="13" r="4" />
+                    </svg></div>
+                  <div class="ri-info">
+                    <div class="ri-name">Passport Size Photograph</div>
+                    <div class="ri-desc">Required for multiple schemes &middot; Recent photograph</div>
+                  </div>
+                  <div class="ri-tag"><span class="ri-badge rb-opt">Optional</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="right-panel">
+          <div class="rcard">
+            <div class="rcard-head">
+              <div class="rcard-ico rh-o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg></div>
+              <div>
+                <div class="rcard-title">Docs Blocking Applications</div>
+                <div class="rcard-sub">Upload these to unblock 3 schemes</div>
+              </div>
+            </div>
+            <div class="rcard-body">
+              <div class="scheme-docs-list">
+                <div class="sd-item" onclick="window.location='application-tracker.html'">
+                  <div class="sd-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+                    </svg></div>
+                  <div class="sd-info">
+                    <div class="sd-name">NSP Scholarship</div>
+                    <div class="sd-missing">Missing: Caste Cert. + Income Cert.</div>
+                  </div>
+                  <div class="sd-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="m9 18 6-6-6-6" />
+                    </svg></div>
+                </div>
+                <div class="sd-item" onclick="document.getElementById('fileInput').click()">
+                  <div class="sd-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 22V12M12 12C12 7 7 3 2 3c0 5 4 9 10 9zM12 12c0-5 5-9 10-9 0 5-4 9-10 9" />
+                    </svg></div>
+                  <div class="sd-info">
+                    <div class="sd-name">PM-KISAN Registration</div>
+                    <div class="sd-missing">Missing: Land Records (7/12)</div>
+                  </div>
+                  <div class="sd-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="m9 18 6-6-6-6" />
+                    </svg></div>
+                </div>
+                <div class="sd-item" onclick="document.getElementById('fileInput').click()">
+                  <div class="sd-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                      <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg></div>
+                  <div class="sd-info">
+                    <div class="sd-name">MH Gharkul Awas Yojana</div>
+                    <div class="sd-missing">Missing: Caste Cert. + Land Proof</div>
+                  </div>
+                  <div class="sd-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="m9 18 6-6-6-6" />
+                    </svg></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rcard">
+            <div class="rcard-head">
+              <div class="rcard-ico rh-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg></div>
+              <div>
+                <div class="rcard-title">Quick Upload</div>
+                <div class="rcard-sub">One tap to upload specific documents</div>
+              </div>
+            </div>
+            <div class="rcard-body">
+              <div class="quick-uploads">
+                <div class="qu-item" onclick="quickUpload('Aadhaar Card')">
+                  <div class="qu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="5" width="20" height="14" rx="2" />
+                      <line x1="2" y1="10" x2="22" y2="10" />
+                    </svg></div>
+                  <div>
+                    <div class="qu-title" data-i18n="du_aadhaar">Aadhaar Card</div>
+                    <div class="qu-sub">Front &amp; back scan</div>
+                  </div>
+                  <div class="qu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="m9 18 6-6-6-6" />
+                    </svg></div>
+                </div>
+                <div class="qu-item" onclick="quickUpload('Land Records 7/12')">
+                  <div class="qu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+                      <line x1="8" y1="2" x2="8" y2="18" />
+                      <line x1="16" y1="6" x2="16" y2="22" />
+                    </svg></div>
+                  <div>
+                    <div class="qu-title">Land Records (7/12)</div>
+                    <div class="qu-sub">MahaBhumi portal download</div>
+                  </div>
+                  <div class="qu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="m9 18 6-6-6-6" />
+                    </svg></div>
+                </div>
+                <div class="qu-item" onclick="quickUpload('Voter ID')">
+                  <div class="qu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="5" width="20" height="14" rx="2" />
+                      <line x1="2" y1="10" x2="22" y2="10" />
+                    </svg></div>
+                  <div>
+                    <div class="qu-title">Voter ID</div>
+                    <div class="qu-sub">Election Commission issued</div>
+                  </div>
+                  <div class="qu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="m9 18 6-6-6-6" />
+                    </svg></div>
+                </div>
+                <div class="qu-item" onclick="quickUpload('PAN Card')">
+                  <div class="qu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="5" width="20" height="14" rx="2" />
+                      <line x1="2" y1="10" x2="22" y2="10" />
+                    </svg></div>
+                  <div>
+                    <div class="qu-title" data-i18n="du_pan">PAN Card</div>
+                    <div class="qu-sub">Income Tax Dept. issued</div>
+                  </div>
+                  <div class="qu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="m9 18 6-6-6-6" />
+                    </svg></div>
+                </div>
+                <div class="qu-item" onclick="quickUpload('MNREGA Job Card')">
+                  <div class="qu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M2 20h20M6 20v-4m12 4v-4M12 4a4 4 0 014 4H8a4 4 0 014-4zM4 11h16v5H4z" />
+                    </svg></div>
+                  <div>
+                    <div class="qu-title">MNREGA Job Card</div>
+                    <div class="qu-sub">Employment guarantee card</div>
+                  </div>
+                  <div class="qu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round">
+                      <path d="m9 18 6-6-6-6" />
+                    </svg></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rcard">
+            <div class="rcard-head">
+              <div class="rcard-ico rh-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" />
+                  <path d="M7 11V7a5 5 0 0110 0v4" />
+                </svg></div>
+              <div>
+                <div class="rcard-title">Bank-Grade Security</div>
+                <div class="rcard-sub">Your documents are protected</div>
+              </div>
+            </div>
+            <div class="rcard-body">
+              <div class="sec-features">
+                <div class="secf">
+                  <div class="secf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="11" width="18" height="11" rx="2" />
+                      <path d="M7 11V7a5 5 0 0110 0v4" />
+                    </svg></div>
+                  <div>
+                    <div class="secf-title">AES-256 Encryption</div>
+                    <div class="secf-sub">Same standard used by banks. Encrypted at rest and in transit.</div>
+                  </div>
+                </div>
+                <div class="secf">
+                  <div class="secf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                      <line x1="4" y1="22" x2="4" y2="15" />
+                    </svg></div>
+                  <div>
+                    <div class="secf-title">Stored in India Only</div>
+                    <div class="secf-sub">Data stored on Indian servers under IT Act 2000 compliance.</div>
+                  </div>
+                </div>
+                <div class="secf">
+                  <div class="secf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg></div>
+                  <div>
+                    <div class="secf-title">Aadhaar Masking</div>
+                    <div class="secf-sub">Shown as XXXX-XXXX-1234. Full Aadhaar number never stored.</div>
+                  </div>
+                </div>
+                <div class="secf">
+                  <div class="secf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+                    </svg></div>
+                  <div>
+                    <div class="secf-title">Never Shared Without Consent</div>
+                    <div class="secf-sub">Only shared with government portals when you explicitly apply.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rcard">
+            <div class="rcard-head">
+              <div class="rcard-ico rh-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="9" y1="18" x2="15" y2="18" />
+                  <line x1="10" y1="22" x2="14" y2="22" />
+                  <path
+                    d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0018 8 6 6 0 006 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 018.91 14" />
+                </svg></div>
+              <div>
+                <div class="rcard-title">Upload Tips</div>
+                <div class="rcard-sub">For best results</div>
+              </div>
+            </div>
+            <div class="rcard-body">
+              <div class="tip-list">
+                <div class="tip">
+                  <div class="tip-num">1</div>
+                  <p><strong>Good lighting:</strong> Take photos in natural daylight &mdash; avoid shadows on the
+                    document.</p>
+                </div>
+                <div class="tip">
+                  <div class="tip-num">2</div>
+                  <p><strong>Flat surface:</strong> Place document on a flat table. Avoid curved or crumpled documents.
+                  </p>
+                </div>
+                <div class="tip">
+                  <div class="tip-num">3</div>
+                  <p><strong>Full document visible:</strong> Ensure all four corners and all text are clearly in frame.
+                  </p>
+                </div>
+                <div class="tip">
+                  <div class="tip-num">4</div>
+                  <p><strong>High resolution:</strong> Use your phone camera &mdash; minimum 5 megapixels for clear
+                    text.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">
+    <div class="toast-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12" />
+      </svg></div><span id="toastMsg">Done</span>
+  </div>
+
+  <div class="modal-overlay" id="deleteModal">
+    <div class="modal">
+      <div class="modal-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="3 6 5 6 21 6" />
+          <path d="M19 6l-1 14H6L5 6" />
+          <path d="M10 11v6M14 11v6" />
+          <path d="M9 6V4h6v2" />
+        </svg></div>
+      <div class="modal-title">Delete Document?</div>
+      <div class="modal-sub" id="deleteModalSub">Are you sure? This will also remove it from all linked applications.
+      </div>
+      <div class="modal-btns"><button class="modal-cancel" onclick="closeModal()">Cancel</button><button
+          class="modal-confirm" onclick="deleteConfirmed()">Yes, Delete</button></div>
+    </div>
+  </div>
+
+  <script>
+    const SVG_FILE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
+    const SVG_IMG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>';
+    const SVG_CLK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
+    const SVG_CHK = '<svg viewBox="0 0 24 24" fill="none" stroke="#138808" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    const SVG_EYE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+    const SVG_TSH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>';
+    let deleteTarget = null;
+    function handleDragOver(e) { e.preventDefault(); document.getElementById('uploadZone').classList.add('drag'); }
+    function handleDragLeave() { document.getElementById('uploadZone').classList.remove('drag'); }
+    function handleDrop(e) { e.preventDefault(); document.getElementById('uploadZone').classList.remove('drag'); handleFileSelect(e.dataTransfer.files); }
+    function handleFileSelect(files) { if (!files || !files.length) return;[...files].forEach((f, i) => setTimeout(() => simulateUpload(f), i * 300)); }
+    function simulateUpload(file) {
+      const list = document.getElementById('uploadingList');
+      const id = 'up_' + Date.now() + Math.random().toString(36).slice(2, 6);
+      const ext = file.name.split('.').pop().toUpperCase();
+      const isPdf = ext === 'PDF';
+      const sizeKB = (file.size / 1024).toFixed(0);
+      const item = document.createElement('div'); item.className = 'upload-item'; item.id = id;
+      item.innerHTML = '<div class="ui-ico">' + (isPdf ? SVG_FILE : SVG_IMG) + '</div><div class="ui-info"><div class="ui-name">' + file.name + '</div><div class="ui-bar-outer"><div class="ui-bar-inner" id="bar_' + id + '" style="width:0%"></div></div><div class="ui-pct" id="pct_' + id + '">Uploading... 0%</div></div><div class="ui-status" id="st_' + id + '">' + SVG_CLK + '</div>';
+      list.prepend(item);
+      let pct = 0;
+      const iv = setInterval(() => {
+        pct += Math.random() * 18 + 5;
+        if (pct >= 100) {
+          pct = 100; clearInterval(iv);
+          document.getElementById('pct_' + id).textContent = sizeKB + ' KB \u00b7 Upload complete';
+          document.getElementById('st_' + id).innerHTML = SVG_CHK;
+          document.getElementById('bar_' + id).style.background = 'linear-gradient(90deg,#138808,#3DBD38)';
+          if (['JPG', 'JPEG', 'PNG', 'HEIC'].includes(ext)) setTimeout(() => document.getElementById('ocrBanner').classList.add('show'), 600);
+          setTimeout(() => { item.style.transition = 'all 0.4s'; item.style.opacity = '0'; item.style.transform = 'translateX(20px)'; setTimeout(() => { item.remove(); addDocCard(file, ext, isPdf, sizeKB); showToast(file.name + ' uploaded successfully!'); }, 400); }, 1800);
+        }
+        const el = document.getElementById('bar_' + id), pt = document.getElementById('pct_' + id);
+        if (el) el.style.width = pct + '%';
+        if (pt && pct < 100) pt.textContent = 'Uploading... ' + Math.round(pct) + '%';
+      }, 180);
+    }
+    function addDocCard(file, ext, isPdf, sizeKB) {
+      const grid = document.getElementById('docGrid'); const ph = grid.lastElementChild;
+      const card = document.createElement('div'); card.className = 'doc-card pending'; card.style.animation = 'bounceIn 0.5s ease both';
+      const name = file.name.replace(/\.[^/.]+$/, '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      card.innerHTML = '<div class="dc-actions"><div class="dc-action-btn" onclick="showToast(\'Opening preview...\')" >' + SVG_EYE + '</div><div class="dc-action-btn" onclick="confirmDelete(\'' + name + '\')">' + SVG_TSH + '</div></div><div class="dc-ico">' + (isPdf ? SVG_FILE : SVG_IMG) + '</div><div class="dc-name">' + name + '</div><div class="dc-size">' + file.name + ' \u00b7 ' + (sizeKB < 1024 ? sizeKB + ' KB' : (sizeKB / 1024).toFixed(1) + ' MB') + '</div><div class="dc-status pending">' + SVG_CLK + ' Under Review</div><div class="dc-date">Uploaded just now</div>';
+      grid.insertBefore(card, ph);
+    }
+    function quickUpload(docName) { document.getElementById('fileInput').click(); showToast('Select your ' + docName + ' to upload...'); }
+    function confirmDelete(name) { deleteTarget = name; document.getElementById('deleteModalSub').textContent = 'Are you sure you want to delete "' + name + '"? This may affect linked scheme applications.'; document.getElementById('deleteModal').classList.add('show'); }
+    function closeModal() { document.getElementById('deleteModal').classList.remove('show'); deleteTarget = null; }
+    function deleteConfirmed() { closeModal(); showToast((deleteTarget || 'Document') + ' deleted successfully.'); deleteTarget = null; }
+    function showToast(msg) { const t = document.getElementById('toast'); document.getElementById('toastMsg').textContent = msg; t.classList.add('show'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('show'), 3200); }
+    window.addEventListener('load', () => setTimeout(() => { document.getElementById('vaultBar').style.width = '50%'; }, 500));
+    document.getElementById('deleteModal').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
+  </script>
+  <script src="saarthi-i18n.js"></script>
+</body>
+
+</html>

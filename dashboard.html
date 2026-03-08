@@ -1,0 +1,2863 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAARTHI — Dashboard</title>
+  <meta name="description"
+    content="Your personal SAARTHI welfare dashboard — track schemes, benefits, documents and alerts.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --saffron: #FF6B1A;
+      --saffron-light: #FF8C4A;
+      --saffron-dim: rgba(255, 107, 26, 0.10);
+      --green: #138808;
+      --green-dim: rgba(19, 136, 8, 0.08);
+      --navy: #0B1B3A;
+      --navy-mid: #1B3060;
+      --cream: #FFF9F2;
+      --gold: #C9930A;
+      --sky: #0EA5E9;
+      --purple: #7C3AED;
+      --red: #DC2626;
+      --text-primary: #111827;
+      --text-secondary: #6B7280;
+      --text-muted: #9CA3AF;
+      --border: rgba(11, 27, 58, 0.09);
+      --border-strong: rgba(11, 27, 58, 0.15);
+      --white: #ffffff;
+      --bg: #F3F4F8;
+      --r-sm: 8px;
+      --r-md: 14px;
+      --r-lg: 20px;
+      --r-xl: 26px;
+      --r-full: 9999px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07);
+      --shadow-md: 0 4px 18px rgba(0, 0, 0, 0.09);
+      --shadow-lg: 0 12px 44px rgba(0, 0, 0, 0.11);
+      --shadow-saffron: 0 8px 28px rgba(255, 107, 26, 0.30);
+      --sidebar-w: 252px;
+      --topbar-h: 62px;
+      --transition: all 0.2s ease;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-strong);
+      border-radius: 4px;
+    }
+
+    /* SIDENAV */
+    .sidenav {
+      width: var(--sidebar-w);
+      background: var(--navy);
+      min-height: 100vh;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      overflow-y: auto;
+      flex-shrink: 0;
+      box-shadow: 3px 0 32px rgba(11, 27, 58, 0.22);
+    }
+
+    .sidenav::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 107, 26, 0.10) 0%, transparent 70%);
+      top: -100px;
+      left: -80px;
+      pointer-events: none;
+    }
+
+    .sn-brand {
+      padding: 26px 22px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-wordmark {
+      font-family: 'Baloo 2', cursive;
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(130deg, #fff 0%, var(--saffron-light) 60%, #D4A017 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.4px;
+    }
+
+    .sn-sub {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.22);
+      margin-top: 3px;
+    }
+
+    .sn-section {
+      padding: 20px 22px 7px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-link {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 12px;
+      margin: 2px 10px;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.48);
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+      border: 1px solid transparent;
+    }
+
+    .sn-link:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .sn-link.active {
+      background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-light) 100%);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 5px 20px rgba(255, 107, 26, 0.36);
+    }
+
+    .sn-ic {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.07);
+      transition: var(--transition);
+    }
+
+    .sn-ic svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .sn-link.active .sn-ic {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .sn-link:hover:not(.active) .sn-ic {
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .sn-badge {
+      margin-left: auto;
+      background: var(--saffron);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: var(--r-full);
+      padding: 2px 8px;
+      line-height: 1.5;
+    }
+
+    .sn-link:not(.active) .sn-badge {
+      background: rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .sn-spacer {
+      flex: 1;
+    }
+
+    .sn-user {
+      margin: 10px 10px 18px;
+      padding: 12px 14px;
+      border-radius: var(--r-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+    }
+
+    .sn-user:hover {
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .sn-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--saffron), var(--saffron-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 3px 10px rgba(255, 107, 26, 0.30);
+    }
+
+    .sn-uname {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .sn-uloc {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.32);
+    }
+
+    .sn-caret {
+      margin-left: auto;
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* MAIN */
+    .main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--topbar-h);
+      background: rgba(255, 249, 242, 0.94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 16px rgba(11, 27, 58, 0.04);
+      flex-shrink: 0;
+    }
+
+    .tb-greeting {
+      font-family: 'Baloo 2', cursive;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .tb-greeting span {
+      color: var(--saffron);
+    }
+
+    .tb-date {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .tb-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tb-icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+      color: var(--text-secondary);
+    }
+
+    .tb-icon-btn:hover {
+      border-color: var(--saffron);
+      color: var(--saffron);
+    }
+
+    .tb-icon-btn svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .notif-dot {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--saffron);
+      border: 2px solid var(--cream);
+      animation: breathe 2s ease infinite;
+    }
+
+    .tb-voice-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(130deg, var(--saffron) 0%, #FF8B3D 100%);
+      color: #fff;
+      border-radius: var(--r-full);
+      font-family: 'Baloo 2', cursive;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      box-shadow: 0 4px 16px rgba(255, 107, 26, 0.30);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tb-voice-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0%, transparent 55%);
+    }
+
+    .tb-voice-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-saffron);
+    }
+
+    .tb-voice-btn svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    .mic-pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.75);
+      animation: micPop 1.5s infinite;
+    }
+
+    /* LANG SELECTOR */
+    .lang-sel {
+      position: relative;
+    }
+
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-full);
+      cursor: pointer;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+    }
+
+    .lang-btn:hover {
+      border-color: var(--saffron);
+      color: var(--saffron);
+    }
+
+    .lang-btn svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-lg);
+      width: 155px;
+      overflow: hidden;
+      z-index: 200;
+    }
+
+    .lang-dropdown.show {
+      display: block;
+    }
+
+    .lang-opt {
+      padding: 11px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.18s;
+    }
+
+    .lang-opt:last-child {
+      border-bottom: none;
+    }
+
+    .lang-opt:hover {
+      background: var(--saffron-dim);
+    }
+
+    .lang-opt.active {
+      background: var(--saffron-dim);
+      color: var(--saffron);
+      font-weight: 600;
+    }
+
+    .lang-opt span:last-child {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* TRICOLOR */
+    .tricolor {
+      height: 3px;
+      display: flex;
+      flex-shrink: 0;
+    }
+
+    .tricolor div {
+      flex: 1;
+    }
+
+    .tricolor .tc-s {
+      background: var(--saffron);
+    }
+
+    .tricolor .tc-w {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tricolor .tc-g {
+      background: var(--green);
+    }
+
+    /* PAGE CONTENT */
+    .page {
+      flex: 1;
+      padding: 28px 36px 56px;
+      overflow-y: auto;
+    }
+
+    /* ALERT BANNER */
+    .alert-band {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: linear-gradient(135deg, rgba(255, 107, 26, 0.06), rgba(255, 107, 26, 0.02));
+      border: 1.5px solid rgba(255, 107, 26, 0.18);
+      border-radius: var(--r-lg);
+      padding: 14px 20px;
+      margin-bottom: 24px;
+      cursor: pointer;
+      transition: var(--transition);
+      animation: rise 0.4s ease both;
+    }
+
+    .alert-band:hover {
+      border-color: rgba(255, 107, 26, 0.35);
+      box-shadow: 0 4px 24px rgba(255, 107, 26, 0.10);
+    }
+
+    .ab-ico {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: rgba(255, 107, 26, 0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ab-ico svg {
+      width: 18px;
+      height: 18px;
+      color: var(--saffron);
+    }
+
+    .ab-body {
+      flex: 1;
+    }
+
+    .ab-body strong {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+
+    .ab-body p {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .ab-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--saffron);
+      background: rgba(255, 107, 26, 0.09);
+      padding: 2px 10px;
+      border-radius: var(--r-full);
+    }
+
+    .ab-tag svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    .ab-cta {
+      padding: 9px 18px;
+      background: var(--saffron);
+      color: #fff;
+      border-radius: var(--r-full);
+      font-family: 'Baloo 2', cursive;
+      font-size: 12.5px;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+      box-shadow: 0 3px 12px rgba(255, 107, 26, 0.28);
+    }
+
+    /* HERO BAND */
+    .hero {
+      background: var(--navy);
+      border-radius: var(--r-xl);
+      padding: 34px 38px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-lg);
+      animation: rise 0.45s 0.06s ease both;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 90% at -8% 50%, rgba(255, 107, 26, 0.18) 0%, transparent 55%), radial-gradient(ellipse 40% 60% at 108% 20%, rgba(19, 136, 8, 0.12) 0%, transparent 55%);
+    }
+
+    .hero-rings {
+      position: absolute;
+      right: -130px;
+      top: -130px;
+      width: 420px;
+      height: 420px;
+      pointer-events: none;
+    }
+
+    .hero-rings circle {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.03);
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 107, 26, 0.16);
+      border: 1px solid rgba(255, 107, 26, 0.28);
+      border-radius: var(--r-full);
+      padding: 4px 13px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #FF9060;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 13px;
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--saffron-light);
+      border-radius: 50%;
+      animation: breathe 2s ease infinite;
+    }
+
+    .hero-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 34px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title span {
+      color: var(--saffron-light);
+    }
+
+    .hero-sub {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.50);
+      line-height: 1.65;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-sub strong {
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 11px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-btn-p {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 24px;
+      background: var(--saffron);
+      color: #fff;
+      border-radius: var(--r-full);
+      font-family: 'Baloo 2', cursive;
+      font-size: 13.5px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 5px 18px rgba(255, 107, 26, 0.36);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-btn-p::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0%, transparent 55%);
+    }
+
+    .hero-btn-p:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-saffron);
+    }
+
+    .hero-btn-p svg,
+    .hero-btn-g svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .hero-btn-g {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 22px;
+      background: rgba(255, 255, 255, 0.07);
+      color: rgba(255, 255, 255, 0.72);
+      border-radius: var(--r-full);
+      font-family: 'Baloo 2', cursive;
+      font-size: 13.5px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .hero-btn-g:hover {
+      background: rgba(255, 255, 255, 0.13);
+      color: #fff;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hstat {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: var(--r-lg);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-width: 175px;
+      transition: background 0.2s;
+    }
+
+    .hstat:hover {
+      background: rgba(255, 255, 255, 0.10);
+    }
+
+    .hstat-ico {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hstat-ico svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .hstat-ico.s {
+      background: rgba(255, 107, 26, 0.22);
+    }
+
+    .hstat-ico.g {
+      background: rgba(19, 136, 8, 0.22);
+    }
+
+    .hstat-ico.n {
+      background: rgba(255, 255, 255, 0.10);
+    }
+
+    .hstat-ico.s svg {
+      color: var(--saffron-light);
+    }
+
+    .hstat-ico.g svg {
+      color: #5EC95A;
+    }
+
+    .hstat-ico.n svg {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .hstat-num {
+      font-family: 'Baloo 2', cursive;
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .hstat-num.orange {
+      color: var(--saffron-light);
+    }
+
+    .hstat-num.green {
+      color: #5EC95A;
+    }
+
+    .hstat-lbl {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.35);
+      margin-top: 2px;
+    }
+
+    /* KPI */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 22px;
+      animation: rise 0.45s 0.10s ease both;
+    }
+
+    .kpi {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: var(--transition);
+    }
+
+    .kpi::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .kpi.k1::before {
+      background: linear-gradient(90deg, var(--saffron), var(--saffron-light));
+    }
+
+    .kpi.k2::before {
+      background: linear-gradient(90deg, var(--green), #3DBD38);
+    }
+
+    .kpi.k3::before {
+      background: linear-gradient(90deg, #2563EB, #60A5FA);
+    }
+
+    .kpi.k4::before {
+      background: linear-gradient(90deg, #7C3AED, #A78BFA);
+    }
+
+    .kpi:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .kpi-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .kpi-lbl {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .kpi-ico {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .kpi-ico svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .kpi-ico.o {
+      background: rgba(255, 107, 26, 0.09);
+    }
+
+    .kpi-ico.o svg {
+      color: var(--saffron);
+    }
+
+    .kpi-ico.g {
+      background: rgba(19, 136, 8, 0.09);
+    }
+
+    .kpi-ico.g svg {
+      color: var(--green);
+    }
+
+    .kpi-ico.b {
+      background: rgba(37, 99, 235, 0.09);
+    }
+
+    .kpi-ico.b svg {
+      color: #2563EB;
+    }
+
+    .kpi-ico.p {
+      background: rgba(124, 58, 237, 0.09);
+    }
+
+    .kpi-ico.p svg {
+      color: #7C3AED;
+    }
+
+    .kpi-num {
+      font-family: 'Baloo 2', cursive;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    .kpi-delta {
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .kpi-delta svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .kpi-delta.up {
+      color: var(--green);
+    }
+
+    .kpi-delta.warn {
+      color: var(--gold);
+    }
+
+    .kpi-delta.muted {
+      color: var(--text-muted);
+    }
+
+    /* GRID */
+    .g-main {
+      display: grid;
+      grid-template-columns: 1fr 345px;
+      gap: 22px;
+      margin-bottom: 22px;
+      animation: rise 0.45s 0.14s ease both;
+    }
+
+    .l-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .r-col {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* CARD */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 22px 0;
+    }
+
+    .chd-l {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .chd-ic {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .chd-ic svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .chd-ic.o {
+      background: rgba(255, 107, 26, 0.09);
+    }
+
+    .chd-ic.o svg {
+      color: var(--saffron);
+    }
+
+    .chd-ic.g {
+      background: rgba(19, 136, 8, 0.09);
+    }
+
+    .chd-ic.g svg {
+      color: var(--green);
+    }
+
+    .chd-ic.b {
+      background: rgba(37, 99, 235, 0.09);
+    }
+
+    .chd-ic.b svg {
+      color: #2563EB;
+    }
+
+    .chd-ic.n {
+      background: rgba(11, 27, 58, 0.06);
+    }
+
+    .chd-ic.n svg {
+      color: var(--navy);
+    }
+
+    .chd-ic.p {
+      background: rgba(124, 58, 237, 0.09);
+    }
+
+    .chd-ic.p svg {
+      color: #7C3AED;
+    }
+
+    .card-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .card-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .card-link {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--saffron);
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .card-link:hover {
+      opacity: 0.75;
+      text-decoration: underline;
+    }
+
+    .card-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 14px 22px 0;
+    }
+
+    .card-bd {
+      padding: 14px 22px 20px;
+    }
+
+    /* SCHEME LIST */
+    .scheme-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .si {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--r-md);
+      background: #FAFAFA;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .si:hover {
+      border-color: var(--saffron);
+      background: rgba(255, 107, 26, 0.04);
+      transform: translateX(3px);
+    }
+
+    .si-ico {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .si-ico svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .si-ico.o {
+      background: rgba(255, 107, 26, 0.10);
+    }
+
+    .si-ico.o svg {
+      color: var(--saffron);
+    }
+
+    .si-ico.g {
+      background: rgba(19, 136, 8, 0.10);
+    }
+
+    .si-ico.g svg {
+      color: var(--green);
+    }
+
+    .si-ico.n {
+      background: rgba(11, 27, 58, 0.07);
+    }
+
+    .si-ico.n svg {
+      color: var(--navy);
+    }
+
+    .si-ico.b {
+      background: rgba(37, 99, 235, 0.10);
+    }
+
+    .si-ico.b svg {
+      color: #2563EB;
+    }
+
+    .si-ico.p {
+      background: rgba(124, 58, 237, 0.10);
+    }
+
+    .si-ico.p svg {
+      color: #7C3AED;
+    }
+
+    .si-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .si-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .si-dept {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .si-right {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .si-amt {
+      font-family: 'Baloo 2', cursive;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .si-tag {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: var(--r-full);
+      font-size: 10px;
+      font-weight: 700;
+      margin-top: 3px;
+    }
+
+    .tag-n {
+      background: rgba(255, 107, 26, 0.10);
+      color: var(--saffron);
+    }
+
+    .tag-a {
+      background: rgba(19, 136, 8, 0.10);
+      color: var(--green);
+    }
+
+    .tag-p {
+      background: rgba(201, 147, 10, 0.10);
+      color: var(--gold);
+    }
+
+    .tag-u {
+      background: rgba(220, 38, 38, 0.09);
+      color: var(--red);
+    }
+
+    .tag-e {
+      background: rgba(14, 165, 233, 0.10);
+      color: var(--sky);
+    }
+
+    /* TRACKER */
+    .app-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .app-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--r-md);
+      background: #FAFAFA;
+      transition: var(--transition);
+    }
+
+    .app-row:hover {
+      background: #F0F4FF;
+    }
+
+    .app-ico {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+    }
+
+    .app-ico svg {
+      width: 17px;
+      height: 17px;
+      color: var(--text-secondary);
+    }
+
+    .app-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .app-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .app-date {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .app-prog {
+      width: 110px;
+      flex-shrink: 0;
+    }
+
+    .bar-outer {
+      height: 5px;
+      background: rgba(11, 27, 58, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 3px;
+    }
+
+    .bar-inner {
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    .bi-o {
+      background: linear-gradient(90deg, var(--saffron), var(--saffron-light));
+    }
+
+    .bi-g {
+      background: linear-gradient(90deg, var(--green), #3DBD38);
+    }
+
+    .bi-b {
+      background: linear-gradient(90deg, #2563EB, #60A5FA);
+    }
+
+    .bar-pct {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    .app-status {
+      padding: 4px 11px;
+      border-radius: var(--r-full);
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .as-approved {
+      background: rgba(19, 136, 8, 0.09);
+      color: var(--green);
+    }
+
+    .as-review {
+      background: rgba(201, 147, 10, 0.09);
+      color: var(--gold);
+    }
+
+    .as-process {
+      background: rgba(37, 99, 235, 0.09);
+      color: #2563EB;
+    }
+
+    /* QUICK ACTIONS */
+    .qa-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .qa {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 18px 10px;
+      border-radius: var(--r-lg);
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .qa:hover {
+      border-color: var(--saffron);
+      background: rgba(255, 107, 26, 0.03);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(255, 107, 26, 0.12);
+    }
+
+    .qa-ic {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FAFAFA;
+      transition: var(--transition);
+    }
+
+    .qa-ic svg {
+      width: 22px;
+      height: 22px;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .qa:hover .qa-ic {
+      background: rgba(255, 107, 26, 0.10);
+    }
+
+    .qa:hover .qa-ic svg {
+      color: var(--saffron);
+    }
+
+    .qa-lbl {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .qa:hover .qa-lbl {
+      color: var(--saffron);
+    }
+
+    .qa-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* PROFILE STRENGTH */
+    .prof-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .prof-lbl {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .prof-pct {
+      font-family: 'Baloo 2', cursive;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--saffron);
+    }
+
+    .prof-bar-outer {
+      height: 8px;
+      background: rgba(11, 27, 58, 0.07);
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .prof-bar-inner {
+      height: 100%;
+      border-radius: 5px;
+      background: linear-gradient(90deg, var(--saffron), var(--saffron-light));
+      width: 65%;
+      position: relative;
+    }
+
+    .prof-hint {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .pc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pc-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pc-check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--white);
+      transition: var(--transition);
+    }
+
+    .pc-check svg {
+      width: 11px;
+      height: 11px;
+      color: var(--white);
+    }
+
+    .pc-item.done .pc-check {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .pc-item:not(.done) .pc-check {
+      color: var(--text-muted);
+    }
+
+    .pc-txt {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+    }
+
+    .pc-item.done .pc-txt {
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .prof-cta {
+      display: block;
+      width: 100%;
+      margin-top: 16px;
+      padding: 12px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--saffron) 0%, #FF8B3D 100%);
+      color: #fff;
+      border-radius: var(--r-md);
+      font-family: 'Baloo 2', cursive;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      box-shadow: 0 4px 14px rgba(255, 107, 26, 0.26);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .prof-cta::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0%, transparent 55%);
+    }
+
+    .prof-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-saffron);
+    }
+
+    /* IMPACT STRIP */
+    .impact {
+      background: var(--navy);
+      border-radius: var(--r-xl);
+      padding: 26px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+      animation: rise 0.45s 0.20s ease both;
+    }
+
+    .impact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 45% 80% at -5% 50%, rgba(255, 107, 26, 0.16) 0%, transparent 55%);
+    }
+
+    .impact-rings {
+      position: absolute;
+      right: -80px;
+      bottom: -80px;
+      width: 280px;
+      height: 280px;
+      pointer-events: none;
+    }
+
+    .impact-rings circle {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.03);
+    }
+
+    .impact-left {
+      position: relative;
+      z-index: 2;
+    }
+
+    .impact-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .impact-sub {
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.40);
+    }
+
+    .impact-chips {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .ic {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: var(--r-md);
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .ic:hover {
+      background: rgba(255, 255, 255, 0.11);
+      transform: translateY(-1px);
+    }
+
+    .ic-ico {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ic-ico svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .ic-ico.s {
+      background: rgba(255, 107, 26, 0.22);
+    }
+
+    .ic-ico.s svg {
+      color: var(--saffron-light);
+    }
+
+    .ic-ico.g {
+      background: rgba(19, 136, 8, 0.22);
+    }
+
+    .ic-ico.g svg {
+      color: #5EC95A;
+    }
+
+    .ic-ico.n {
+      background: rgba(255, 255, 255, 0.10);
+    }
+
+    .ic-ico.n svg {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .ic-num {
+      font-family: 'Baloo 2', cursive;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--saffron-light);
+      line-height: 1;
+    }
+
+    .ic-lbl {
+      font-size: 10.5px;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    /* ANIMATIONS */
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.45;
+        transform: scale(0.72)
+      }
+    }
+
+    @keyframes micPop {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.9)
+      }
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:1200px) {
+      .g-main {
+        grid-template-columns: 1fr
+      }
+
+      .kpi-row {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .hero-stats {
+        display: none
+      }
+    }
+
+    @media(max-width:860px) {
+      .page {
+        padding: 20px 18px 48px
+      }
+
+      .topbar {
+        padding: 0 18px
+      }
+
+      .sidenav {
+        width: 68px
+      }
+
+      .sn-link span:not(.sn-badge) {
+        display: none
+      }
+
+      .sn-link {
+        justify-content: center
+      }
+
+      .sn-badge {
+        display: none
+      }
+
+      .sn-brand-text,
+      .sn-section,
+      .sn-user .sn-info {
+        display: none
+      }
+
+      .sn-caret {
+        display: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sidenav">
+    <div class="sn-brand">
+      <div class="sn-wordmark">SAARTHI</div>
+      <div class="sn-sub">Smart Welfare Guide</div>
+    </div>
+    <div class="sn-section">Main Menu</div>
+    <a href="dashboard.html" class="sn-link active" id="sn-dash">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg></div>
+      <span id="txt-dash">Dashboard</span>
+    </a>
+    <a href="voice.html" class="sn-link" id="sn-ask">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+          <path d="M19 10v2a7 7 0 01-14 0v-2" />
+          <line x1="12" y1="19" x2="12" y2="23" />
+          <line x1="8" y1="23" x2="16" y2="23" />
+        </svg></div>
+      <span id="txt-ask">Ask SAARTHI</span>
+    </a>
+    <a href="scheme-results.html" class="sn-link" id="sn-schemes">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+          <rect x="9" y="3" width="6" height="4" rx="1" />
+          <path d="M9 12h6M9 16h4" />
+        </svg></div>
+      <span id="txt-schemes">My Schemes</span>
+      <span class="sn-badge">34</span>
+    </a>
+    <a href="application-tracker.html" class="sn-link" id="sn-apps">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+        </svg></div>
+      <span id="txt-apps">Applications</span>
+      <span class="sn-badge">3</span>
+    </a>
+    <div class="sn-section">Resources</div>
+    <a href="document-upload.html" class="sn-link" id="sn-docs">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
+        </svg></div>
+      <span id="txt-docs">Documents</span>
+    </a>
+    <a href="success-stories.html" class="sn-link" id="sn-success">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polygon
+            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg></div>
+      <span id="txt-success">Success Stories</span>
+    </a>
+    <a href="help-support.html" class="sn-link" id="sn-help">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+          <line x1="12" y1="17" x2="12.01" y2="17" />
+        </svg></div>
+      <span id="txt-help">Help &amp; Support</span>
+    </a>
+    <div class="sn-spacer"></div>
+    <a href="profile-settings.html" class="sn-link" id="sn-settings">
+      <div class="sn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3" />
+          <path
+            d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
+        </svg></div>
+      <span id="txt-settings">Settings</span>
+    </a>
+    <div class="sn-user" onclick="window.location='profile-create.html'">
+      <div class="sn-avatar">R</div>
+      <div class="sn-info">
+        <div class="sn-uname">Ramesh Kumar</div>
+        <div class="sn-uloc">Latur, Maharashtra</div>
+      </div>
+      <div class="sn-caret"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.5">
+          <path d="m9 18 6-6-6-6" />
+        </svg></div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="tricolor">
+      <div class="tc-s"></div>
+      <div class="tc-w"></div>
+      <div class="tc-g"></div>
+    </div>
+
+    <div class="topbar">
+      <div>
+        <div class="tb-greeting" id="tb-greet">Namaste, <span>Ramesh Kumar</span></div>
+        <div class="tb-date" id="tb-date"></div>
+      </div>
+      <div class="tb-right">
+        <div class="lang-sel">
+          <button class="lang-btn" onclick="toggleLangMenu()" id="lang-btn-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+            </svg>
+            English
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+          <div class="lang-dropdown" id="lang-menu">
+            <div class="lang-opt" onclick="setLang('English','en-IN')"><span>English</span><span>English</span></div>
+            <div class="lang-opt" onclick="setLang('Hindi','hi-IN')">
+              <span>Hindi</span><span>&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</span>
+            </div>
+            <div class="lang-opt" onclick="setLang('Marathi','mr-IN')">
+              <span>Marathi</span><span>&#2350;&#2352;&#2366;&#2336;&#2368;</span>
+            </div>
+          </div>
+        </div>
+        <div class="tb-icon-btn" title="Search (Ctrl+K)" onclick="openSearch()" id="search-trigger"><svg
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg></div>
+        <div class="tb-icon-btn" title="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 01-3.46 0" />
+          </svg>
+          <div class="notif-dot"></div>
+        </div>
+        <button class="tb-voice-btn" onclick="window.location='voice.html'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+            <path d="M19 10v2a7 7 0 01-14 0v-2" />
+          </svg>
+          <span id="txt-askbtn">Ask SAARTHI</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="page">
+
+      <div class="alert-band" onclick="window.location='scheme-results.html'">
+        <div class="ab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 01-3.46 0" />
+          </svg></div>
+        <div class="ab-body">
+          <strong id="ab-title">3 new schemes matched your profile</strong>
+          <p id="ab-desc">PM Awas Yojana, PM-KISAN &amp; Ayushman Bharat are ready for application.</p>
+          <div class="ab-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+            </svg><span id="ab-date">Deadline: March 15, 2026</span></div>
+        </div>
+        <div class="ab-cta" id="ab-btn">View Now &rarr;</div>
+      </div>
+
+      <div class="hero">
+        <svg class="hero-rings" viewBox="0 0 420 420" aria-hidden="true">
+          <circle cx="210" cy="210" r="200" />
+          <circle cx="210" cy="210" r="155" stroke="rgba(255,107,26,0.04)" />
+          <circle cx="210" cy="210" r="110" stroke="rgba(255,107,26,0.06)" />
+        </svg>
+        <div style="position:relative;z-index:2">
+          <div class="hero-pill">
+            <div class="live-dot"></div><span id="hero-pill-txt">Profile Active &middot; Step 3 Complete</span>
+          </div>
+          <div class="hero-title" id="hero-title">You qualify for <span>34 schemes</span><br>worth &#8377;2.14 Lakh /
+            year</div>
+          <div class="hero-sub" id="hero-sub">Based on your profile in <strong>Latur, Maharashtra.</strong><br>3
+            applications filed &middot; 1 under review &middot; 1 approved.</div>
+          <div class="hero-actions">
+            <button class="hero-btn-p" onclick="window.location='scheme-results.html'"><span id="txt-browse">Browse All
+                Schemes</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg></button>
+            <button class="hero-btn-g" onclick="window.location='application-tracker.html'"><span id="txt-track">Track
+                Applications</span></button>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat">
+            <div class="hstat-ico s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+                <rect x="9" y="3" width="6" height="4" rx="1" />
+                <path d="M9 12h6M9 16h4" />
+              </svg></div>
+            <div>
+              <div class="hstat-num orange">34</div>
+              <div class="hstat-lbl" id="hs-schemes">Eligible Schemes</div>
+            </div>
+          </div>
+          <div class="hstat">
+            <div class="hstat-ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+              </svg></div>
+            <div>
+              <div class="hstat-num green">&#8377;2.1L</div>
+              <div class="hstat-lbl" id="hs-benefit">Annual Benefit</div>
+            </div>
+          </div>
+          <div class="hstat">
+            <div class="hstat-ico n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+              </svg></div>
+            <div>
+              <div class="hstat-num">3</div>
+              <div class="hstat-lbl" id="hs-apps">Applications Filed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi k1">
+          <div class="kpi-top">
+            <div class="kpi-lbl" id="kpi1-lbl">Eligible Schemes</div>
+            <div class="kpi-ico o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+                <rect x="9" y="3" width="6" height="4" rx="1" />
+                <path d="M9 12h6M9 16h4" />
+              </svg></div>
+          </div>
+          <div class="kpi-num">34</div>
+          <div class="kpi-delta up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="m18 15-6-6-6 6" />
+            </svg><span id="kpi1-delta">3 new this week</span></div>
+        </div>
+        <div class="kpi k2">
+          <div class="kpi-top">
+            <div class="kpi-lbl" id="kpi2-lbl">Annual Benefit</div>
+            <div class="kpi-ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+              </svg></div>
+          </div>
+          <div class="kpi-num" style="font-size:26px">&#8377;2.14L</div>
+          <div class="kpi-delta up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="m18 15-6-6-6 6" />
+            </svg><span id="kpi2-delta">Across all schemes</span></div>
+        </div>
+        <div class="kpi k3">
+          <div class="kpi-top">
+            <div class="kpi-lbl" id="kpi3-lbl">Applications</div>
+            <div class="kpi-ico b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+              </svg></div>
+          </div>
+          <div class="kpi-num">3</div>
+          <div class="kpi-delta warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg><span id="kpi3-delta">1 needs attention</span></div>
+        </div>
+        <div class="kpi k4">
+          <div class="kpi-top">
+            <div class="kpi-lbl" id="kpi4-lbl">Profile Strength</div>
+            <div class="kpi-ico p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg></div>
+          </div>
+          <div class="kpi-num">65%</div>
+          <div class="kpi-delta muted"><span id="kpi4-delta">Add docs to reach 85%</span></div>
+        </div>
+      </div>
+
+      <div class="g-main">
+        <div class="l-col">
+          <div class="card">
+            <div class="card-hd">
+              <div class="chd-l">
+                <div class="chd-ic o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+                    <rect x="9" y="3" width="6" height="4" rx="1" />
+                    <path d="M9 12h6M9 16h4" />
+                  </svg></div>
+                <div>
+                  <div class="card-title" id="c1-title">Top Schemes For You</div>
+                  <div class="card-sub" id="c1-sub">Highest benefit &middot; Best match</div>
+                </div>
+              </div>
+              <a href="scheme-results.html" class="card-link" id="c1-link">View all 34 &rarr;</a>
+            </div>
+            <div class="card-divider"></div>
+            <div class="card-bd">
+              <div class="scheme-list">
+                <div class="si" onclick="window.location='scheme-results.html'">
+                  <div class="si-ico o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                      <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg></div>
+                  <div class="si-info">
+                    <div class="si-name" id="s1-name">PM Awas Yojana (Gramin)</div>
+                    <div class="si-dept" id="s1-dept">Ministry of Rural Development</div>
+                  </div>
+                  <div class="si-right">
+                    <div class="si-amt">&#8377;1,20,000</div>
+                    <div class="si-tag tag-u" id="s1-tag">Deadline Mar 15</div>
+                  </div>
+                </div>
+                <div class="si" onclick="window.location='scheme-results.html'">
+                  <div class="si-ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" />
+                      <path d="M12 8v4l3 3" />
+                    </svg></div>
+                  <div class="si-info">
+                    <div class="si-name" id="s2-name">PM-KISAN Samman Nidhi</div>
+                    <div class="si-dept" id="s2-dept">Ministry of Agriculture &amp; Farmers Welfare</div>
+                  </div>
+                  <div class="si-right">
+                    <div class="si-amt">&#8377;6,000/yr</div>
+                    <div class="si-tag tag-a" id="s2-tag">Apply Now</div>
+                  </div>
+                </div>
+                <div class="si" onclick="window.location='scheme-results.html'">
+                  <div class="si-ico n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                    </svg></div>
+                  <div class="si-info">
+                    <div class="si-name" id="s3-name">Ayushman Bharat PM-JAY</div>
+                    <div class="si-dept" id="s3-dept">Ministry of Health &amp; Family Welfare</div>
+                  </div>
+                  <div class="si-right">
+                    <div class="si-amt">&#8377;5,00,000</div>
+                    <div class="si-tag tag-a" id="s3-tag">Apply Now</div>
+                  </div>
+                </div>
+                <div class="si" onclick="window.location='scheme-results.html'">
+                  <div class="si-ico b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+                    </svg></div>
+                  <div class="si-info">
+                    <div class="si-name" id="s4-name">NSP Scholarship (SC/ST/OBC)</div>
+                    <div class="si-dept" id="s4-dept">Ministry of Education</div>
+                  </div>
+                  <div class="si-right">
+                    <div class="si-amt">&#8377;35,000/yr</div>
+                    <div class="si-tag tag-p" id="s4-tag">Docs Pending</div>
+                  </div>
+                </div>
+                <div class="si" onclick="window.location='scheme-results.html'">
+                  <div class="si-ico p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                    </svg></div>
+                  <div class="si-info">
+                    <div class="si-name" id="s5-name">PM Ujjwala Yojana 2.0</div>
+                    <div class="si-dept" id="s5-dept">Ministry of Petroleum &amp; Natural Gas</div>
+                  </div>
+                  <div class="si-right">
+                    <div class="si-amt">&#8377;1,600</div>
+                    <div class="si-tag tag-n" id="s5-tag">New Match</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-hd">
+              <div class="chd-l">
+                <div class="chd-ic b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                  </svg></div>
+                <div>
+                  <div class="card-title" id="c2-title">Application Tracker</div>
+                  <div class="card-sub" id="c2-sub">Live status of submitted applications</div>
+                </div>
+              </div>
+              <a href="application-tracker.html" class="card-link" id="c2-link">View all &rarr;</a>
+            </div>
+            <div class="card-divider"></div>
+            <div class="card-bd">
+              <div class="app-list">
+                <div class="app-row">
+                  <div class="app-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                      <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg></div>
+                  <div class="app-info">
+                    <div class="app-name" id="a1-name">PM Awas Yojana</div>
+                    <div class="app-date" id="a1-date">Applied: Feb 14, 2026</div>
+                  </div>
+                  <div class="app-prog">
+                    <div class="bar-outer">
+                      <div class="bar-inner bi-o" style="width:60%"></div>
+                    </div>
+                    <div class="bar-pct" id="a1-pct">Documents Verified</div>
+                  </div><span class="app-status as-review" id="a1-status">Under Review</span>
+                </div>
+                <div class="app-row">
+                  <div class="app-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                    </svg></div>
+                  <div class="app-info">
+                    <div class="app-name" id="a2-name">Ayushman Bharat</div>
+                    <div class="app-date" id="a2-date">Applied: Jan 28, 2026</div>
+                  </div>
+                  <div class="app-prog">
+                    <div class="bar-outer">
+                      <div class="bar-inner bi-g" style="width:100%"></div>
+                    </div>
+                    <div class="bar-pct" id="a2-pct">Card Issued</div>
+                  </div><span class="app-status as-approved" id="a2-status">Approved</span>
+                </div>
+                <div class="app-row">
+                  <div class="app-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" />
+                      <path d="M12 8v4l3 3" />
+                    </svg></div>
+                  <div class="app-info">
+                    <div class="app-name" id="a3-name">PM-KISAN Samman</div>
+                    <div class="app-date" id="a3-date">Applied: Feb 20, 2026</div>
+                  </div>
+                  <div class="app-prog">
+                    <div class="bar-outer">
+                      <div class="bar-inner bi-b" style="width:30%"></div>
+                    </div>
+                    <div class="bar-pct" id="a3-pct">Awaiting Verification</div>
+                  </div><span class="app-status as-process" id="a3-status">Processing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="r-col">
+          <div class="card">
+            <div class="card-hd">
+              <div class="chd-l">
+                <div class="chd-ic n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                  </svg></div>
+                <div>
+                  <div class="card-title" id="c3-title">Quick Actions</div>
+                  <div class="card-sub" id="c3-sub">Jump to what you need</div>
+                </div>
+              </div>
+            </div>
+            <div class="card-bd" style="padding-top:16px">
+              <div class="qa-grid">
+                <div class="qa" onclick="window.location='voice.html'">
+                  <div class="qa-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+                      <path d="M19 10v2a7 7 0 01-14 0v-2" />
+                      <line x1="12" y1="19" x2="12" y2="23" />
+                      <line x1="8" y1="23" x2="16" y2="23" />
+                    </svg></div>
+                  <div class="qa-lbl" id="qa1">Ask SAARTHI</div>
+                  <div class="qa-sub" id="qa1-sub">Voice &amp; text help</div>
+                </div>
+                <div class="qa" onclick="window.location='scheme-results.html'">
+                  <div class="qa-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                      stroke-linecap="round">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="m21 21-4.35-4.35" />
+                    </svg></div>
+                  <div class="qa-lbl" id="qa2">Browse Schemes</div>
+                  <div class="qa-sub" id="qa2-sub">All 34 matches</div>
+                </div>
+                <div class="qa" onclick="window.location='document-upload.html'">
+                  <div class="qa-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                      <polyline points="17 8 12 3 7 8" />
+                      <line x1="12" y1="3" x2="12" y2="15" />
+                    </svg></div>
+                  <div class="qa-lbl" id="qa3">Upload Docs</div>
+                  <div class="qa-sub" id="qa3-sub">Aadhaar &middot; PAN &middot; More</div>
+                </div>
+                <div class="qa" onclick="window.location='application-tracker.html'">
+                  <div class="qa-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                    </svg></div>
+                  <div class="qa-lbl" id="qa4">Track Status</div>
+                  <div class="qa-sub" id="qa4-sub">3 active apps</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-hd">
+              <div class="chd-l">
+                <div class="chd-ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg></div>
+                <div>
+                  <div class="card-title" id="c4-title">Profile Strength</div>
+                  <div class="card-sub" id="c4-sub">Unlock 12 more schemes</div>
+                </div>
+              </div>
+            </div>
+            <div class="card-divider"></div>
+            <div class="card-bd">
+              <div class="prof-header"><span class="prof-lbl" id="prof-lbl">Completion</span><span
+                  class="prof-pct">65%</span></div>
+              <div class="prof-bar-outer">
+                <div class="prof-bar-inner"></div>
+              </div>
+              <div class="prof-hint" id="prof-hint">Complete 3 more steps to unlock housing &amp; pension schemes</div>
+              <div class="pc-list">
+                <div class="pc-item done">
+                  <div class="pc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></div>
+                  <div class="pc-txt">Personal Details</div>
+                </div>
+                <div class="pc-item done">
+                  <div class="pc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></div>
+                  <div class="pc-txt">Location &amp; Address</div>
+                </div>
+                <div class="pc-item done">
+                  <div class="pc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg></div>
+                  <div class="pc-txt">Income &amp; Occupation</div>
+                </div>
+                <div class="pc-item">
+                  <div class="pc-check"></div>
+                  <div class="pc-txt">Upload Aadhaar Card</div>
+                </div>
+                <div class="pc-item">
+                  <div class="pc-check"></div>
+                  <div class="pc-txt">Bank Account Details</div>
+                </div>
+                <div class="pc-item">
+                  <div class="pc-check"></div>
+                  <div class="pc-txt">Land Ownership Records</div>
+                </div>
+              </div>
+              <button class="prof-cta" onclick="window.location='profile-create.html'" id="prof-cta-btn">Continue Setup
+                &nbsp;&rarr;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="impact">
+        <svg class="impact-rings" viewBox="0 0 280 280" aria-hidden="true">
+          <circle cx="140" cy="140" r="130" />
+          <circle cx="140" cy="140" r="95" stroke="rgba(255,107,26,0.04)" />
+          <circle cx="140" cy="140" r="60" stroke="rgba(255,107,26,0.06)" />
+        </svg>
+        <div class="impact-left">
+          <div class="impact-title" id="impact-title">SAARTHI Impact &mdash; Maharashtra</div>
+          <div class="impact-sub" id="impact-sub">Real beneficiaries, real money disbursed through this platform</div>
+        </div>
+        <div class="impact-chips">
+          <div class="ic" onclick="window.location='success-stories.html'">
+            <div class="ic-ico s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                <path d="M16 3.13a4 4 0 010 7.75" />
+              </svg></div>
+            <div>
+              <div class="ic-num">2.4L+</div>
+              <div class="ic-lbl" id="ic1-lbl">Beneficiaries</div>
+            </div>
+          </div>
+          <div class="ic">
+            <div class="ic-ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+              </svg></div>
+            <div>
+              <div class="ic-num">&#8377;340Cr</div>
+              <div class="ic-lbl" id="ic2-lbl">Disbursed</div>
+            </div>
+          </div>
+          <div class="ic" onclick="window.location='success-stories.html'">
+            <div class="ic-ico n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg></div>
+            <div>
+              <div class="ic-num">18K+</div>
+              <div class="ic-lbl" id="ic3-lbl">Success Stories</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script>
+    /* ── DATE ── */
+    const dn = new Date();
+    document.getElementById('tb-date').textContent = dn.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+    /* ── LANGUAGE ── */
+    // Map saarthi_lang (hi/mr/en) → dashboard code (hi-IN/mr-IN/en-IN)
+    var _lsLang = localStorage.getItem('saarthi_lang') || 'en';
+    var _lsMap = { 'hi': 'hi-IN', 'mr': 'mr-IN', 'en': 'en-IN' };
+    let curLang = _lsMap[_lsLang] || 'en-IN';
+    const CODES = { 'English': 'en-IN', 'Hindi': 'hi-IN', 'Marathi': 'mr-IN' };
+    const T = {
+      greet: { 'hi-IN': '\u0928\u092e\u0938\u094d\u0924\u0947,', 'en-IN': 'Namaste,', 'mr-IN': '\u0928\u092e\u0938\u094d\u0924\u0947,' },
+      askbtn: { 'hi-IN': 'SAARTHI \u0938\u0947 \u092a\u0942\u091b\u0947\u0902', 'en-IN': 'Ask SAARTHI', 'mr-IN': 'SAARTHI \u0932\u093e \u0935\u093f\u091a\u093e\u0930\u093e' },
+      txtDash: { 'hi-IN': '\u0921\u0948\u0936\u092c\u094b\u0930\u094d\u0921', 'en-IN': 'Dashboard', 'mr-IN': '\u0921\u0945\u0936\u092c\u094b\u0930\u094d\u0921' },
+      txtAsk: { 'hi-IN': 'SAARTHI \u0938\u0947 \u092a\u0942\u091b\u0947\u0902', 'en-IN': 'Ask SAARTHI', 'mr-IN': 'SAARTHI \u0932\u093e \u0935\u093f\u091a\u093e\u0930\u093e' },
+      txtSchemes: { 'hi-IN': '\u092e\u0947\u0930\u0940 \u092f\u094b\u091c\u0928\u093e\u090f\u0902', 'en-IN': 'My Schemes', 'mr-IN': '\u092e\u093e\u091d\u094d\u092f\u093e \u092f\u094b\u091c\u0928\u093e' },
+      txtApps: { 'hi-IN': '\u0906\u0935\u0947\u0926\u0928', 'en-IN': 'Applications', 'mr-IN': '\u0905\u0930\u094d\u091c' },
+      txtDocs: { 'hi-IN': '\u0926\u0938\u094d\u0924\u093e\u0935\u0947\u091c', 'en-IN': 'Documents', 'mr-IN': '\u0915\u093e\u0917\u0926\u092a\u0924\u094d\u0930\u0947' },
+      txtSuccess: { 'hi-IN': '\u0938\u092b\u0932 \u0915\u0939\u093e\u0928\u093f\u092f\u093e\u0902', 'en-IN': 'Success Stories', 'mr-IN': '\u092f\u0936\u094b\u0917\u093e\u0925\u093e' },
+      txtHelp: { 'hi-IN': '\u0938\u0939\u093e\u092f\u0924\u093e', 'en-IN': 'Help & Support', 'mr-IN': '\u092e\u0926\u0924 \u0906\u0923\u093f \u0938\u0939\u093e\u092f\u094d\u092f' },
+      txtSettings: { 'hi-IN': '\u0938\u0947\u091f\u093f\u0902\u0917\u094d\u0938', 'en-IN': 'Settings', 'mr-IN': '\u0938\u0947\u091f\u093f\u0902\u0917\u094d\u0938' },
+      abTitle: { 'hi-IN': '3 \u0928\u0908 \u092f\u094b\u091c\u0928\u093e\u090f\u0902 \u092e\u093f\u0932\u0940\u0902', 'en-IN': '3 new schemes matched your profile', 'mr-IN': '3 \u0928\u0935\u0940\u0928 \u092f\u094b\u091c\u0928\u093e' },
+      abDesc: { 'hi-IN': 'PM \u0906\u0935\u093e\u0938, PM-\u0915\u093f\u0938\u093e\u0928 \u0914\u0930 \u0906\u092f\u0941\u0937\u094d\u092e\u093e\u0928 \u092d\u093e\u0930\u0924 \u0924\u0948\u092f\u093e\u0930 \u0939\u0948\u0902\u0964', 'en-IN': 'PM Awas, PM-KISAN & Ayushman Bharat are ready for application.', 'mr-IN': 'PM \u0906\u0935\u093e\u0938, PM-\u0915\u093f\u0938\u093e\u0928 \u0906\u0923\u093f \u0906\u092f\u0941\u0937\u094d\u092e\u093e\u0928 \u092d\u093e\u0930\u0924 \u0924\u0948\u092f\u093e\u0930 \u0906\u0939\u0947\u0924\u0964' },
+      abBtn: { 'hi-IN': '\u0905\u092d\u0940 \u0926\u0947\u0916\u0947\u0902', 'en-IN': 'View Now \u2192', 'mr-IN': '\u0906\u0924\u094d\u0924\u093e \u092a\u0939\u093e \u2192' },
+      browse: { 'hi-IN': '\u0938\u092d\u0940 \u092f\u094b\u091c\u0928\u093e\u090f\u0902 \u0926\u0947\u0916\u0947\u0902', 'en-IN': 'Browse All Schemes', 'mr-IN': '\u0938\u0930\u094d\u0935 \u092f\u094b\u091c\u0928\u093e \u092a\u0939\u093e' },
+      track: { 'hi-IN': '\u0906\u0935\u0947\u0926\u0928 \u091f\u094d\u0930\u0948\u0915 \u0915\u0930\u0947\u0902', 'en-IN': 'Track Applications', 'mr-IN': '\u0905\u0930\u094d\u091c \u091f\u094d\u0930\u0945\u0915 \u0915\u0930\u093e' },
+      impactT: { 'hi-IN': 'SAARTHI \u092a\u094d\u0930\u092d\u093e\u0935 \u2014 \u092e\u0939\u093e\u0930\u093e\u0937\u094d\u091f\u094d\u0930', 'en-IN': 'SAARTHI Impact \u2014 Maharashtra', 'mr-IN': 'SAARTHI \u092a\u094d\u0930\u092d\u093e\u0935 \u2014 \u092e\u0939\u093e\u0930\u093e\u0937\u094d\u091f\u094d\u0930' },
+      // Hero section
+      heroTitle: { 'hi-IN': '\u0906\u092a <span>34 \u092f\u094b\u091c\u0928\u093e\u0913\u0902</span><br>\u0915\u0947 \u092a\u093e\u178f \u0939\u0948\u0902, \u0915\u0941\u0932 \u20b92.14 \u0932\u093e\u0916 / \u0935\u0930\u094d\u0937', 'en-IN': 'You qualify for <span>34 schemes</span><br>worth \u20b92.14 Lakh / year', 'mr-IN': '\u0924\u0941\u092e\u094d\u0939\u0940 <span>34 \u092f\u094b\u091c\u0928\u093e\u0902</span><br>\u0938\u093e\u0920\u0940 \u092a\u093e\u178f \u0906\u0939\u093e\u0924, \u0935\u093e\u0930\u094d\u0937\u093f\u0915 \u20b92.14 \u0932\u093e\u0916' },
+      heroSub: { 'hi-IN': '\u0932\u093e\u0924\u0942\u0930, \u092e\u0939\u093e\u0930\u093e\u0937\u094d\u091f\u094d\u0930 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u092a\u094d\u0930\u094b\u092b\u093e\u0907\u0932 \u0915\u0947 \u0906\u0927\u093e\u0930 \u092a\u0930\u0964', 'en-IN': 'Based on your profile in Latur, Maharashtra.', 'mr-IN': '\u0932\u093e\u0924\u0942\u0930, \u092e\u0939\u093e\u0930\u093e\u0937\u094d\u091f\u094d\u0930 \u092e\u0927\u0940\u0932 \u0924\u0941\u092e\u091a\u094d\u092f\u093e \u092a\u094d\u0930\u094b\u092b\u093e\u0907\u0932\u0928\u0941\u0938\u093e\u0930\u0964' },
+      heroApps: { 'hi-IN': '3 \u0906\u0935\u0947\u0926\u0928 \u0926\u093e\u0916\u093f\u0932 \u22c5 1 \u091c\u093e\u0902\u091a \u092e\u0947\u0902 \u22c5 1 \u0938\u094d\u0935\u0940\u0915\u0943\u0924', 'en-IN': '3 applications filed \u00b7 1 under review \u00b7 1 approved.', 'mr-IN': '3 \u0905\u0930\u094d\u091c \u0926\u093e\u0916\u0932 \u00b7 1 \u0906\u0922\u093e\u0935\u093e\u0916\u093e\u0932\u0940 \u00b7 1 \u092e\u0902\u091c\u0942\u0930' },
+      // KPI labels
+      kpi1Lbl: { 'hi-IN': '\u092a\u093e\u178f \u092f\u094b\u091c\u0928\u093e\u090f\u0902', 'en-IN': 'Eligible Schemes', 'mr-IN': '\u092a\u093e\u178f \u092f\u094b\u091c\u0928\u093e' },
+      kpi1D: { 'hi-IN': '\u0907\u0938 \u0938\u092a\u094d\u0924\u093e\u0939 3 \u0928\u0908', 'en-IN': '3 new this week', 'mr-IN': '\u092f\u093e \u0906\u0920\u0935\u0921\u094d\u092f\u093e\u0924 3 \u0928\u0935\u0940\u0928' },
+      kpi2Lbl: { 'hi-IN': '\u0935\u093e\u0930\u094d\u0937\u093f\u0915 \u0932\u093e\u092d', 'en-IN': 'Annual Benefit', 'mr-IN': '\u0935\u093e\u0930\u094d\u0937\u093f\u0915 \u092b\u093e\u092f\u0926\u093e' },
+      kpi2D: { 'hi-IN': '\u0938\u092d\u0940 \u092f\u094b\u091c\u0928\u093e\u0913\u0902 \u092e\u0947\u0902', 'en-IN': 'Across all schemes', 'mr-IN': '\u0938\u0930\u094d\u0935 \u092f\u094b\u091c\u0928\u093e\u0902\u092e\u0927\u0942\u0928' },
+      kpi3Lbl: { 'hi-IN': '\u0906\u0935\u0947\u0926\u0928', 'en-IN': 'Applications', 'mr-IN': '\u0905\u0930\u094d\u091c' },
+      kpi3D: { 'hi-IN': '1 \u0915\u094b \u0927\u094d\u092f\u093e\u0928 \u091a\u093e\u0939\u093f\u090f', 'en-IN': '1 needs attention', 'mr-IN': '1 \u0932\u0915\u094d\u0937 \u0926\u094d\u092f\u093e' },
+      kpi4Lbl: { 'hi-IN': '\u092a\u094d\u0930\u094b\u092b\u093c\u093e\u0907\u0932 \u0924\u093e\u0915\u0924', 'en-IN': 'Profile Strength', 'mr-IN': '\u092a\u094d\u0930\u094b\u092b\u093e\u0907\u0932 \u0924\u093e\u0915\u0926' },
+      kpi4D: { 'hi-IN': '85% \u0915\u0947 \u0932\u093f\u090f \u0926\u0938\u094d\u0924\u093e\u0935\u0947\u091c \u091c\u094b\u0921\u093c\u0947\u0902', 'en-IN': 'Add docs to reach 85%', 'mr-IN': '85% \u0938\u093e\u0920\u0940 \u0926\u0938\u094d\u0924\u093e\u0935\u0947\u091c \u091c\u094b\u0921\u093e' },
+      hsSchemes: { 'hi-IN': '\u092a\u093e\u178f \u092f\u094b\u091c\u0928\u093e\u090f\u0902', 'en-IN': 'Eligible Schemes', 'mr-IN': '\u092a\u093e\u178f \u092f\u094b\u091c\u0928\u093e' },
+      // Card section titles
+      c1Title: { 'hi-IN': '\u0906\u092a\u0915\u0947 \u0932\u093f\u090f \u0936\u0940\u0930\u094d\u0937 \u092f\u094b\u091c\u0928\u093e\u090f\u0902', 'en-IN': 'Top Schemes For You', 'mr-IN': '\u0924\u0941\u092e\u091a\u094d\u092f\u093e\u0938\u093e\u0920\u0940 \u0936\u0940\u0930\u094d\u0937 \u092f\u094b\u091c\u0928\u093e' },
+      c1Sub: { 'hi-IN': '\u0938\u0930\u094d\u0935\u093e\u0927\u093f\u0915 \u0932\u093e\u092d \u00b7 \u0938\u0930\u094d\u0935\u094b\u0924\u094d\u0924\u092e \u092e\u093f\u0932\u093e\u0928', 'en-IN': 'Highest benefit \u00b7 Best match', 'mr-IN': '\u0938\u0930\u094d\u0935\u093e\u0927\u093f\u0915 \u092b\u093e\u092f\u0926\u093e \u00b7 \u0938\u0930\u094d\u0935\u094b\u0924\u094d\u0924\u092e \u091c\u0941\u0933\u0923\u0940' },
+      c1Link: { 'hi-IN': '\u0938\u092d\u0940 34 \u0926\u0947\u0916\u0947\u0902 \u2192', 'en-IN': 'View all 34 \u2192', 'mr-IN': '\u0938\u0930\u094d\u0935 34 \u092a\u0939\u093e \u2192' },
+      c2Title: { 'hi-IN': '\u0906\u0935\u0947\u0926\u0928 \u091f\u094d\u0930\u0948\u0915\u0930', 'en-IN': 'Application Tracker', 'mr-IN': '\u0905\u0930\u094d\u091c \u091f\u094d\u0930\u0945\u0915\u0930' },
+      c2Sub: { 'hi-IN': '\u091c\u092e\u093e \u0906\u0935\u0947\u0926\u0928\u094b\u0902 \u0915\u0940 \u0932\u093e\u0907\u0935 \u0938\u094d\u0925\u093f\u0924\u093f', 'en-IN': 'Live status of submitted applications', 'mr-IN': '\u0926\u093e\u0916\u0932 \u0905\u0930\u094d\u091c\u093e\u0902\u091a\u0940 \u0925\u0947\u091f \u0938\u094d\u0925\u093f\u0924\u0940' },
+      c2Link: { 'hi-IN': '\u0938\u092d\u0940 \u0926\u0947\u0916\u0947\u0902 \u2192', 'en-IN': 'View all \u2192', 'mr-IN': '\u0938\u0930\u094d\u0935 \u092a\u0939\u093e \u2192' },
+      c3Title: { 'hi-IN': '\u0924\u0941\u0930\u0902\u0924 \u0915\u093e\u0930\u094d\u0930\u0935\u093e\u0908', 'en-IN': 'Quick Actions', 'mr-IN': '\u0924\u094d\u0935\u0930\u093f\u0924 \u0915\u0943\u0924\u0940' },
+      c3Sub: { 'hi-IN': '\u091c\u094b \u091a\u093e\u0939\u093f\u090f \u0935\u0939\u093e\u0902 \u091c\u093e\u090f\u0902', 'en-IN': 'Jump to what you need', 'mr-IN': '\u0924\u0941\u092e\u094d\u0939\u093e\u0932\u093e \u0939\u0935\u0947 \u0924\u093f\u0925\u0947 \u091c\u093e' },
+      c4Title: { 'hi-IN': '\u092a\u094d\u0930\u094b\u092b\u093c\u093e\u0907\u0932 \u0924\u093e\u0915\u0924', 'en-IN': 'Profile Strength', 'mr-IN': '\u092a\u094d\u0930\u094b\u092b\u093e\u0907\u0932 \u0924\u093e\u0915\u0926' },
+      c4Sub: { 'hi-IN': '12 \u0914\u0930 \u092f\u094b\u091c\u0928\u093e\u090f\u0902 \u0905\u0928\u0932\u0949\u0915 \u0915\u0930\u0947\u0902', 'en-IN': 'Unlock 12 more schemes', 'mr-IN': '12 \u0905\u0927\u093f\u0915 \u092f\u094b\u091c\u0928\u093e \u0905\u0928\u0932\u0949\u0915 \u0915\u0930\u093e' },
+      profLbl: { 'hi-IN': '\u092a\u0942\u0930\u094d\u0923\u0924\u093e', 'en-IN': 'Completion', 'mr-IN': '\u092a\u0942\u0930\u094d\u0923\u0924\u093e' },
+      profHint: { 'hi-IN': '\u0906\u0935\u093e\u0938 \u0914\u0930 \u092a\u0947\u0902\u0936\u0928 \u092f\u094b\u091c\u0928\u093e\u090f\u0902 \u0905\u0928\u0932\u0949\u0915 \u0915\u0930\u0928\u0947 \u0915\u0947 \u0932\u093f\u090f 3 \u091a\u0930\u0923 \u092a\u0942\u0930\u0947 \u0915\u0930\u0947\u0902', 'en-IN': 'Complete 3 more steps to unlock housing & pension schemes', 'mr-IN': '\u0906\u0935\u093e\u0938 \u0906\u0923\u093f \u0928\u093f\u0935\u0943\u0924\u094d\u0924\u093f\u0935\u0947\u0924\u0928 \u092f\u094b\u091c\u0928\u093e \u0905\u0928\u0932\u0949\u0915 \u0915\u0930\u0923\u094d\u092f\u093e\u0938\u093e\u0920\u0940 3 \u0905\u0927\u093f\u0915 \u091f\u092a\u094d\u092a\u0947 \u092a\u0942\u0930\u094d\u0923 \u0915\u0930\u093e' },
+      // Quick Actions sub-labels
+      qa1Lbl: { 'hi-IN': 'SAARTHI \u0938\u0947 \u092a\u0942\u091b\u0947\u0902', 'en-IN': 'Ask SAARTHI', 'mr-IN': 'SAARTHI \u0932\u093e \u0935\u093f\u091a\u093e\u0930\u093e' },
+      qa1Sub: { 'hi-IN': '\u0935\u0949\u0907\u0938 \u0914\u0930 \u091f\u0947\u0915\u094d\u0938\u094d\u091f \u0938\u0939\u093e\u092f\u0924\u093e', 'en-IN': 'Voice & text help', 'mr-IN': '\u0906\u0935\u093e\u091c \u0906\u0923\u093f \u092e\u091c\u0915\u0942\u0930 \u092e\u0926\u0924' },
+      qa2Lbl: { 'hi-IN': '\u092f\u094b\u091c\u0928\u093e\u090f\u0902 \u0916\u094b\u091c\u0947\u0902', 'en-IN': 'Browse Schemes', 'mr-IN': '\u092f\u094b\u091c\u0928\u093e \u092a\u0939\u093e' },
+      qa2Sub: { 'hi-IN': '\u0938\u092d\u0940 34 \u0938\u0941\u0932\u092d', 'en-IN': 'All 34 matches', 'mr-IN': '\u0938\u0930\u094d\u0935 34 \u091c\u0941\u0933\u0923\u093e\u0930\u094d\u092f\u093e' },
+      qa3Lbl: { 'hi-IN': '\u0926\u0938\u094d\u0924\u093e\u0935\u0947\u091c \u0905\u092a\u0932\u094b\u0921', 'en-IN': 'Upload Docs', 'mr-IN': '\u0926\u0938\u094d\u0924\u0910\u0935\u091c \u0905\u092a\u0932\u094b\u0921' },
+      qa3Sub: { 'hi-IN': '\u0906\u0927\u093e\u0930 \u00b7 \u092a\u0948\u0928 \u00b7 \u0914\u0930 \u0905\u0927\u093f\u0915', 'en-IN': 'Aadhaar \u00b7 PAN \u00b7 More', 'mr-IN': '\u0906\u0927\u093e\u0930 \u00b7 PAN \u00b7 \u0906\u0923\u0916\u0940' },
+      qa4Lbl: { 'hi-IN': '\u0938\u094d\u0925\u093f\u0924\u093f \u0926\u0947\u0916\u0947\u0902', 'en-IN': 'Track Status', 'mr-IN': '\u0938\u094d\u0925\u093f\u0924\u0940 \u092a\u0939\u093e' },
+      qa4Sub: { 'hi-IN': '3 \u0938\u0915\u094d\u0930\u093f\u092f \u0906\u0935\u0947\u0926\u0928', 'en-IN': '3 active apps', 'mr-IN': '3 \u0938\u0915\u094d\u0930\u093f\u092f \u0905\u0930\u094d\u091c' },
+      // Scheme names and ministry
+      s1Name: { 'hi-IN': 'PM \u0906\u0935\u093e\u0938 \u092f\u094b\u091c\u0928\u093e (\u0917\u094d\u0930\u093e\u092e\u0940\u0923)', 'en-IN': 'PM Awas Yojana (Gramin)', 'mr-IN': 'PM \u0906\u0935\u093e\u0938 \u092f\u094b\u091c\u0928\u093e (\u0917\u094d\u0930\u093e\u092e\u0940\u0923)' },
+      s1Dept: { 'hi-IN': '\u0917\u094d\u0930\u093e\u092e\u0940\u0923 \u0935\u093f\u0915\u093e\u0938 \u092e\u0902\u0924\u094d\u0930\u093e\u0932\u092f', 'en-IN': 'Ministry of Rural Development', 'mr-IN': '\u0917\u094d\u0930\u093e\u092e\u0940\u0923 \u0935\u093f\u0915\u093e\u0938 \u092e\u0902\u0924\u094d\u0930\u093e\u0932\u092f' },
+      s1Tag: { 'hi-IN': '\u0905\u0902\u0924\u093f\u092e \u0924\u093f\u0925\u093f 15 \u092e\u093e\u0930\u094d\u091a', 'en-IN': 'Deadline Mar 15', 'mr-IN': '\u0905\u0902\u0924\u093f\u092e \u0926\u093f\u0928\u093e\u0902\u0915 15 \u092e\u093e\u0930\u094d\u091a' },
+      s2Name: { 'hi-IN': 'PM-KISAN \u0938\u092e\u094d\u092e\u093e\u0928 \u0928\u093f\u0927\u093f', 'en-IN': 'PM-KISAN Samman Nidhi', 'mr-IN': 'PM-KISAN \u0938\u0928\u094d\u092e\u093e\u0928 \u0928\u093f\u0927\u0940' },
+      s2Dept: { 'hi-IN': '\u0915\u0943\u0937\u093f \u0914\u0930 \u0915\u093f\u0938\u093e\u0928 \u0915\u0932\u094d\u092f\u093e\u0923 \u092e\u0902\u0924\u094d\u0930\u093e\u0932\u092f', 'en-IN': 'Ministry of Agriculture & Farmers Welfare', 'mr-IN': '\u0915\u0943\u0937\u093f \u0906\u0923\u093f \u0936\u0947\u0924\u0915\u0930\u0940 \u0915\u0932\u094d\u092f\u093e\u0923 \u092e\u0902\u0924\u094d\u0930\u093e\u0932\u092f' },
+      s2Tag: { 'hi-IN': '\u0905\u092d\u0940 \u0906\u0935\u0947\u0926\u0928 \u0915\u0930\u0947\u0902', 'en-IN': 'Apply Now', 'mr-IN': '\u0906\u0924\u093e \u0905\u0930\u094d\u091c \u0915\u0930\u093e' },
+      s3Name: { 'hi-IN': '\u0906\u092f\u0941\u0937\u094d\u092e\u093e\u0928 \u092d\u093e\u0930\u0924 PM-JAY', 'en-IN': 'Ayushman Bharat PM-JAY', 'mr-IN': '\u0906\u092f\u0941\u0937\u094d\u092e\u093e\u0928 \u092d\u093e\u0930\u0924 PM-JAY' },
+      s3Dept: { 'hi-IN': '\u0938\u094d\u0935\u093e\u0938\u094d\u0925\u094d\u092f \u0914\u0930 \u092a\u0930\u093f\u0935\u093e\u0930 \u0915\u0932\u094d\u092f\u093e\u0923 \u092e\u0902\u0924\u094d\u0930\u093e\u0932\u092f', 'en-IN': 'Ministry of Health & Family Welfare', 'mr-IN': '\u0906\u0930\u094b\u0917\u094d\u092f \u0906\u0923\u093f \u0915\u0941\u091f\u0941\u0902\u092c \u0915\u0932\u094d\u092f\u093e\u0923 \u092e\u0902\u0924\u094d\u0930\u093e\u0932\u092f' },
+      s3Tag: { 'hi-IN': '\u0905\u092d\u0940 \u0906\u0935\u0947\u0926\u0928 \u0915\u0930\u0947\u0902', 'en-IN': 'Apply Now', 'mr-IN': '\u0906\u0924\u093e \u0905\u0930\u094d\u091c \u0915\u0930\u093e' },
+      s4Name: { 'hi-IN': 'NSP \u091b\u093e\u0924\u094d\u0930\u0935\u0943\u0924\u094d\u0924\u093f (SC/ST/OBC)', 'en-IN': 'NSP Scholarship (SC/ST/OBC)', 'mr-IN': 'NSP \u0936\u093f\u0937\u094d\u092f\u0935\u0943\u0924\u094d\u0924\u0940 (SC/ST/OBC)' },
+      s4Dept: { 'hi-IN': '\u0936\u093f\u0915\u094d\u0937\u093e \u092e\u0902\u0924\u094d\u0930\u093e\u0932\u092f', 'en-IN': 'Ministry of Education', 'mr-IN': '\u0936\u093f\u0915\u094d\u0937\u0923 \u092e\u0902\u0924\u094d\u0930\u093e\u0932\u092f' },
+      s4Tag: { 'hi-IN': '\u0926\u0938\u094d\u0924\u093e\u0935\u0947\u091c \u0932\u0902\u092c\u093f\u0924', 'en-IN': 'Docs Pending', 'mr-IN': '\u0926\u0938\u094d\u0924\u0910\u0935\u091c \u092c\u093e\u0915\u0940' },
+      s5Name: { 'hi-IN': 'PM \u0909\u091c\u094d\u091c\u094d\u0935\u0932\u093e \u092f\u094b\u091c\u0928\u093e 2.0', 'en-IN': 'PM Ujjwala Yojana 2.0', 'mr-IN': 'PM \u0909\u091c\u094d\u092c\u0932\u093e \u092f\u094b\u091c\u0928\u093e 2.0' },
+      s5Dept: { 'hi-IN': '\u092a\u0947\u091f\u094d\u0930\u094b\u0932\u093f\u092f\u092e \u0914\u0930 \u092a\u094d\u0930\u093e\u0915\u0943\u0924\u093f\u0915 \u0917\u0948\u0938 \u092e\u0902\u0924\u094d\u0930\u093e\u0932\u092f', 'en-IN': 'Ministry of Petroleum & Natural Gas', 'mr-IN': '\u092a\u0947\u091f\u094d\u0930\u094b\u0932\u093f\u092f\u092e \u0906\u0923\u093f \u0928\u0948\u0938\u0930\u094d\u0917\u093f\u0915 \u0935\u093e\u092f\u0942 \u092e\u0902\u0924\u094d\u0930\u093e\u0932\u092f' },
+      s5Tag: { 'hi-IN': '\u0928\u092f\u093e \u092e\u093f\u0932\u093e\u0928', 'en-IN': 'New Match', 'mr-IN': '\u0928\u0935\u0940\u0928 \u091c\u0941\u0933\u0923\u0940' },
+      // App tracker
+      a1Name: { 'hi-IN': 'PM \u0906\u0935\u093e\u0938 \u092f\u094b\u091c\u0928\u093e', 'en-IN': 'PM Awas Yojana', 'mr-IN': 'PM \u0906\u0935\u093e\u0938 \u092f\u094b\u091c\u0928\u093e' },
+      a1Pct: { 'hi-IN': '\u0926\u0938\u094d\u0924\u093e\u0935\u0947\u091c \u0938\u0924\u094d\u092f\u093e\u092a\u093f\u0924', 'en-IN': 'Documents Verified', 'mr-IN': '\u0926\u0938\u094d\u0924\u0910\u0935\u091c \u092a\u0921\u0924\u093e\u0932\u0932\u0947' },
+      a1Status: { 'hi-IN': '\u0938\u092e\u0940\u0915\u094d\u0937\u093e\u0927\u0940\u0928', 'en-IN': 'Under Review', 'mr-IN': '\u0906\u0922\u093e\u0935\u093e\u0916\u093e\u0932\u0940' },
+      a2Name: { 'hi-IN': '\u0906\u092f\u0941\u0937\u094d\u092e\u093e\u0928 \u092d\u093e\u0930\u0924', 'en-IN': 'Ayushman Bharat', 'mr-IN': '\u0906\u092f\u0941\u0937\u094d\u092e\u093e\u0928 \u092d\u093e\u0930\u0924' },
+      a2Pct: { 'hi-IN': '\u0915\u093e\u0930\u094d\u0921 \u091c\u093e\u0930\u0940', 'en-IN': 'Card Issued', 'mr-IN': '\u0915\u093e\u0930\u094d\u0921 \u091c\u093e\u0930\u0940' },
+      a2Status: { 'hi-IN': '\u0938\u094d\u0935\u0940\u0915\u0943\u0924', 'en-IN': 'Approved', 'mr-IN': '\u092e\u0902\u091c\u0942\u0930' },
+      a3Name: { 'hi-IN': 'PM-KISAN \u0938\u092e\u094d\u092e\u093e\u0928', 'en-IN': 'PM-KISAN Samman', 'mr-IN': 'PM-KISAN \u0938\u0928\u094d\u092e\u093e\u0928' },
+      a3Pct: { 'hi-IN': '\u0938\u0924\u094d\u092f\u093e\u092a\u0928 \u0915\u0940 \u092a\u094d\u0930\u0924\u0940\u0915\u094d\u0937\u093e', 'en-IN': 'Awaiting Verification', 'mr-IN': '\u092a\u0921\u0924\u093e\u0933\u0923\u0940\u092a\u0947\u0915\u094d\u0937\u093e' },
+      a3Status: { 'hi-IN': '\u092a\u094d\u0930\u0915\u094d\u0930\u093f\u092f\u093e\u0927\u0940\u0928', 'en-IN': 'Processing', 'mr-IN': '\u092a\u094d\u0930\u0915\u094d\u0930\u093f\u092f\u093e\u0927\u0940\u0928' }
+    };
+
+    function get(k) { return T[k][curLang] || T[k]['en-IN']; }
+
+    function toggleLangMenu() { document.getElementById('lang-menu').classList.toggle('show'); }
+
+    function setLang(name, code) {
+      curLang = code;
+      // Persist to localStorage (map hi-IN→hi etc.)
+      var lsCode = code.split('-')[0];
+      localStorage.setItem('saarthi_lang', lsCode);
+      if (window.SaarthiI18n) window.SaarthiI18n.apply();
+      updateLangBtnLabel(name);
+      document.getElementById('lang-menu').classList.remove('show');
+      document.querySelectorAll('.lang-opt').forEach(o => { o.classList.toggle('active', o.querySelector('span').textContent === name); });
+      applyAll();
+    }
+
+    function updateLangBtnLabel(name) {
+      // Replace only the text node before the SVG arrows in the button
+      var btn = document.getElementById('lang-btn-label');
+      if (!btn) return;
+      btn.childNodes.forEach(function (n) {
+        if (n.nodeType === 3 && n.textContent.trim()) n.textContent = name + ' ';
+      });
+    }
+
+    function applyAll() {
+      const map = {
+        'tb-greet': null,
+        'txt-askbtn': 'askbtn',
+        'txt-dash': 'txtDash', 'txt-ask': 'txtAsk', 'txt-schemes': 'txtSchemes',
+        'txt-apps': 'txtApps', 'txt-docs': 'txtDocs', 'txt-success': 'txtSuccess',
+        'txt-help': 'txtHelp', 'txt-settings': 'txtSettings',
+        'ab-title': 'abTitle', 'ab-desc': 'abDesc', 'ab-btn': 'abBtn',
+        'txt-browse': 'browse', 'txt-track': 'track',
+        'impact-title': 'impactT',
+        // KPI
+        'kpi1-lbl': 'kpi1Lbl', 'kpi1-delta': 'kpi1D',
+        'kpi2-lbl': 'kpi2Lbl', 'kpi2-delta': 'kpi2D',
+        'kpi3-lbl': 'kpi3Lbl', 'kpi3-delta': 'kpi3D',
+        'kpi4-lbl': 'kpi4Lbl', 'kpi4-delta': 'kpi4D',
+        'hs-schemes': 'hsSchemes',
+        // Card titles
+        'c1-title': 'c1Title', 'c1-sub': 'c1Sub', 'c1-link': 'c1Link',
+        'c2-title': 'c2Title', 'c2-sub': 'c2Sub', 'c2-link': 'c2Link',
+        'c3-title': 'c3Title', 'c3-sub': 'c3Sub',
+        'c4-title': 'c4Title', 'c4-sub': 'c4Sub',
+        'prof-lbl': 'profLbl', 'prof-hint': 'profHint',
+        // Quick Actions
+        'qa1': 'qa1Lbl', 'qa1-sub': 'qa1Sub',
+        'qa2': 'qa2Lbl', 'qa2-sub': 'qa2Sub',
+        'qa3': 'qa3Lbl', 'qa3-sub': 'qa3Sub',
+        'qa4': 'qa4Lbl', 'qa4-sub': 'qa4Sub',
+        // Scheme list
+        's1-name': 's1Name', 's1-dept': 's1Dept', 's1-tag': 's1Tag',
+        's2-name': 's2Name', 's2-dept': 's2Dept', 's2-tag': 's2Tag',
+        's3-name': 's3Name', 's3-dept': 's3Dept', 's3-tag': 's3Tag',
+        's4-name': 's4Name', 's4-dept': 's4Dept', 's4-tag': 's4Tag',
+        's5-name': 's5Name', 's5-dept': 's5Dept', 's5-tag': 's5Tag',
+        // App tracker
+        'a1-name': 'a1Name', 'a1-pct': 'a1Pct', 'a1-status': 'a1Status',
+        'a2-name': 'a2Name', 'a2-pct': 'a2Pct', 'a2-status': 'a2Status',
+        'a3-name': 'a3Name', 'a3-pct': 'a3Pct', 'a3-status': 'a3Status'
+      };
+      const htmlMap = { 'hero-title': 'heroTitle' };
+      for (let id in map) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (id === 'tb-greet') {
+          el.innerHTML = get('greet') + ' <span>Ramesh Kumar</span>';
+        } else {
+          el.textContent = get(map[id]);
+        }
+      }
+      // innerHTML elements (hero title has a <span> for color)
+      for (let id in htmlMap) {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = get(htmlMap[id]);
+      }
+      // Also translate hero subtitle & apps line
+      const heroSub = document.querySelector('.hero-desc');
+      if (heroSub) heroSub.textContent = get('heroSub');
+      const heroApps = document.querySelector('.hero-apps');
+      if (heroApps) heroApps.textContent = get('heroApps');
+    }
+
+    window.addEventListener('click', e => { if (!e.target.closest('.lang-sel')) document.getElementById('lang-menu').classList.remove('show'); });
+
+    /* ── INIT LANGUAGE on load ── */
+    (function initLang() {
+      var nameMap = { 'en-IN': 'English', 'hi-IN': 'Hindi', 'mr-IN': 'Marathi' };
+      var name = nameMap[curLang] || 'English';
+      updateLangBtnLabel(name);
+      // Mark the correct option as active in the dropdown
+      document.querySelectorAll('.lang-opt').forEach(function (o) {
+        var sp = o.querySelector('span');
+        if (sp) o.classList.toggle('active', sp.textContent === name);
+      });
+      if (curLang !== 'en-IN') applyAll();
+    })();
+
+    /* ── ANIMATE CARDS ── */
+    document.querySelectorAll('.card,.kpi').forEach((c, i) => {
+      c.style.animation = `rise 0.4s ${0.05 + i * 0.04}s ease both`;
+    });
+    /* ── SEARCH ── */
+    function openSearch() {
+      document.getElementById('search-modal').classList.add('open');
+      setTimeout(() => document.getElementById('search-input').focus(), 60);
+    }
+    function closeSearch() {
+      document.getElementById('search-modal').classList.remove('open');
+      document.getElementById('search-input').value = '';
+      renderResults('');
+    }
+    const SEARCH_ITEMS = [
+      { label: 'Dashboard', desc: 'Home overview & KPIs', url: 'dashboard.html', icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z' },
+      { label: 'Ask SAARTHI (Voice)', desc: 'Speak to the AI in your language', url: 'voice.html', icon: 'M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3zM19 10v2a7 7 0 01-14 0v-2' },
+      { label: 'My Schemes', desc: 'Browse 34 matched welfare schemes', url: 'scheme-results.html', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2' },
+      { label: 'Application Tracker', desc: 'Check status of your 6 applications', url: 'application-tracker.html', icon: 'M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z' },
+      { label: 'Document Vault', desc: 'Upload and manage your documents', url: 'document-upload.html', icon: 'M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z' },
+      { label: 'Success Stories', desc: 'Read stories from real beneficiaries', url: 'success-stories.html', icon: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' },
+      { label: 'Help & Support', desc: 'FAQs, helplines and contact options', url: 'help-support.html', icon: 'M12 22c0 0-8-4-8-10V5l8-3 8 3v7c0 6-8 10-8 10z' },
+      { label: 'Settings', desc: 'Profile, language, notifications', url: 'profile-settings.html', icon: 'M12 15a3 3 0 100-6 3 3 0 000 6z' },
+      { label: 'Ayushman Bharat PM-JAY', desc: 'Health insurance up to ₹5 lakh/year', url: 'scheme-results.html', icon: 'M22 12h-4l-3 9L9 3l-3 9H2' },
+      { label: 'PM-KISAN', desc: 'Income support ₹6,000/year for farmers', url: 'scheme-results.html', icon: 'M12 22V12M12 12C12 7 7 3 2 3c0 5 4 9 10 9z' },
+      { label: 'PM Awas Yojana', desc: 'Housing assistance for rural families', url: 'scheme-results.html', icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z' },
+      { label: 'PM Ujjwala Yojana', desc: 'Free LPG connection for BPL families', url: 'scheme-results.html', icon: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
+      { label: 'NSP Scholarship', desc: 'National scholarship for SC/ST students', url: 'scheme-results.html', icon: 'M4 19.5A2.5 2.5 0 016.5 17H20' },
+      { label: 'Upload Aadhaar', desc: 'Add your Aadhaar card to document vault', url: 'document-upload.html', icon: 'M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4' },
+      { label: 'Change Language', desc: 'Switch between Hindi, Marathi, English', url: 'profile-settings.html', icon: 'M12 22c5.52 0 10-4.48 10-10S17.52 2 12 2 2 6.48 2 12s4.48 10 10 10z' }
+    ];
+    function renderResults(q) {
+      const list = document.getElementById('search-results');
+      const filtered = q.trim() === '' ? SEARCH_ITEMS.slice(0, 6) : SEARCH_ITEMS.filter(i => (i.label + i.desc).toLowerCase().includes(q.toLowerCase()));
+      if (!filtered.length) { list.innerHTML = '<div style="padding:24px;text-align:center;color:#9CA3AF;font-size:13px">No results found for <strong>"' + q + '"</strong></div>'; return; }
+      list.innerHTML = filtered.map(i => `<a href="${i.url}" class="sr-item" onclick="closeSearch()">
+      <div class="sr-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="${i.icon}"/></svg></div>
+      <div class="sr-info"><div class="sr-label">${i.label}</div><div class="sr-desc">${i.desc}</div></div>
+      <svg class="sr-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="14" height="14"><path d="m9 18 6-6-6-6"/></svg>
+    </a>`).join('');
+    }
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+      if (e.key === 'Escape') closeSearch();
+    });
+    renderResults('');
+  </script>
+
+  <!-- SEARCH MODAL -->
+  <div id="search-modal" class="search-modal" onclick="if(event.target===this)closeSearch()">
+    <div class="search-dialog">
+      <div class="sd-bar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="18"
+          height="18" style="color:#9CA3AF;flex-shrink:0">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+        <input id="search-input" type="text" placeholder="Search pages, schemes, documents..."
+          oninput="renderResults(this.value)" autocomplete="off">
+        <div class="sd-esc" onclick="closeSearch()">Esc</div>
+      </div>
+      <div id="search-results"></div>
+      <div class="sd-footer">Quick navigation &mdash; press <kbd>Ctrl K</kbd> to open anytime &middot;
+        <kbd>&uarr;</kbd><kbd>&darr;</kbd> to navigate &middot; <kbd>Enter</kbd> to go
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .search-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 27, 58, 0.55);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 80px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .search-modal.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .search-dialog {
+      background: #fff;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 560px;
+      box-shadow: 0 24px 80px rgba(11, 27, 58, 0.22);
+      overflow: hidden;
+      transform: translateY(-12px);
+      transition: transform 0.25s;
+    }
+
+    .search-modal.open .search-dialog {
+      transform: translateY(0);
+    }
+
+    .sd-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(11, 27, 58, 0.09);
+    }
+
+    .sd-bar input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: #111827;
+      background: transparent;
+    }
+
+    .sd-bar input::placeholder {
+      color: #9CA3AF;
+    }
+
+    .sd-esc {
+      font-size: 11px;
+      font-weight: 600;
+      color: #9CA3AF;
+      border: 1.5px solid #E5E7EB;
+      border-radius: 6px;
+      padding: 3px 8px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .sd-esc:hover {
+      border-color: #FF6B1A;
+      color: #FF6B1A;
+    }
+
+    #search-results {
+      max-height: 360px;
+      overflow-y: auto;
+    }
+
+    .sr-item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s;
+      border-bottom: 1px solid rgba(11, 27, 58, 0.06);
+    }
+
+    .sr-item:last-child {
+      border-bottom: none;
+    }
+
+    .sr-item:hover {
+      background: #FFF5EF;
+    }
+
+    .sr-ico {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(255, 107, 26, 0.09);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #FF6B1A;
+    }
+
+    .sr-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .sr-label {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .sr-desc {
+      font-size: 11.5px;
+      color: #9CA3AF;
+      margin-top: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sr-arrow {
+      color: #D1D5DB;
+      flex-shrink: 0;
+    }
+
+    .sr-item:hover .sr-arrow {
+      color: #FF6B1A;
+    }
+
+    .sd-footer {
+      padding: 10px 20px;
+      font-size: 11px;
+      color: #9CA3AF;
+      border-top: 1px solid rgba(11, 27, 58, 0.07);
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    kbd {
+      background: #F3F4F6;
+      border: 1px solid #E5E7EB;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-family: monospace;
+      font-size: 10px;
+      color: #6B7280;
+    }
+  </style>
+  <script src="saarthi-i18n.js"></script>
+</body>
+
+</html>
